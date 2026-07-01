@@ -1,0 +1,14 @@
+{
+  "name": "@loony/typescript-config",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Shared TypeScript configurations for the Loony design system monorepo.",
+  "license": "MIT",
+  "exports": {
+    "./base": "./base.json",
+    "./react-library": "./react-library.json",
+    "./next": "./next.json",
+    "./node": "./node.json"
+  },
+  "files": ["*.json", "!package.json"]
+}
