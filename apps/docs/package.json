@@ -4,15 +4,19 @@
   "private": true,
   "description": "Documentation site for the Loony design system.",
   "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "typecheck": "tsc --noEmit"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@loony/icons": "workspace:*",
     "@loony/tokens": "workspace:*",
     "@loony/ui": "workspace:*",
     "@loony/utils": "workspace:*",
+    "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -28,10 +32,13 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "storybook": "^8.4.7",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.5"
   }
