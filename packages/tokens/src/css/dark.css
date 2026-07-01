@@ -1,0 +1,154 @@
+/**
+ * @loony/tokens — Dark Mode Overrides
+ *
+ * Applied via: .dark class on <html> OR prefers-color-scheme: dark.
+ * The class-based approach takes priority (allows user override of system pref).
+ *
+ * Only semantic tokens are overridden here — primitive tokens stay constant.
+ */
+
+@layer loony.tokens {
+  .dark,
+  :root[data-theme="dark"] {
+    /* Backgrounds */
+    --loony-color-bg: oklch(0.130 0.028 261.692);
+    --loony-color-bg-subtle: oklch(0.210 0.034 264.665);
+    --loony-color-bg-muted: oklch(0.278 0.033 256.848);
+    --loony-color-bg-inverted: oklch(0.985 0.002 247.839);
+    --loony-color-bg-overlay: oklch(0 0 0 / 0.7);
+
+    /* Foreground / Text */
+    --loony-color-fg: oklch(0.967 0.003 264.542);
+    --loony-color-fg-muted: oklch(0.707 0.022 261.325);
+    --loony-color-fg-subtle: oklch(0.551 0.018 264.364);
+    --loony-color-fg-disabled: oklch(0.373 0.013 259.318);
+    --loony-color-fg-inverted: oklch(0.130 0.028 261.692);
+    --loony-color-fg-on-accent: oklch(1 0 0);
+
+    /* Borders */
+    --loony-color-border: oklch(0.278 0.033 256.848);
+    --loony-color-border-strong: oklch(0.446 0.017 257.911);
+    --loony-color-border-subtle: oklch(0.210 0.034 264.665);
+
+    /* Focus ring */
+    --loony-color-ring: oklch(0.707 0.165 254.624);
+    --loony-color-ring-offset: oklch(0.130 0.028 261.692);
+
+    /* Accent */
+    --loony-color-accent: oklch(0.623 0.214 259.815);
+    --loony-color-accent-hover: oklch(0.707 0.165 254.624);
+    --loony-color-accent-active: oklch(0.546 0.245 262.881);
+    --loony-color-accent-subtle: oklch(0.282 0.091 267.935);
+    --loony-color-accent-fg: oklch(0.130 0.028 261.692);
+
+    /* Danger */
+    --loony-color-danger: oklch(0.637 0.237 25.331);
+    --loony-color-danger-hover: oklch(0.704 0.191 22.216);
+    --loony-color-danger-subtle: oklch(0.258 0.092 26.042);
+    --loony-color-danger-fg: oklch(0.130 0.028 261.692);
+
+    /* Warning */
+    --loony-color-warning: oklch(0.795 0.184 86.047);
+    --loony-color-warning-hover: oklch(0.852 0.199 91.936);
+    --loony-color-warning-subtle: oklch(0.286 0.066 53.813);
+    --loony-color-warning-fg: oklch(0.130 0.028 261.692);
+
+    /* Success */
+    --loony-color-success: oklch(0.723 0.219 149.579);
+    --loony-color-success-hover: oklch(0.792 0.209 151.711);
+    --loony-color-success-subtle: oklch(0.266 0.065 152.934);
+    --loony-color-success-fg: oklch(0.130 0.028 261.692);
+
+    /* Info */
+    --loony-color-info: oklch(0.707 0.165 254.624);
+    --loony-color-info-hover: oklch(0.809 0.105 231.655);
+    --loony-color-info-subtle: oklch(0.282 0.091 267.935);
+    --loony-color-info-fg: oklch(0.130 0.028 261.692);
+
+    /* Surfaces */
+    --loony-color-surface: oklch(0.210 0.034 264.665);
+    --loony-color-surface-raised: oklch(0.278 0.033 256.848);
+    --loony-color-surface-overlay: oklch(0.278 0.033 256.848);
+    --loony-color-surface-sunken: oklch(0.130 0.028 261.692);
+
+    /* Shadows adjust for dark backgrounds */
+    --loony-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --loony-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --loony-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --loony-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --loony-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+    --loony-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not(.light) {
+      /* Backgrounds */
+      --loony-color-bg: oklch(0.130 0.028 261.692);
+      --loony-color-bg-subtle: oklch(0.210 0.034 264.665);
+      --loony-color-bg-muted: oklch(0.278 0.033 256.848);
+      --loony-color-bg-inverted: oklch(0.985 0.002 247.839);
+      --loony-color-bg-overlay: oklch(0 0 0 / 0.7);
+
+      /* Foreground / Text */
+      --loony-color-fg: oklch(0.967 0.003 264.542);
+      --loony-color-fg-muted: oklch(0.707 0.022 261.325);
+      --loony-color-fg-subtle: oklch(0.551 0.018 264.364);
+      --loony-color-fg-disabled: oklch(0.373 0.013 259.318);
+      --loony-color-fg-inverted: oklch(0.130 0.028 261.692);
+      --loony-color-fg-on-accent: oklch(1 0 0);
+
+      /* Borders */
+      --loony-color-border: oklch(0.278 0.033 256.848);
+      --loony-color-border-strong: oklch(0.446 0.017 257.911);
+      --loony-color-border-subtle: oklch(0.210 0.034 264.665);
+
+      /* Focus ring */
+      --loony-color-ring: oklch(0.707 0.165 254.624);
+      --loony-color-ring-offset: oklch(0.130 0.028 261.692);
+
+      /* Accent */
+      --loony-color-accent: oklch(0.623 0.214 259.815);
+      --loony-color-accent-hover: oklch(0.707 0.165 254.624);
+      --loony-color-accent-active: oklch(0.546 0.245 262.881);
+      --loony-color-accent-subtle: oklch(0.282 0.091 267.935);
+      --loony-color-accent-fg: oklch(0.130 0.028 261.692);
+
+      /* Danger */
+      --loony-color-danger: oklch(0.637 0.237 25.331);
+      --loony-color-danger-hover: oklch(0.704 0.191 22.216);
+      --loony-color-danger-subtle: oklch(0.258 0.092 26.042);
+      --loony-color-danger-fg: oklch(0.130 0.028 261.692);
+
+      /* Warning */
+      --loony-color-warning: oklch(0.795 0.184 86.047);
+      --loony-color-warning-hover: oklch(0.852 0.199 91.936);
+      --loony-color-warning-subtle: oklch(0.286 0.066 53.813);
+      --loony-color-warning-fg: oklch(0.130 0.028 261.692);
+
+      /* Success */
+      --loony-color-success: oklch(0.723 0.219 149.579);
+      --loony-color-success-hover: oklch(0.792 0.209 151.711);
+      --loony-color-success-subtle: oklch(0.266 0.065 152.934);
+      --loony-color-success-fg: oklch(0.130 0.028 261.692);
+
+      /* Info */
+      --loony-color-info: oklch(0.707 0.165 254.624);
+      --loony-color-info-hover: oklch(0.809 0.105 231.655);
+      --loony-color-info-subtle: oklch(0.282 0.091 267.935);
+      --loony-color-info-fg: oklch(0.130 0.028 261.692);
+
+      /* Surfaces */
+      --loony-color-surface: oklch(0.210 0.034 264.665);
+      --loony-color-surface-raised: oklch(0.278 0.033 256.848);
+      --loony-color-surface-overlay: oklch(0.278 0.033 256.848);
+      --loony-color-surface-sunken: oklch(0.130 0.028 261.692);
+
+      --loony-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+      --loony-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+      --loony-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+      --loony-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+      --loony-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+      --loony-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+    }
+  }
+}

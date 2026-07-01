@@ -1,0 +1,27 @@
+{
+  "name": "@loony/tokens",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Design tokens for the Loony design system — colors, typography, spacing, motion, elevation, and radius.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./css": "./src/css/index.css",
+    "./css/base": "./src/css/base.css",
+    "./css/dark": "./src/css/dark.css",
+    "./css/high-contrast": "./src/css/high-contrast.css",
+    "./tailwind": "./src/tailwind/preset.ts"
+  },
+  "files": ["src/**", "dist/**"],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "devDependencies": {
+    "@loony/typescript-config": "workspace:*",
+    "typescript": "^5.7.2"
+  }
+}

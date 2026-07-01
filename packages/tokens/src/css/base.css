@@ -1,0 +1,251 @@
+/**
+ * @loony/tokens — Base CSS Variable Definitions
+ *
+ * This file uses CSS @layer to prevent specificity battles.
+ * Import order: base.css → dark.css → high-contrast.css → your overrides
+ *
+ * All tokens use the --loony-* prefix for namespace isolation.
+ * The oklch() color space is used for perceptually uniform color manipulation.
+ */
+
+@layer loony.tokens {
+  :root {
+    /* ============================================
+     * PRIMITIVE: Radius
+     * ============================================ */
+    --loony-radius-none: 0px;
+    --loony-radius-xs: 0.125rem;
+    --loony-radius-sm: 0.25rem;
+    --loony-radius-md: 0.375rem;
+    --loony-radius-lg: 0.5rem;
+    --loony-radius-xl: 0.75rem;
+    --loony-radius-2xl: 1rem;
+    --loony-radius-3xl: 1.5rem;
+    --loony-radius-full: 9999px;
+
+    /* Semantic radius aliases — override these per-theme for personality */
+    --loony-radius-btn: var(--loony-radius-md);
+    --loony-radius-input: var(--loony-radius-md);
+    --loony-radius-card: var(--loony-radius-lg);
+    --loony-radius-badge: var(--loony-radius-full);
+    --loony-radius-dialog: var(--loony-radius-xl);
+    --loony-radius-tooltip: var(--loony-radius-sm);
+    --loony-radius-tag: var(--loony-radius-sm);
+
+    /* ============================================
+     * PRIMITIVE: Spacing (4px base unit)
+     * ============================================ */
+    --loony-spacing-px: 1px;
+    --loony-spacing-0: 0px;
+    --loony-spacing-0_5: 0.125rem;
+    --loony-spacing-1: 0.25rem;
+    --loony-spacing-1_5: 0.375rem;
+    --loony-spacing-2: 0.5rem;
+    --loony-spacing-2_5: 0.625rem;
+    --loony-spacing-3: 0.75rem;
+    --loony-spacing-3_5: 0.875rem;
+    --loony-spacing-4: 1rem;
+    --loony-spacing-5: 1.25rem;
+    --loony-spacing-6: 1.5rem;
+    --loony-spacing-7: 1.75rem;
+    --loony-spacing-8: 2rem;
+    --loony-spacing-9: 2.25rem;
+    --loony-spacing-10: 2.5rem;
+    --loony-spacing-11: 2.75rem;
+    --loony-spacing-12: 3rem;
+    --loony-spacing-14: 3.5rem;
+    --loony-spacing-16: 4rem;
+    --loony-spacing-20: 5rem;
+    --loony-spacing-24: 6rem;
+    --loony-spacing-32: 8rem;
+    --loony-spacing-40: 10rem;
+    --loony-spacing-48: 12rem;
+    --loony-spacing-56: 14rem;
+    --loony-spacing-64: 16rem;
+
+    /* ============================================
+     * PRIMITIVE: Typography
+     * ============================================ */
+    --loony-font-sans: InterVariable, Inter, ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --loony-font-mono: JetBrainsMonoVariable, JetBrainsMono, ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --loony-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+    --loony-text-2xs: 0.625rem;
+    --loony-text-xs: 0.75rem;
+    --loony-text-sm: 0.875rem;
+    --loony-text-base: 1rem;
+    --loony-text-lg: 1.125rem;
+    --loony-text-xl: 1.25rem;
+    --loony-text-2xl: 1.5rem;
+    --loony-text-3xl: 1.875rem;
+    --loony-text-4xl: 2.25rem;
+    --loony-text-5xl: 3rem;
+    --loony-text-6xl: 3.75rem;
+    --loony-text-7xl: 4.5rem;
+    --loony-text-8xl: 6rem;
+    --loony-text-9xl: 8rem;
+
+    --loony-leading-none: 1;
+    --loony-leading-tight: 1.25;
+    --loony-leading-snug: 1.375;
+    --loony-leading-normal: 1.5;
+    --loony-leading-relaxed: 1.625;
+    --loony-leading-loose: 2;
+
+    --loony-tracking-tighter: -0.05em;
+    --loony-tracking-tight: -0.025em;
+    --loony-tracking-normal: 0em;
+    --loony-tracking-wide: 0.025em;
+    --loony-tracking-wider: 0.05em;
+    --loony-tracking-widest: 0.1em;
+
+    --loony-font-thin: 100;
+    --loony-font-extralight: 200;
+    --loony-font-light: 300;
+    --loony-font-normal: 400;
+    --loony-font-medium: 500;
+    --loony-font-semibold: 600;
+    --loony-font-bold: 700;
+    --loony-font-extrabold: 800;
+    --loony-font-black: 900;
+
+    /* ============================================
+     * PRIMITIVE: Motion
+     * ============================================ */
+    --loony-duration-instant: 0ms;
+    --loony-duration-75: 75ms;
+    --loony-duration-100: 100ms;
+    --loony-duration-150: 150ms;
+    --loony-duration-200: 200ms;
+    --loony-duration-250: 250ms;
+    --loony-duration-300: 300ms;
+    --loony-duration-400: 400ms;
+    --loony-duration-500: 500ms;
+
+    --loony-ease-linear: linear;
+    --loony-ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --loony-ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --loony-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --loony-ease-spring-gentle: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --loony-ease-spring-snappy: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    --loony-ease-spring-bouncy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Semantic motion aliases — collapse to near-zero on reduced-motion */
+    --loony-duration-fast: var(--loony-duration-150);
+    --loony-duration-normal: var(--loony-duration-200);
+    --loony-duration-slow: var(--loony-duration-300);
+    --loony-ease-ui: var(--loony-ease-out);
+
+    /* ============================================
+     * PRIMITIVE: Elevation (Shadow + Z-Index)
+     * ============================================ */
+    --loony-shadow-none: none;
+    --loony-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --loony-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --loony-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --loony-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --loony-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --loony-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --loony-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+    --loony-z-hide: -1;
+    --loony-z-auto: auto;
+    --loony-z-base: 0;
+    --loony-z-raised: 10;
+    --loony-z-dropdown: 100;
+    --loony-z-sticky: 200;
+    --loony-z-overlay: 300;
+    --loony-z-modal: 400;
+    --loony-z-popover: 500;
+    --loony-z-toast: 600;
+    --loony-z-tooltip: 700;
+    --loony-z-top: 9999;
+
+    /* ============================================
+     * SEMANTIC: Colors — Light Mode (default)
+     * ============================================ */
+
+    /* Backgrounds */
+    --loony-color-bg: oklch(1 0 0);
+    --loony-color-bg-subtle: oklch(0.985 0.002 247.839);
+    --loony-color-bg-muted: oklch(0.967 0.003 264.542);
+    --loony-color-bg-inverted: oklch(0.130 0.028 261.692);
+    --loony-color-bg-overlay: oklch(0 0 0 / 0.5);
+
+    /* Foreground / Text */
+    --loony-color-fg: oklch(0.130 0.028 261.692);
+    --loony-color-fg-muted: oklch(0.446 0.017 257.911);
+    --loony-color-fg-subtle: oklch(0.707 0.022 261.325);
+    --loony-color-fg-disabled: oklch(0.872 0.010 258.338);
+    --loony-color-fg-inverted: oklch(1 0 0);
+    --loony-color-fg-on-accent: oklch(1 0 0);
+
+    /* Borders */
+    --loony-color-border: oklch(0.928 0.006 264.531);
+    --loony-color-border-strong: oklch(0.707 0.022 261.325);
+    --loony-color-border-subtle: oklch(0.967 0.003 264.542);
+
+    /* Focus ring */
+    --loony-color-ring: oklch(0.623 0.214 259.815);
+    --loony-color-ring-offset: oklch(1 0 0);
+
+    /* Accent (primary brand) */
+    --loony-color-accent: oklch(0.546 0.245 262.881);
+    --loony-color-accent-hover: oklch(0.488 0.243 264.376);
+    --loony-color-accent-active: oklch(0.424 0.199 265.638);
+    --loony-color-accent-subtle: oklch(0.970 0.014 237.598);
+    --loony-color-accent-fg: oklch(1 0 0);
+
+    /* Danger */
+    --loony-color-danger: oklch(0.577 0.245 27.325);
+    --loony-color-danger-hover: oklch(0.505 0.213 27.518);
+    --loony-color-danger-subtle: oklch(0.971 0.013 17.38);
+    --loony-color-danger-fg: oklch(1 0 0);
+
+    /* Warning */
+    --loony-color-warning: oklch(0.681 0.162 75.834);
+    --loony-color-warning-hover: oklch(0.554 0.135 66.442);
+    --loony-color-warning-subtle: oklch(0.987 0.026 102.212);
+    --loony-color-warning-fg: oklch(0.286 0.066 53.813);
+
+    /* Success */
+    --loony-color-success: oklch(0.627 0.194 149.214);
+    --loony-color-success-hover: oklch(0.527 0.154 150.069);
+    --loony-color-success-subtle: oklch(0.982 0.018 155.826);
+    --loony-color-success-fg: oklch(1 0 0);
+
+    /* Info */
+    --loony-color-info: oklch(0.623 0.214 259.815);
+    --loony-color-info-hover: oklch(0.546 0.245 262.881);
+    --loony-color-info-subtle: oklch(0.970 0.014 237.598);
+    --loony-color-info-fg: oklch(1 0 0);
+
+    /* Surfaces */
+    --loony-color-surface: oklch(1 0 0);
+    --loony-color-surface-raised: oklch(1 0 0);
+    --loony-color-surface-overlay: oklch(1 0 0);
+    --loony-color-surface-sunken: oklch(0.985 0.002 247.839);
+  }
+
+  /* ============================================
+   * Reduced Motion — collapse animation durations
+   * ============================================ */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --loony-duration-fast: 0.01ms;
+      --loony-duration-normal: 0.01ms;
+      --loony-duration-slow: 0.01ms;
+      --loony-duration-75: 0.01ms;
+      --loony-duration-100: 0.01ms;
+      --loony-duration-150: 0.01ms;
+      --loony-duration-200: 0.01ms;
+      --loony-duration-250: 0.01ms;
+      --loony-duration-300: 0.01ms;
+      --loony-duration-400: 0.01ms;
+      --loony-duration-500: 0.01ms;
+    }
+  }
+}

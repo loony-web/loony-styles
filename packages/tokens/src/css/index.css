@@ -1,0 +1,12 @@
+/**
+ * @loony/tokens — Aggregated CSS entry point.
+ *
+ * Import this single file to get all token layers.
+ * Import individual files if you need granular control.
+ *
+ * Layer order matters — later layers win on equal specificity.
+ */
+
+@import "./base.css";
+@import "./dark.css";
+@import "./high-contrast.css";
