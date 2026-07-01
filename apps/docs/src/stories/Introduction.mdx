@@ -1,0 +1,60 @@
+{/* Introduction.mdx */}
+
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Loony Design System/Introduction" />
+
+# Loony Design System
+
+A production-grade, accessible React component ecosystem built from first principles.
+
+## What is Loony?
+
+Loony is a design system you **own**. Unlike traditional component libraries installed as black-box dependencies, Loony uses a CLI to copy source files directly into your project — giving you full control to read, modify, and maintain every component.
+
+## Design Principles
+
+### 1. Accessibility First
+Every component is built to WCAG 2.1 AA minimum. Keyboard navigation, ARIA attributes, focus management, and screen reader support are built-in — not added after.
+
+### 2. Token-Driven Theming
+All visual decisions — colors, spacing, radius, motion, typography — are CSS variables. Themes are just CSS variable overrides. No JavaScript required.
+
+### 3. Composable Primitives
+Components are built from the smallest useful units. The `asChild` prop (via the Slot primitive) lets any component render as any element without sacrificing type safety.
+
+### 4. Zero Magic
+APIs are explicit. No mysterious global state, no implicit behavior, no hidden abstractions. What you write is what renders.
+
+## Getting Started
+
+```bash
+# Install the CLI
+npm install -g @loony/cli
+
+# Initialize in your project
+loony init
+
+# Add your first component
+loony add button
+```
+
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| `@loony/ui` | Component library |
+| `@loony/tokens` | Design tokens (CSS variables) |
+| `@loony/icons` | SVG icon set |
+| `@loony/utils` | Utility functions and hooks |
+| `@loony/cli` | CLI for installing components |
+
+## Tech Stack
+
+- **React 19** with TypeScript strict mode
+- **Tailwind CSS v4** for styling
+- **CSS Variables** for all theming (zero runtime cost)
+- **Radix UI** primitives for complex ARIA patterns
+- **Motion** for animations
+- **Vitest** + **Testing Library** for tests
+- **Storybook 8** for documentation
