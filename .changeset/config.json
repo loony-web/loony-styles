@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "your-org/loony" }],
+  "commit": false,
+  "fixed": [],
+  "linked": [
+    ["@loony/ui", "@loony/icons", "@loony/tokens", "@loony/utils"]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@loony/docs", "@loony/playground"]
+}
