@@ -1,0 +1,31 @@
+export { IconBase } from "./icon-base.js";
+export type { IconProps } from "./icon-base.js";
+export { createIcon } from "./create-icon.js";
+
+// Icon exports — each is individually tree-shakeable
+export { AlertCircleIcon } from "./icons/alert-circle.js";
+export { AlertTriangleIcon } from "./icons/alert-triangle.js";
+export { CheckIcon } from "./icons/check.js";
+export { CheckCircleIcon } from "./icons/check-circle.js";
+export { ChevronDownIcon } from "./icons/chevron-down.js";
+export { ChevronLeftIcon } from "./icons/chevron-left.js";
+export { ChevronRightIcon } from "./icons/chevron-right.js";
+export { ChevronUpIcon } from "./icons/chevron-up.js";
+export { CopyIcon } from "./icons/copy.js";
+export { EditIcon } from "./icons/edit.js";
+export { ExternalLinkIcon } from "./icons/external-link.js";
+export { EyeIcon } from "./icons/eye.js";
+export { EyeOffIcon } from "./icons/eye-off.js";
+export { InfoIcon } from "./icons/info.js";
+export { LoaderIcon } from "./icons/loader.js";
+export { MenuIcon } from "./icons/menu.js";
+export { MinusIcon } from "./icons/minus.js";
+export { MoonIcon } from "./icons/moon.js";
+export { PlusIcon } from "./icons/plus.js";
+export { SearchIcon } from "./icons/search.js";
+export { SettingsIcon } from "./icons/settings.js";
+export { SunIcon } from "./icons/sun.js";
+export { TrashIcon } from "./icons/trash.js";
+export { UserIcon } from "./icons/user.js";
+export { XIcon } from "./icons/x.js";
+export { XCircleIcon } from "./icons/x-circle.js";
