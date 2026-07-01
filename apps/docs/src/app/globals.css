@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* ── Core design tokens ─────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --loony-color-bg:              oklch(1 0 0);
+  --loony-color-bg-subtle:       oklch(0.985 0.002 247.839);
+  --loony-color-surface:         oklch(0.985 0.002 247);
+  --loony-color-surface-hover:   oklch(0.96 0.004 247);
+
+  /* Foreground / Text */
+  --loony-color-fg:              oklch(0.141 0.005 285.823);
+  --loony-color-fg-muted:        oklch(0.446 0.017 257.911);
+  --loony-color-fg-subtle:       oklch(0.707 0.022 261.325);
+  --loony-color-fg-disabled:     oklch(0.872 0.010 258.338);
+  --loony-color-fg-inverted:     oklch(1 0 0);
+
+  /* Borders */
+  --loony-color-border:          oklch(0.922 0.006 264.531);
+  --loony-color-border-strong:   oklch(0.707 0.022 261.325);
+  --loony-color-border-subtle:   oklch(0.960 0.003 264.542);
+
+  /* Accent (brand blue) */
+  --loony-color-accent:          oklch(0.546 0.245 262.881);
+  --loony-color-accent-hover:    oklch(0.488 0.243 264.376);
+  --loony-color-accent-subtle:   oklch(0.970 0.014 237.598);
+
+  /* Semantic */
+  --loony-color-danger:          oklch(0.577 0.245 27.325);
+  --loony-color-success:         oklch(0.627 0.194 149.214);
+  --loony-color-warning:         oklch(0.681 0.162 75.834);
+
+  /* Fonts */
+  --loony-font-sans:  var(--font-inter, InterVariable, ui-sans-serif, system-ui, sans-serif);
+  --loony-font-mono:  var(--font-mono, "JetBrains Mono", ui-monospace, "Cascadia Code", monospace);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --loony-color-bg:             oklch(0.141 0.005 285.823);
+    --loony-color-bg-subtle:      oklch(0.168 0.006 285);
+    --loony-color-surface:        oklch(0.178 0.007 285);
+    --loony-color-surface-hover:  oklch(0.205 0.008 285);
+    --loony-color-fg:             oklch(0.967 0.003 286);
+    --loony-color-fg-muted:       oklch(0.707 0.022 261.325);
+    --loony-color-fg-subtle:      oklch(0.55 0.015 260);
+    --loony-color-border:         oklch(0.25 0.007 285);
+    --loony-color-border-strong:  oklch(0.40 0.012 280);
+    --loony-color-border-subtle:  oklch(0.20 0.005 285);
+    --loony-color-accent:         oklch(0.623 0.214 259.815);
+    --loony-color-accent-hover:   oklch(0.700 0.18 260);
+    --loony-color-accent-subtle:  oklch(0.20 0.05 262);
+  }
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--loony-color-bg);
+  color: var(--loony-color-fg);
+  font-family: var(--loony-font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+::selection {
+  background-color: oklch(0.546 0.245 262.881 / 0.15);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--loony-color-border); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--loony-color-border-strong); }
+
+/* ── Docs code blocks ───────────────────────────────────────────────────── */
+.code-block {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin: 1rem 0;
+  font-family: var(--loony-font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+.code-block-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #21262d;
+  background: #161b22;
+}
+.code-block-lang {
+  font-size: 0.625rem;
+  font-family: var(--loony-font-mono);
+  color: #8b949e;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.code-block pre {
+  margin: 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+  color: #e6edf3;
+}
