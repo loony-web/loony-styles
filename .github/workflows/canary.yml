@@ -1,0 +1,54 @@
+name: Canary Release
+
+on:
+  push:
+    branches: [develop]
+
+env:
+  PNPM_VERSION: 9.15.0
+  NODE_VERSION: 20
+
+jobs:
+  canary:
+    name: Publish Canary
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Enter pre-release mode (canary)
+        run: pnpm changeset pre enter canary
+
+      - name: Version packages with canary tag
+        run: pnpm changeset version
+
+      - name: Publish canary packages
+        run: pnpm changeset publish --tag canary
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Exit pre-release mode
+        run: pnpm changeset pre exit
+        if: always()
