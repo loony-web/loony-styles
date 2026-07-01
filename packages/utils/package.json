@@ -1,0 +1,78 @@
+{
+  "name": "@loony/utils",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Production-grade utilities for the Loony design system — hooks, DOM helpers, context factories, and React primitives.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./cn": {
+      "types": "./dist/cn.d.ts",
+      "import": "./dist/cn.js"
+    },
+    "./compose-refs": {
+      "types": "./dist/compose-refs.d.ts",
+      "import": "./dist/compose-refs.js"
+    },
+    "./create-context": {
+      "types": "./dist/create-context.d.ts",
+      "import": "./dist/create-context.js"
+    },
+    "./slot": {
+      "types": "./dist/slot.d.ts",
+      "import": "./dist/slot.js"
+    },
+    "./portal": {
+      "types": "./dist/portal.d.ts",
+      "import": "./dist/portal.js"
+    },
+    "./presence": {
+      "types": "./dist/presence.d.ts",
+      "import": "./dist/presence.js"
+    },
+    "./visually-hidden": {
+      "types": "./dist/visually-hidden.d.ts",
+      "import": "./dist/visually-hidden.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist/**", "src/**"],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "dev": "tsc --project tsconfig.build.json --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@loony/typescript-config": "workspace:*",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
