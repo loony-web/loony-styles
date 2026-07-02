@@ -1,4 +1,6 @@
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
+"use client";
+
+import type { ComponentPropsWithoutRef } from "react";
 import { forwardRef } from "react";
 import { cn } from "@loony/utils";
 

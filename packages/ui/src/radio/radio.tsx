@@ -19,7 +19,7 @@ const radioGroupVariants = cva("grid gap-2", {
 });
 
 export interface RadioGroupProps
-  extends ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>,
+  extends Omit<ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>, "orientation">,
     VariantProps<typeof radioGroupVariants> {}
 
 export const RadioGroup = forwardRef<

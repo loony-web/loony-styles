@@ -1,6 +1,6 @@
 "use client";
 
-import { Toast, ToastAction, ToastProvider, ToastViewport } from "./toast";
+import { Toast, ToastProvider, ToastViewport } from "./toast";
 import { useToast } from "./use-toast";
 
 export function Toaster() {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Slot } from "@loony/utils";
 import { cn } from "@loony/utils";
 import { type ButtonProps } from "./button.types.js";

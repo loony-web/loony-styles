@@ -1,10 +1,10 @@
 "use client";
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ElementRef } from "react";
 import { forwardRef } from "react";
 import { cn } from "@loony/utils";
-import { CheckIcon, ChevronRightIcon, MinusIcon } from "@loony/icons";
+import { CheckIcon, ChevronRightIcon } from "@loony/icons";
 
 export const DropdownMenu = DropdownMenuPrimitive.Root;
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;

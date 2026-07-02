@@ -1,3 +1,5 @@
+"use client";
+
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";

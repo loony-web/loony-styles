@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, MouseEventHandler } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@loony/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "@loony/icons";
 

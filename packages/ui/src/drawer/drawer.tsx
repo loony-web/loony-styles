@@ -2,7 +2,7 @@
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ElementRef } from "react";
 import { forwardRef } from "react";
 import { cn } from "@loony/utils";
 import { XIcon } from "@loony/icons";
@@ -96,8 +96,9 @@ export const DrawerContent = forwardRef<
               label="Close drawer"
               variant="ghost"
               size="sm"
-              icon={<XIcon aria-hidden />}
-            />
+            >
+              <XIcon aria-hidden />
+            </IconButton>
           </DialogPrimitive.Close>
         </div>
       )}

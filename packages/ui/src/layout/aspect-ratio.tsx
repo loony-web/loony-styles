@@ -1,3 +1,5 @@
+"use client";
+
 import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@loony/utils";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 export type ToastVariant = "default" | "success" | "danger" | "warning" | "info";
 

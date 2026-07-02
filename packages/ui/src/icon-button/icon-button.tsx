@@ -1,3 +1,5 @@
+"use client";
+
 import { type ComponentPropsWithRef } from "react";
 import { type VariantProps, cva } from "class-variance-authority";
 import { cn, Slot, type WithAsChild } from "@loony/utils";

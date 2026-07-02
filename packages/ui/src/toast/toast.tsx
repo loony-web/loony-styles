@@ -64,7 +64,7 @@ const VARIANT_ICONS = {
 } as const;
 
 export interface ToastProps
-  extends ComponentPropsWithoutRef<typeof ToastPrimitive.Root>,
+  extends Omit<ComponentPropsWithoutRef<typeof ToastPrimitive.Root>, "title">,
     VariantProps<typeof toastVariants> {
   title?: ReactNode;
   description?: ReactNode;

@@ -1,3 +1,5 @@
+"use client";
+
 import { type ComponentPropsWithRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@loony/utils";
@@ -34,7 +36,7 @@ const inputVariants = cva(
 );
 
 interface InputProps
-  extends ComponentPropsWithRef<"input">,
+  extends Omit<ComponentPropsWithRef<"input">, "size">,
     VariantProps<typeof inputVariants> {
   /** Marks the field as invalid. Also accepts the native `aria-invalid` attribute. */
   invalid?: boolean;

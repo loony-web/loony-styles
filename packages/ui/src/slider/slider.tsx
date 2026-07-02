@@ -25,7 +25,7 @@ const sliderVariants = cva("relative flex touch-none select-none items-center", 
 });
 
 export interface SliderProps
-  extends ComponentPropsWithoutRef<typeof SliderPrimitive.Root>,
+  extends Omit<ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, "orientation">,
     VariantProps<typeof sliderVariants> {
   label?: string;
 }
@@ -34,7 +34,7 @@ export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, Slider
   ({ className, size, orientation = "horizontal", label, ...props }, ref) => (
     <SliderPrimitive.Root
       ref={ref}
-      orientation={orientation}
+      orientation={orientation ?? "horizontal"}
       aria-label={label}
       className={cn(sliderVariants({ orientation, size }), className)}
       {...props}

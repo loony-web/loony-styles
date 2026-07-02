@@ -1,3 +1,5 @@
+"use client";
+
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";

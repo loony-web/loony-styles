@@ -1,6 +1,8 @@
+"use client";
+
 import { type ElementType, type ComponentPropsWithRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn, Slot } from "@loony/utils";
+import { cn } from "@loony/utils";
 
 // ============================================================
 // Text
@@ -50,7 +52,7 @@ const textVariants = cva("", {
 });
 
 interface TextProps
-  extends ComponentPropsWithRef<"p">,
+  extends Omit<ComponentPropsWithRef<"p">, "color">,
     VariantProps<typeof textVariants> {
   as?: ElementType;
 }
