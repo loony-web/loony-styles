@@ -2,7 +2,6 @@ import * as p from "@clack/prompts";
 import kleur from "kleur";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { logger } from "../utils/logger.js";
 
 interface ThemeOptions {
   preset?: string;
@@ -32,7 +31,7 @@ const PRESETS = {
 
 type PresetKey = keyof typeof PRESETS;
 
-function generateThemeCSS(preset: (typeof PRESETS)[PresetKey], customizations: {
+function generateThemeCSS(customizations: {
   accentColor: string;
   radius: string;
 }): string {
@@ -135,7 +134,7 @@ export async function theme(opts: ThemeOptions) {
   radius = radiusAnswer ?? preset.radius;
 
   const outPath = resolve(opts.out ?? "./src/styles/theme.css");
-  const css = generateThemeCSS(preset, { accentColor, radius });
+  const css = generateThemeCSS({ accentColor, radius });
 
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, css, "utf-8");

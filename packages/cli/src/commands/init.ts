@@ -2,7 +2,6 @@ import * as p from "@clack/prompts";
 import kleur from "kleur";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { logger } from "../utils/logger.js";
 import { configExists, writeConfig, type LoonyCLIConfig } from "../utils/config.js";
 
 interface InitOptions {

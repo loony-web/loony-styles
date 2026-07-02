@@ -1,4 +1,4 @@
-import { readFileSync, existsSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { readConfig } from "../utils/config.js";
 import { getComponent } from "../utils/registry.js";

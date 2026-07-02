@@ -34,7 +34,7 @@ program
   .option("--yes", "Skip confirmation prompts and use defaults", false)
   .action(async (opts: Record<string, unknown>) => {
     const { init } = await import("./commands/init.js");
-    await init(opts);
+    await init(opts as unknown as Parameters<typeof init>[0]);
   });
 
 program
@@ -46,7 +46,7 @@ program
   .option("--overwrite", "Overwrite existing files", false)
   .action(async (components: string[], opts: Record<string, unknown>) => {
     const { add } = await import("./commands/add.js");
-    await add(components, opts);
+    await add(components, opts as unknown as Parameters<typeof add>[1]);
   });
 
 program
@@ -64,7 +64,7 @@ program
   .option("--cwd <path>", "The working directory", process.cwd())
   .action(async (component: string | undefined, opts: Record<string, unknown>) => {
     const { diff } = await import("./commands/diff.js");
-    await diff(component, opts);
+    await diff(component, opts as unknown as Parameters<typeof diff>[1]);
   });
 
 program
@@ -84,7 +84,7 @@ program
   .option("--path <path>", "Output directory for the component")
   .action(async (name: string, opts: Record<string, unknown>) => {
     const { scaffold } = await import("./commands/scaffold.js");
-    await scaffold(name, opts);
+    await scaffold(name, opts as unknown as Parameters<typeof scaffold>[1]);
   });
 
 program.parseAsync(process.argv).catch((err: unknown) => {
