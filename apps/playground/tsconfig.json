@@ -1,8 +1,7 @@
 {
   "extends": "@loony/typescript-config/react-library",
   "compilerOptions": {
-    "noEmit": true,
-    "rootDir": "./src"
+    "noEmit": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
   "exclude": ["node_modules"]

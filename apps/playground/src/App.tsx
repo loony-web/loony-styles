@@ -53,6 +53,7 @@ import {
   Heading,
   IconButton,
   Kbd,
+  Input,
   Label,
   Pagination,
   PaginationContent,
@@ -61,9 +62,6 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Progress,
   RadioGroup,
   RadioItem,
@@ -97,8 +95,6 @@ import {
   PlusIcon,
   MoonIcon,
   SunIcon,
-  SettingsIcon,
-  TrashIcon,
 } from "@loony/icons";
 
 export function App() {
