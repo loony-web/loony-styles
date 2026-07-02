@@ -1,3 +1,5 @@
+"use client";
+
 const points = [
   "Copy source files directly — no black-box npm package to fight.",
   "Customize styles, logic, and markup. It's just your code.",

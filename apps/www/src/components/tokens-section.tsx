@@ -1,3 +1,5 @@
+"use client";
+
 const colorTokens = [
   { name: "accent",    value: "#3b82f6",  label: "Primary"  },
   { name: "fg",        value: "#fafafa",  label: "Text"     },
