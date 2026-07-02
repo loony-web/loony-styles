@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Children,
   cloneElement,
@@ -38,6 +40,8 @@ interface PresenceProps {
  */
 export function Presence({ children, present }: PresenceProps) {
   const { isPresent, ref } = usePresence(present);
+
+  if (!isPresent) return null;
 
   const child =
     typeof children === "function"

@@ -1,5 +1,6 @@
+"use client";
+
 import {
-  Children,
   cloneElement,
   isValidElement,
   type ComponentPropsWithRef,
@@ -48,7 +49,7 @@ export const Slot = ({ children, ...slotProps }: SlotProps) => {
 
   if (isSlottable(children)) {
     return (
-      <Slot {...mergeProps(slotProps, children.props as Record<string, unknown>)}>
+      <Slot {...mergeProps(slotProps, children.props as unknown as Record<string, unknown>)}>
         {(children.props as { children?: ReactNode }).children}
       </Slot>
     );
@@ -153,7 +154,7 @@ export function createSlottable<TProps extends { asChild?: boolean; ref?: React.
 /**
  * WithAsChild — Utility type that adds `asChild` to any component's props.
  */
-export type WithAsChild<TProps> = TProps & { asChild?: boolean };
+export type WithAsChild<TProps = object> = TProps & { asChild?: boolean };
 
 /**
  * AsChildProps — Type helper for polymorphic "asChild" props.

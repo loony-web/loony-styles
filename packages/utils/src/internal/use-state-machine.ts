@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useReducer } from "react";
 
 type StateTransitions<TState extends string> = Record<string, TState>;
