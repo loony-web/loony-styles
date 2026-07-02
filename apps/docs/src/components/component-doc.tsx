@@ -168,6 +168,64 @@ export function Preview({ children, label }: { children: ReactNode; label?: stri
   );
 }
 
+/* ── ComponentPreview ───────────────────────────────── */
+
+export function ComponentPreview({ children, code, minHeight = 200 }: { children: ReactNode; code: string; minHeight?: number }) {
+  const [tab, setTab] = useState<"preview" | "code">("preview");
+
+  return (
+    <div className="my-6 overflow-hidden rounded-xl border border-[--loony-color-border]">
+      {/* Tab bar */}
+      <div className="flex items-center border-b border-[--loony-color-border] bg-[--loony-color-bg] px-2">
+        {(["preview", "code"] as const).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTab(t)}
+            className={[
+              "-mb-px border-b-2 px-4 py-2.5 text-sm font-medium transition-colors",
+              tab === t
+                ? "border-[--loony-color-fg] text-[--loony-color-fg]"
+                : "border-transparent text-[--loony-color-fg-muted] hover:text-[--loony-color-fg]",
+            ].join(" ")}
+          >
+            {t === "preview" ? "Preview" : "Code"}
+          </button>
+        ))}
+        {tab === "code" && (
+          <span className="ml-auto pr-1">
+            <CopyButton text={code} />
+          </span>
+        )}
+      </div>
+
+      {/* Panel */}
+      {tab === "preview" ? (
+        <div
+          className="flex items-center justify-center p-10"
+          style={{
+            minHeight,
+            background: "var(--loony-color-surface)",
+            backgroundImage: "radial-gradient(circle, var(--loony-color-border) 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
+        >
+          {children}
+        </div>
+      ) : (
+        <div style={{ background: "#0d1117" }}>
+          <pre
+            className="overflow-x-auto p-5"
+            style={{ margin: 0, fontFamily: "var(--font-mono, monospace)", fontSize: "0.8125rem", lineHeight: "1.7" }}
+          >
+            <code>{highlight(code)}</code>
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ── Section ────────────────────────────────────────── */
 
 export function Section({ title, children }: { title: string; children: ReactNode }) {
