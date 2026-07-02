@@ -1,112 +1,171 @@
-import type { Metadata } from "next";
-import { CodeBlock, ComponentDoc, Preview, Section } from "@/components/component-doc";
+"use client";
 
-export const metadata: Metadata = { title: "Dialog" };
+import { useState } from "react";
+import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  Dialog, DialogTrigger, DialogContent, DialogHeader, DialogBody, DialogFooter,
+  DialogTitle, DialogDescription, DialogClose, Button, Input, Label,
+} from "@loony/ui";
+
+function BasicDialogDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Open dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>Make changes to your profile here. Click save when done.</DialogDescription>
+        </DialogHeader>
+        <DialogBody>
+          <div className="grid gap-4">
+            <div className="grid gap-1.5">
+              <Label htmlFor="d-name">Name</Label>
+              <Input id="d-name" defaultValue="John Doe" />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="d-email">Email</Label>
+              <Input id="d-email" defaultValue="john@example.com" type="email" />
+            </div>
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button onClick={() => setOpen(false)}>Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function DestructiveDialogDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="danger">Delete account</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button variant="danger" onClick={() => setOpen(false)}>Delete account</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 export default function DialogPage() {
   return (
     <ComponentDoc
       name="Dialog"
-      description="A modal overlay with focus trap, scroll lock, Escape key close, and enter/exit animations. Built on Radix UI Dialog."
-      radix="https://www.radix-ui.com/docs/primitives/components/dialog"
+      description="A window overlaid on either the primary window or another dialog window, rendering the content underneath inert."
+      radix="https://www.radix-ui.com/primitives/docs/components/dialog"
       aria={["dialog"]}
-      status="stable"
-      props={[
-        { name: "open", type: "boolean", description: "Controlled open state." },
-        { name: "onOpenChange", type: "(open: boolean) => void", description: "Called when the dialog opens or closes." },
-        { name: "defaultOpen", type: "boolean", default: "false", description: "Initial open state for uncontrolled usage." },
+      toc={[
+        { id: "installation", label: "Installation" },
+        { id: "usage", label: "Usage" },
+        { id: "destructive", label: "Destructive" },
+        { id: "api", label: "API Reference" },
       ]}
     >
-      <Section title="Anatomy">
+      <Section id="installation" title="Installation">
+        <PackageInstall />
+      </Section>
+
+      <Section id="usage" title="Usage">
         <CodeBlock>{`import {
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogHeader,
-  DialogTitle,
-  DialogDescription,
   DialogBody,
   DialogFooter,
+  DialogTitle,
+  DialogDescription,
   DialogClose,
-} from "@/components/ui/dialog"
-
-<Dialog>
+} from "@loony/ui";`}</CodeBlock>
+        <ComponentPreview
+          code={`<Dialog>
   <DialogTrigger asChild>
-    <Button>Open dialog</Button>
+    <Button variant="outline">Open dialog</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
-      <DialogTitle>Confirm deletion</DialogTitle>
+      <DialogTitle>Edit profile</DialogTitle>
       <DialogDescription>
-        This action cannot be undone.
+        Make changes to your profile here.
       </DialogDescription>
     </DialogHeader>
     <DialogBody>
-      <p>Are you sure you want to delete this item?</p>
+      <div className="grid gap-4">
+        <div className="grid gap-1.5">
+          <Label htmlFor="name">Name</Label>
+          <Input id="name" defaultValue="John Doe" />
+        </div>
+      </div>
     </DialogBody>
     <DialogFooter>
       <DialogClose asChild>
         <Button variant="outline">Cancel</Button>
       </DialogClose>
-      <Button variant="danger">Delete</Button>
+      <Button>Save changes</Button>
     </DialogFooter>
   </DialogContent>
-</Dialog>`}</CodeBlock>
+</Dialog>`}
+        >
+          <BasicDialogDemo />
+        </ComponentPreview>
       </Section>
 
-      <Section title="Controlled mode">
-        <CodeBlock>{`const [open, setOpen] = useState(false)
-
-<Dialog open={open} onOpenChange={setOpen}>
+      <Section id="destructive" title="Destructive confirmation">
+        <ComponentPreview
+          code={`<Dialog>
   <DialogTrigger asChild>
-    <Button onClick={() => setOpen(true)}>Open</Button>
+    <Button variant="danger">Delete account</Button>
   </DialogTrigger>
   <DialogContent>
-    {/* ... */}
-    <Button onClick={() => setOpen(false)}>Save changes</Button>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. This will permanently delete your
+        account and remove your data from our servers.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild>
+        <Button variant="outline">Cancel</Button>
+      </DialogClose>
+      <Button variant="danger">Delete account</Button>
+    </DialogFooter>
   </DialogContent>
-</Dialog>`}</CodeBlock>
+</Dialog>`}
+        >
+          <DestructiveDialogDemo />
+        </ComponentPreview>
       </Section>
 
-      <Section title="Accessibility">
-        <div className="prose text-sm">
-          <ul>
-            <li><strong>Focus trap</strong> — keyboard focus is constrained within the dialog while open. Tab and Shift+Tab cycle through focusable elements.</li>
-            <li><strong>Focus restoration</strong> — when the dialog closes, focus returns to the element that triggered it.</li>
-            <li><strong>aria-modal</strong> — set on the content element so screen readers understand only the dialog is interactive.</li>
-            <li><strong>Escape key</strong> — closes the dialog and triggers <code>onOpenChange(false)</code>.</li>
-            <li><strong>Scroll lock</strong> — body scroll is locked while the dialog is open to prevent disorienting movement.</li>
-            <li><code>DialogTitle</code> is required. It is announced by screen readers when the dialog opens.</li>
-          </ul>
-        </div>
-      </Section>
-
-      <Section title="Keyboard interaction">
-        <div className="overflow-hidden rounded-xl border border-[--loony-color-border]">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-[--loony-color-border] bg-[--loony-color-surface]">
-                <th className="px-4 py-3 text-left font-medium text-[--loony-color-fg-muted]">Key</th>
-                <th className="px-4 py-3 text-left font-medium text-[--loony-color-fg-muted]">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ["Escape", "Close the dialog"],
-                ["Tab", "Move focus to next focusable element (wraps)"],
-                ["Shift + Tab", "Move focus to previous focusable element (wraps)"],
-                ["Enter / Space", "Activate the focused button"],
-              ].map(([key, action]) => (
-                <tr key={key} className="border-b border-[--loony-color-border] last:border-0">
-                  <td className="px-4 py-2.5">
-                    <kbd className="rounded border border-[--loony-color-border] bg-[--loony-color-surface] px-1.5 py-0.5 font-mono text-xs">{key}</kbd>
-                  </td>
-                  <td className="px-4 py-2.5 text-xs text-[--loony-color-fg-muted]">{action}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <Section id="api" title="API Reference">
+        <PropsTable
+          props={[
+            { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
+            { name: "defaultOpen", type: "boolean", default: "—", description: "Initial open state (uncontrolled)." },
+            { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Callback when open state changes." },
+            { name: "showClose", type: "boolean", default: "true", description: "Whether to show the close button in the top-right corner (on DialogContent)." },
+          ]}
+        />
       </Section>
     </ComponentDoc>
   );
