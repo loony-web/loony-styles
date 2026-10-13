@@ -64,7 +64,9 @@ describe("Slot", () => {
       </Slot>,
     );
     const btn = screen.getByRole("button");
-    expect(btn).toHaveStyle({ color: "red", fontWeight: "bold" });
+    // Read the inline style directly: jsdom's computed style drops font-weight.
+    expect(btn.style.color).toBe("red");
+    expect(btn.style.fontWeight).toBe("bold");
   });
 
   it("slot props override child props (except event handlers and className)", () => {

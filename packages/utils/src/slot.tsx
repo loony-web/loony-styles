@@ -1,16 +1,17 @@
 "use client";
 
 import {
-  cloneElement,
-  isValidElement,
-  type ComponentPropsWithRef,
   type CSSProperties,
+  type ComponentPropsWithRef,
   type ElementType,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
+  cloneElement,
+  isValidElement,
 } from "react";
 import { composeRefs } from "./compose-refs.js";
+import { getElementRef } from "./internal/get-element-ref.js";
 
 interface SlotProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
@@ -60,10 +61,7 @@ export const Slot = ({ children, ...slotProps }: SlotProps) => {
 
   return cloneElement(children as ReactElement<Record<string, unknown>>, {
     ...merged,
-    ref: composeRefs(
-      (slotProps as { ref?: React.Ref<unknown> }).ref,
-      (children as ReactElement & { ref?: React.Ref<unknown> }).ref,
-    ),
+    ref: composeRefs((slotProps as { ref?: React.Ref<unknown> }).ref, getElementRef(children)),
   });
 };
 

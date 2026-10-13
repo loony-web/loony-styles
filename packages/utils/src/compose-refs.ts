@@ -1,8 +1,8 @@
 "use client";
 
-import { type MutableRefObject, type RefCallback, useCallback } from "react";
+import { type Ref, type RefCallback, useCallback } from "react";
 
-type PossibleRef<T> = MutableRefObject<T> | RefCallback<T> | null | undefined;
+type PossibleRef<T> = Ref<T> | undefined;
 
 /**
  * Sets a ref to a given value — handles both callback refs and ref objects.

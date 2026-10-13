@@ -2,15 +2,16 @@
 
 import {
   Children,
+  type ReactNode,
   cloneElement,
   isValidElement,
   useEffect,
   useRef,
   useState,
-  type ReactNode,
 } from "react";
-import { useStateMachine } from "./internal/use-state-machine.js";
 import { useComposedRefs } from "./compose-refs.js";
+import { getElementRef } from "./internal/get-element-ref.js";
+import { useStateMachine } from "./internal/use-state-machine.js";
 
 interface PresenceProps {
   children: ReactNode | ((props: { ref: React.RefCallback<HTMLElement> }) => ReactNode);
@@ -41,20 +42,17 @@ interface PresenceProps {
 export function Presence({ children, present }: PresenceProps) {
   const { isPresent, ref } = usePresence(present);
 
-  if (!isPresent) return null;
+  const child = typeof children === "function" ? children({ ref }) : Children.only(children);
+  const childRef = isValidElement(child) ? getElementRef<HTMLElement>(child) : undefined;
 
-  const child =
-    typeof children === "function"
-      ? children({ ref: ref as React.RefCallback<HTMLElement> })
-      : Children.only(children);
+  // Hooks must run unconditionally — compose before any early return so the
+  // hook order is stable when `present` toggles.
+  const composedRef = useComposedRefs(ref, childRef);
 
-  if (!isValidElement(child)) return null;
+  if (!isPresent || !isValidElement(child)) return null;
 
   return cloneElement(child as React.ReactElement<{ ref?: React.Ref<HTMLElement> }>, {
-    ref: useComposedRefs(
-      ref as React.Ref<HTMLElement>,
-      (child as React.ReactElement & { ref?: React.Ref<HTMLElement> }).ref,
-    ),
+    ref: composedRef,
   });
 }
 
@@ -74,22 +72,19 @@ export function usePresence(present: boolean): {
   const prevPresentRef = useRef(present);
   const prevAnimationNameRef = useRef<string>("");
 
-  const { state, dispatch } = useStateMachine<PresenceState>(
-    present ? "mounted" : "unmounted",
-    {
-      mounted: {
-        UNMOUNT: "unmounted",
-        ANIMATION_OUT: "hidden",
-      },
-      hidden: {
-        MOUNT: "mounted",
-        ANIMATION_END: "unmounted",
-      },
-      unmounted: {
-        MOUNT: "mounted",
-      },
+  const { state, dispatch } = useStateMachine<PresenceState>(present ? "mounted" : "unmounted", {
+    mounted: {
+      UNMOUNT: "unmounted",
+      ANIMATION_OUT: "hidden",
     },
-  );
+    hidden: {
+      MOUNT: "mounted",
+      ANIMATION_END: "unmounted",
+    },
+    unmounted: {
+      MOUNT: "mounted",
+    },
+  });
 
   const refCallback: React.RefCallback<HTMLElement> = (el) => {
     if (el) {
