@@ -11,21 +11,19 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PNPM_VERSION: 9.15.0
-  NODE_VERSION: 20
+  NODE_VERSION: 22
 
 jobs:
   lint:
     name: Lint & Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      # pnpm version comes from the packageManager field in package.json
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -44,13 +42,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      # pnpm version comes from the packageManager field in package.json
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -58,31 +55,29 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages (required for test imports)
-        run: pnpm build --filter=@loony/utils --filter=@loony/tokens
+      # Turbo builds each package's workspace dependencies first (^build).
+      - name: Run tests with coverage thresholds
+        run: pnpm test:coverage
 
-      - name: Run tests
-        run: pnpm test
-
-      - name: Upload coverage
-        uses: codecov/codecov-action@v4
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v7
         if: always()
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: unittests
+          name: coverage
+          path: packages/*/coverage
+          retention-days: 7
 
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      # pnpm version comes from the packageManager field in package.json
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -92,6 +87,11 @@ jobs:
 
       - name: Build all packages
         run: pnpm build
+
+      # Runtime-only failures (e.g. a server component calling a client export)
+      # pass the build but render as 500s; crawl every docs page to catch them.
+      - name: Smoke-test docs pages
+        run: pnpm --filter @loony/docs smoke
 
       - name: Check bundle sizes
         run: |
@@ -112,13 +112,12 @@ jobs:
     needs: build
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      # pnpm version comes from the packageManager field in package.json
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -133,7 +132,7 @@ jobs:
         run: pnpm build-storybook --filter=@loony/docs
 
       - name: Upload Storybook artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: storybook-static
           path: apps/docs/storybook-static
@@ -144,13 +143,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      # pnpm version comes from the packageManager field in package.json
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm

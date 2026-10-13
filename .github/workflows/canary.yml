@@ -1,12 +1,12 @@
 name: Canary Release
 
+# Publishing to npm is paused while the project focuses on local development
+# (see docs/TODO.md, "Deferred: publishing"). Run manually when that resumes.
 on:
-  push:
-    branches: [develop]
+  workflow_dispatch:
 
 env:
-  PNPM_VERSION: 9.15.0
-  NODE_VERSION: 20
+  NODE_VERSION: 22
 
 jobs:
   canary:
@@ -17,13 +17,12 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      # pnpm version comes from the packageManager field in package.json
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm

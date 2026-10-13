@@ -24,6 +24,11 @@
       "outputs": ["coverage/**"],
       "inputs": ["src/**", "tests/**", "vitest.config.*"]
     },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "inputs": ["src/**", "tests/**", "vitest.config.*"]
+    },
     "test:watch": {
       "cache": false,
       "persistent": true

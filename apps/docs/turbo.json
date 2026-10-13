@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "typecheck": {
+      // `next build` writes .next/types, which tsconfig includes. Running both in
+      // parallel races, so typecheck waits for this app's own build — which also
+      // guarantees the generated route types are checked.
+      "dependsOn": ["^build", "build"]
+    }
+  }
+}
