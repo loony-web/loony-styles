@@ -22,7 +22,7 @@ interface ComponentDocProps {
   source?: string;
   radix?: string;
   aria?: string[];
-  status?: "stable" | "beta" | "experimental";
+  status?: ComponentStatus;
   toc?: TocItem[];
   children?: ReactNode;
 }
@@ -36,79 +36,80 @@ function highlight(code: string): ReactNode[] {
   while (rest.length > 0) {
     let m: RegExpMatchArray | null;
 
-    m = rest.match(/^(\/\/.+)/);
+    m = /^(\/\/.+)/.exec(rest);
     if (m) {
       tokens.push({ type: "comment", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^(\/\*[\s\S]*?\*\/)/);
+    m = /^(\/\*[\s\S]*?\*\/)/.exec(rest);
     if (m) {
       tokens.push({ type: "comment", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^(`[^`]*`)/);
+    m = /^(`[^`]*`)/.exec(rest);
     if (m) {
       tokens.push({ type: "string", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^("(?:[^"\\]|\\.)*")/);
+    m = /^("(?:[^"\\]|\\.)*")/.exec(rest);
     if (m) {
       tokens.push({ type: "string", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^('(?:[^'\\]|\\.)*')/);
+    m = /^('(?:[^'\\]|\\.)*')/.exec(rest);
     if (m) {
       tokens.push({ type: "string", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^(<\/[A-Z][A-Za-z0-9.]*>)/);
+    m = /^(<\/[A-Z][A-Za-z0-9.]*>)/.exec(rest);
     if (m) {
       tokens.push({ type: "tag", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^(<\/?[A-Z][A-Za-z0-9.]*)/);
+    m = /^(<\/?[A-Z][A-Za-z0-9.]*)/.exec(rest);
     if (m) {
       tokens.push({ type: "tag", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(
-      /^(import|export|from|default|const|let|var|function|return|if|else|async|await|new|typeof|instanceof|true|false|null|undefined|void)(?=\W)/,
-    );
+    m =
+      /^(import|export|from|default|const|let|var|function|return|if|else|async|await|new|typeof|instanceof|true|false|null|undefined|void)(?=\W)/.exec(
+        rest,
+      );
     if (m) {
       tokens.push({ type: "keyword", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^([a-zA-Z_][a-zA-Z0-9_]*)(?==)/);
+    m = /^([a-zA-Z_][a-zA-Z0-9_]*)(?==)/.exec(rest);
     if (m) {
       tokens.push({ type: "attr", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^(\d+\.?\d*)/);
+    m = /^(\d+\.?\d*)/.exec(rest);
     if (m) {
       tokens.push({ type: "num", value: m[0] });
       rest = rest.slice(m[0].length);
       continue;
     }
 
-    m = rest.match(/^([^"'`/<\n\r\d]+)/);
+    m = /^([^"'`/<\n\r\d]+)/.exec(rest);
     if (m) {
       tokens.push({ type: "plain", value: m[0] });
       rest = rest.slice(m[0].length);
@@ -486,7 +487,10 @@ const statusConfig = {
     label: "Experimental",
     cls: "bg-orange-500/10 text-orange-600 border-orange-500/20",
   },
+  deprecated: { label: "Deprecated", cls: "bg-red-500/10 text-red-600 border-red-500/20" },
 } as const;
+
+export type ComponentStatus = keyof typeof statusConfig;
 
 export function ComponentDoc({
   name,

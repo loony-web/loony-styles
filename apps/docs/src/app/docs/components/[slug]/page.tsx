@@ -1,4 +1,5 @@
-import { CodeBlock, ComponentDoc, Section } from "@/components/component-doc";
+import { CodeBlock, ComponentDoc, type ComponentStatus, Section } from "@/components/component-doc";
+import registry from "@loony/ui/registry.json";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -6,22 +7,24 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Defined here, not in component-doc.tsx: that module is a client component, and
+// a server component cannot call functions exported from it.
+const STATUSES: readonly string[] = ["stable", "beta", "experimental", "deprecated"];
+const isComponentStatus = (value: string): value is ComponentStatus => STATUSES.includes(value);
+
+/** Name, description, status and ARIA roles come from the shared component registry. */
+const registryItems = new Map(registry.components.map((item) => [item.name, item]));
+
+/** Docs-only content for components without a dedicated page. */
 const componentData: Record<
   string,
   {
-    name: string;
-    description: string;
     radix?: string;
-    aria?: string[];
-    status?: "stable" | "beta" | "experimental";
     import: string;
     usage: string;
   }
 > = {
   badge: {
-    name: "Badge",
-    description: "Small status indicator or label with 10 semantic color variants and 3 sizes.",
-    aria: [],
     import: `import { Badge } from "@/components/ui/badge"`,
     usage: `<Badge>New</Badge>
 <Badge variant="success-subtle">Active</Badge>
@@ -29,9 +32,6 @@ const componentData: Record<
 <Badge variant="warning">Pending</Badge>`,
   },
   avatar: {
-    name: "Avatar",
-    description:
-      "User avatar with image, fallback initials, and 6 size variants. Built on Radix UI Avatar.",
     radix: "https://www.radix-ui.com/docs/primitives/components/avatar",
     import: `import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"`,
     usage: `<Avatar size="md">
@@ -40,11 +40,7 @@ const componentData: Record<
 </Avatar>`,
   },
   accordion: {
-    name: "Accordion",
-    description:
-      "Vertically stacked collapsible sections with keyboard navigation. Built on Radix UI Accordion.",
     radix: "https://www.radix-ui.com/docs/primitives/components/accordion",
-    aria: ["region", "button"],
     import: `import {
   Accordion, AccordionItem,
   AccordionTrigger, AccordionContent
@@ -59,10 +55,7 @@ const componentData: Record<
 </Accordion>`,
   },
   tabs: {
-    name: "Tabs",
-    description: "Tabbed navigation with keyboard support and full ARIA. Built on Radix UI Tabs.",
     radix: "https://www.radix-ui.com/docs/primitives/components/tabs",
-    aria: ["tablist", "tab", "tabpanel"],
     import: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`,
     usage: `<Tabs defaultValue="overview">
   <TabsList>
@@ -74,11 +67,7 @@ const componentData: Record<
 </Tabs>`,
   },
   select: {
-    name: "Select",
-    description:
-      "Accessible custom select with keyboard navigation, groups, and scroll buttons. Built on Radix UI Select.",
     radix: "https://www.radix-ui.com/docs/primitives/components/select",
-    aria: ["listbox", "option"],
     import: `import {
   Select, SelectTrigger, SelectValue,
   SelectContent, SelectItem, SelectGroup, SelectLabel
@@ -98,10 +87,7 @@ const componentData: Record<
 </Select>`,
   },
   checkbox: {
-    name: "Checkbox",
-    description: "Binary selection control with indeterminate support. Built on Radix UI Checkbox.",
     radix: "https://www.radix-ui.com/docs/primitives/components/checkbox",
-    aria: ["checkbox"],
     import: `import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"`,
     usage: `<div className="flex items-center gap-2">
@@ -113,10 +99,7 @@ import { Label } from "@/components/ui/label"`,
 <Checkbox checked="indeterminate" aria-label="Select all" />`,
   },
   switch: {
-    name: "Switch",
-    description: "Toggle control for binary on/off state. Built on Radix UI Switch.",
     radix: "https://www.radix-ui.com/docs/primitives/components/switch",
-    aria: ["switch"],
     import: `import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"`,
     usage: `const [enabled, setEnabled] = useState(false)
@@ -131,11 +114,7 @@ import { Label } from "@/components/ui/label"`,
 </div>`,
   },
   tooltip: {
-    name: "Tooltip",
-    description:
-      "Contextual hint shown on hover/focus. For non-interactive supplementary content only.",
     radix: "https://www.radix-ui.com/docs/primitives/components/tooltip",
-    aria: ["tooltip"],
     import: `import {
   Tooltip, TooltipTrigger,
   TooltipContent, TooltipProvider
@@ -151,11 +130,7 @@ import { Label } from "@/components/ui/label"`,
 </TooltipProvider>`,
   },
   toast: {
-    name: "Toast",
-    description:
-      "Accessible notifications with 5 variants, auto-dismiss, and imperative API via useToast().",
     radix: "https://www.radix-ui.com/docs/primitives/components/toast",
-    aria: ["status"],
     import: `import { Toaster, useToast } from "@/components/ui/toast"`,
     usage: `// 1. Add Toaster to your layout (once)
 <Toaster />
@@ -176,21 +151,13 @@ function MyComponent() {
 }`,
   },
   progress: {
-    name: "Progress",
-    description:
-      "Linear progress bar with 4 color schemes and 4 sizes. Built on Radix UI Progress.",
     radix: "https://www.radix-ui.com/docs/primitives/components/progress",
-    aria: ["progressbar"],
     import: `import { Progress } from "@/components/ui/progress"`,
     usage: `<Progress value={60} label="Upload progress" />
 <Progress value={85} colorScheme="success" label="Success" />
 <Progress value={30} colorScheme="danger" size="sm" label="Error" />`,
   },
   drawer: {
-    name: "Drawer",
-    description:
-      "Side panel overlay from left, right, top, or bottom. Shares the Dialog accessibility contract.",
-    aria: ["dialog"],
     import: `import {
   Drawer, DrawerTrigger, DrawerContent,
   DrawerHeader, DrawerTitle, DrawerBody,
@@ -216,8 +183,6 @@ function MyComponent() {
 </Drawer>`,
   },
   card: {
-    name: "Card",
-    description: "Surface container with header, body, and footer compound components.",
     import: `import {
   Card, CardHeader, CardTitle, CardDescription,
   CardBody, CardFooter
@@ -236,9 +201,6 @@ function MyComponent() {
 </Card>`,
   },
   alert: {
-    name: "Alert",
-    description: "Inline status messages with semantic variants and auto-selected icons.",
-    aria: ["alert"],
     import: `import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"`,
     usage: `<Alert variant="info">
   <AlertTitle>Heads up</AlertTitle>
@@ -256,11 +218,7 @@ function MyComponent() {
 </Alert>`,
   },
   "dropdown-menu": {
-    name: "DropdownMenu",
-    description:
-      "Floating context menu with items, submenus, checkboxes, and radio groups. Built on Radix UI DropdownMenu.",
     radix: "https://www.radix-ui.com/docs/primitives/components/dropdown-menu",
-    aria: ["menu", "menuitem"],
     import: `import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
@@ -284,10 +242,6 @@ function MyComponent() {
 </DropdownMenu>`,
   },
   command: {
-    name: "Command",
-    description:
-      "Command palette with fuzzy search, keyboard navigation, and modal mode. Powered by cmdk.",
-    aria: ["combobox", "listbox"],
     import: `import {
   Command, CommandInput, CommandList,
   CommandEmpty, CommandGroup, CommandItem,
@@ -324,10 +278,6 @@ useEffect(() => {
 </CommandDialog>`,
   },
   "icon-button": {
-    name: "IconButton",
-    description:
-      "A square button for icon-only actions. Requires an accessible label — renders sr-only text or aria-label.",
-    aria: ["button"],
     import: `import { IconButton } from "@/components/ui/icon-button"
 import { TrashIcon } from "@loony/icons"`,
     usage: `{/* label prop renders sr-only text */}
@@ -345,9 +295,6 @@ import { TrashIcon } from "@loony/icons"`,
 </IconButton>`,
   },
   link: {
-    name: "Link",
-    description: "A styled anchor component with external link detection and icon support.",
-    aria: ["link"],
     import: `import { Link } from "@/components/ui/link"`,
     usage: `<Link href="/docs">Documentation</Link>
 
@@ -360,9 +307,6 @@ import { TrashIcon } from "@loony/icons"`,
 <Link href="/pricing" variant="subtle">Pricing</Link>`,
   },
   typography: {
-    name: "Typography",
-    description:
-      "Semantic heading and body text components with correct HTML elements and token-driven styles.",
     import: `import { Heading, Text, Code, Lead } from "@/components/ui/typography"`,
     usage: `<Heading as="h1" size="4xl">Page Title</Heading>
 <Heading as="h2" size="2xl">Section</Heading>
@@ -375,10 +319,6 @@ import { TrashIcon } from "@loony/icons"`,
 <Code>const x = 42</Code>`,
   },
   spinner: {
-    name: "Spinner",
-    description:
-      "Animated loading indicator with 4 sizes. Renders with role='status' and a sr-only label.",
-    aria: ["status"],
     import: `import { Spinner } from "@/components/ui/spinner"`,
     usage: `<Spinner />
 <Spinner size="sm" />
@@ -388,9 +328,6 @@ import { TrashIcon } from "@loony/icons"`,
 {isLoading ? <Spinner /> : <DataTable rows={rows} />}`,
   },
   textarea: {
-    name: "Textarea",
-    description: "Multi-line text input with auto-resize, validation state, and min/max rows.",
-    aria: ["textbox"],
     import: `import { Textarea } from "@/components/ui/textarea"`,
     usage: `<Textarea placeholder="Write your message..." />
 
@@ -406,10 +343,7 @@ import { TrashIcon } from "@loony/icons"`,
 <p id="error-msg" className="text-danger text-xs">Required field.</p>`,
   },
   radio: {
-    name: "Radio",
-    description: "Radio button group for single selection. Built on Radix UI RadioGroup.",
     radix: "https://www.radix-ui.com/docs/primitives/components/radio-group",
-    aria: ["radiogroup", "radio"],
     import: `import { RadioGroup, RadioItem } from "@/components/ui/radio"`,
     usage: `<RadioGroup defaultValue="option-1">
   <RadioItem value="option-1">Option 1</RadioItem>
@@ -426,11 +360,7 @@ const [value, setValue] = useState("option-1")
 </RadioGroup>`,
   },
   slider: {
-    name: "Slider",
-    description:
-      "Range input with keyboard navigation, multiple thumbs for range selection, and 3 sizes.",
     radix: "https://www.radix-ui.com/docs/primitives/components/slider",
-    aria: ["slider"],
     import: `import { Slider } from "@/components/ui/slider"`,
     usage: `{/* Single value */}
 <Slider defaultValue={[50]} max={100} step={1} />
@@ -446,9 +376,6 @@ const [value, setValue] = useState([40])
 <Slider defaultValue={[60]} orientation="vertical" className="h-40" />`,
   },
   "form-field": {
-    name: "FormField",
-    description:
-      "Wraps any form control with a label, helper text, and error message. Handles ARIA wiring automatically.",
     import: `import { FormField } from "@/components/ui/form-field"`,
     usage: `<FormField
   label="Email address"
@@ -473,9 +400,6 @@ const [value, setValue] = useState([40])
 </FormField>`,
   },
   label: {
-    name: "Label",
-    description:
-      "Accessible form label built on Radix UI Label. Clicking it focuses the associated control.",
     radix: "https://www.radix-ui.com/docs/primitives/components/label",
     import: `import { Label } from "@/components/ui/label"`,
     usage: `<div className="flex flex-col gap-1.5">
@@ -490,9 +414,7 @@ const [value, setValue] = useState([40])
 </div>`,
   },
   stack: {
-    name: "Stack",
-    description: "Vertical or horizontal flex container with consistent gap and alignment props.",
-    import: `import { Stack } from "@/components/ui/layout"`,
+    import: `import { Stack } from "@/components/ui/stack"`,
     usage: `{/* Vertical (default) */}
 <Stack gap="4">
   <Card>Item 1</Card>
@@ -507,10 +429,7 @@ const [value, setValue] = useState([40])
 </Stack>`,
   },
   flex: {
-    name: "Flex",
-    description:
-      "Low-level flex container with full control over direction, wrap, align, justify, and gap.",
-    import: `import { Flex } from "@/components/ui/layout"`,
+    import: `import { Flex } from "@/components/ui/layout/flex"`,
     usage: `<Flex direction="row" align="center" justify="between" gap="4">
   <Logo />
   <nav>...</nav>
@@ -524,9 +443,7 @@ const [value, setValue] = useState([40])
 </Flex>`,
   },
   grid: {
-    name: "Grid",
-    description: "CSS Grid container with column count, gap, and auto-responsive variants.",
-    import: `import { Grid } from "@/components/ui/layout"`,
+    import: `import { Grid } from "@/components/ui/layout/grid"`,
     usage: `{/* Fixed columns */}
 <Grid cols={3} gap="6">
   <Card>A</Card>
@@ -540,9 +457,7 @@ const [value, setValue] = useState([40])
 </Grid>`,
   },
   container: {
-    name: "Container",
-    description: "Max-width wrapper with centered horizontal padding. Responsive size variants.",
-    import: `import { Container } from "@/components/ui/layout"`,
+    import: `import { Container } from "@/components/ui/layout/container"`,
     usage: `{/* Default: max-w-6xl */}
 <Container>
   <PageContent />
@@ -558,24 +473,19 @@ const [value, setValue] = useState([40])
 </Container>`,
   },
   box: {
-    name: "Box",
-    description:
-      "Generic layout primitive — a div with no opinions. Use when none of the semantic layout components fit.",
-    import: `import { Box } from "@/components/ui/layout"`,
+    import: `import { Box } from "@/components/ui/layout/box"`,
     usage: `<Box className="bg-surface rounded-xl p-6">
   <Heading as="h2">Custom layout</Heading>
 </Box>
 
-{/* Polymorphic */}
-<Box as="section" className="py-16">
-  ...
+{/* Render a different element with asChild */}
+<Box asChild className="py-16">
+  <section>...</section>
 </Box>`,
   },
   "aspect-ratio": {
-    name: "AspectRatio",
-    description: "Constrains children to a specific aspect ratio. Built on Radix UI AspectRatio.",
     radix: "https://www.radix-ui.com/docs/primitives/components/aspect-ratio",
-    import: `import { AspectRatio } from "@/components/ui/aspect-ratio"`,
+    import: `import { AspectRatio } from "@/components/ui/layout/aspect-ratio"`,
     usage: `{/* 16:9 video thumbnail */}
 <AspectRatio ratio={16 / 9}>
   <img
@@ -593,10 +503,7 @@ const [value, setValue] = useState([40])
 </div>`,
   },
   spacer: {
-    name: "Spacer",
-    description:
-      "Invisible element that pushes siblings apart. Renders aria-hidden. Prefer gap when possible.",
-    import: `import { Spacer } from "@/components/ui/layout"`,
+    import: `import { Spacer } from "@/components/ui/layout/spacer"`,
     usage: `{/* Push nav items to opposite ends */}
 <Flex direction="row" align="center">
   <Logo />
@@ -610,9 +517,6 @@ const [value, setValue] = useState([40])
 <Text>Content below with 32px gap above</Text>`,
   },
   skeleton: {
-    name: "Skeleton",
-    description:
-      "Placeholder loading state with pulse animation. Use it to match the shape of the content it replaces.",
     import: `import { Skeleton } from "@/components/ui/skeleton"`,
     usage: `{/* Line skeletons */}
 <div className="space-y-2">
@@ -631,9 +535,6 @@ const [value, setValue] = useState([40])
 </div>`,
   },
   tag: {
-    name: "Tag",
-    description:
-      "Dismissible label chip with 4 visual variants and 3 sizes. Optional onDismiss for removable tags.",
     import: `import { Tag } from "@/components/ui/tag"`,
     usage: `<Tag>React</Tag>
 <Tag variant="solid">TypeScript</Tag>
@@ -652,8 +553,6 @@ const [tags, setTags] = useState(["React", "TypeScript"])
 ))}`,
   },
   table: {
-    name: "Table",
-    description: "Semantic HTML table with styled header, body, footer, and row selection state.",
     import: `import {
   Table, TableHeader, TableBody, TableFooter,
   TableRow, TableHead, TableCell, TableCaption
@@ -677,8 +576,6 @@ const [tags, setTags] = useState(["React", "TypeScript"])
 </Table>`,
   },
   "empty-state": {
-    name: "EmptyState",
-    description: "Zero-data placeholder with icon, title, description, and optional CTA slot.",
     import: `import { EmptyState } from "@/components/ui/empty-state"
 import { FolderOpenIcon } from "@loony/icons"`,
     usage: `<EmptyState
@@ -691,11 +588,7 @@ import { FolderOpenIcon } from "@loony/icons"`,
 />`,
   },
   popover: {
-    name: "Popover",
-    description:
-      "Floating content panel anchored to a trigger. Supports all placement sides. Built on Radix UI Popover.",
     radix: "https://www.radix-ui.com/docs/primitives/components/popover",
-    aria: ["dialog"],
     import: `import {
   Popover, PopoverTrigger, PopoverContent
 } from "@/components/ui/popover"`,
@@ -703,9 +596,9 @@ import { FolderOpenIcon } from "@loony/icons"`,
   <PopoverTrigger asChild>
     <Button variant="outline">Open popover</Button>
   </PopoverTrigger>
-  <PopoverContent className="w-72">
+  <PopoverContent aria-label="Filter options" className="w-72">
     <div className="space-y-3">
-      <Heading as="h3" size="sm">Filter options</Heading>
+      <Heading level={5} as="h3">Filter options</Heading>
       <div className="space-y-2">
         <Checkbox id="active" />
         <Label htmlFor="active">Show active only</Label>
@@ -715,9 +608,6 @@ import { FolderOpenIcon } from "@loony/icons"`,
 </Popover>`,
   },
   "hover-card": {
-    name: "HoverCard",
-    description:
-      "Preview card revealed on hover for sighted users with pointing devices. Built on Radix UI HoverCard.",
     radix: "https://www.radix-ui.com/docs/primitives/components/hover-card",
     import: `import {
   HoverCard, HoverCardTrigger, HoverCardContent
@@ -741,10 +631,6 @@ import { FolderOpenIcon } from "@loony/icons"`,
 </HoverCard>`,
   },
   breadcrumb: {
-    name: "Breadcrumb",
-    description:
-      "Navigation trail showing hierarchy. Uses <nav aria-label='Breadcrumb'> and structured list markup.",
-    aria: ["navigation"],
     import: `import {
   Breadcrumb, BreadcrumbList, BreadcrumbItem,
   BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage
@@ -766,10 +652,6 @@ import { FolderOpenIcon } from "@loony/icons"`,
 </Breadcrumb>`,
   },
   pagination: {
-    name: "Pagination",
-    description:
-      "Page navigation with prev/next, page number buttons, and ellipsis for large page counts.",
-    aria: ["navigation"],
     import: `import { Pagination } from "@/components/ui/pagination"`,
     usage: `const [page, setPage] = useState(1)
 
@@ -788,9 +670,6 @@ import { FolderOpenIcon } from "@loony/icons"`,
 />`,
   },
   "scroll-area": {
-    name: "ScrollArea",
-    description:
-      "Custom scrollbar with consistent cross-browser styling. Built on Radix UI ScrollArea.",
     radix: "https://www.radix-ui.com/docs/primitives/components/scroll-area",
     import: `import { ScrollArea } from "@/components/ui/scroll-area"`,
     usage: `{/* Fixed-height container with custom scrollbar */}
@@ -814,8 +693,7 @@ const DEDICATED_PAGES = new Set(["button", "dialog", "input"]);
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const data = componentData[slug];
-  return { title: data?.name ?? slug };
+  return { title: registryItems.get(slug)?.displayName ?? slug };
 }
 
 export default async function ComponentPage({ params }: PageProps) {
@@ -826,15 +704,16 @@ export default async function ComponentPage({ params }: PageProps) {
   }
 
   const data = componentData[slug];
-  if (!data) notFound();
+  const meta = registryItems.get(slug);
+  if (!data || !meta) notFound();
 
   return (
     <ComponentDoc
-      name={data.name}
-      description={data.description}
+      name={meta.displayName}
+      description={meta.description}
       radix={data.radix}
-      aria={data.aria}
-      status={data.status ?? "stable"}
+      aria={meta.ariaRoles}
+      status={isComponentStatus(meta.status) ? meta.status : "experimental"}
     >
       <Section title="Import">
         <CodeBlock>{data.import}</CodeBlock>

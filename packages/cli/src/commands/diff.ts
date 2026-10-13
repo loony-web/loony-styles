@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { readConfig } from "../utils/config.js";
 import { logger } from "../utils/logger.js";
 import { resolvePackageRoot } from "../utils/packages.js";
-import { type RegistryItem, getComponent, registry } from "../utils/registry.js";
+import { type Registry, type RegistryItem, readRegistryFile } from "../utils/registry.js";
 
 interface DiffOptions {
   cwd: string;
@@ -23,27 +23,29 @@ export async function diff(component: string | undefined, opts: DiffOptions) {
 
   const { execa } = await import("execa");
 
+  const uiPackagePath = resolvePackageRoot("@loony/ui", cwd);
+
+  if (!uiPackagePath) {
+    logger.error("@loony/ui is not installed. Run `pnpm add @loony/ui` first.");
+    process.exit(1);
+  }
+
+  const registry = readRegistryFile(join(uiPackagePath, "registry.json"));
+
   let components: RegistryItem[];
   if (component) {
-    const item = getComponent(component);
+    const item = registry.get(component);
     if (!item) {
       logger.error(`Unknown component: "${component}"`);
       process.exit(1);
     }
     components = [item];
   } else {
-    components = installedComponents(componentsDir);
+    components = installedComponents(registry, componentsDir);
     if (components.length === 0) {
       logger.warn(`No Loony components found in ${config.componentsDir}.`);
       return;
     }
-  }
-
-  const uiPackagePath = resolvePackageRoot("@loony/ui", cwd);
-
-  if (!uiPackagePath) {
-    logger.error("@loony/ui is not installed. Run `pnpm add @loony/ui` first.");
-    process.exit(1);
   }
 
   for (const item of components) {
@@ -85,8 +87,8 @@ export async function diff(component: string | undefined, opts: DiffOptions) {
 }
 
 /** Registry components with at least one file present in the components directory. */
-export function installedComponents(componentsDir: string): RegistryItem[] {
-  return registry.filter((item) =>
+export function installedComponents(registry: Registry, componentsDir: string): RegistryItem[] {
+  return registry.items.filter((item) =>
     item.files.some((file) => existsSync(join(componentsDir, file))),
   );
 }

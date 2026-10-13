@@ -53,6 +53,7 @@ program
   .command("list")
   .description("List all available components")
   .option("--json", "Output in JSON format", false)
+  .option("--cwd <path>", "The working directory", process.cwd())
   .action(async (opts: Record<string, unknown>) => {
     const { list } = await import("./commands/list.js");
     list(opts);

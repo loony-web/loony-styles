@@ -1,10 +1,15 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
+import { resolvePackageRoot } from "./packages.js";
 
 /**
  * Component registry schema.
  *
- * The registry is the canonical list of all components and their metadata.
- * It lives in packages/ui and is published so the CLI can resolve dependencies.
+ * The registry data lives in `@loony/ui/registry.json`, next to the sources it
+ * describes, so the metadata always matches the component files being copied.
+ * This module owns the schema and the lookup logic.
  */
 
 export const registryItemSchema = z.object({
@@ -25,7 +30,7 @@ export const registryItemSchema = z.object({
   dependencies: z.array(z.string()).default([]),
   /** npm packages required */
   npmDependencies: z.array(z.string()).default([]),
-  /** Files that make up this component */
+  /** Files that make up this component, relative to @loony/ui/src */
   files: z.array(z.string()),
   /** ARIA roles used */
   ariaRoles: z.array(z.string()).optional(),
@@ -37,550 +42,84 @@ export const registryItemSchema = z.object({
 
 export type RegistryItem = z.infer<typeof registryItemSchema>;
 
-export const registry: RegistryItem[] = [
-  {
-    name: "button",
-    displayName: "Button",
-    description: "The primary interactive element with multiple variants, sizes, and states.",
-    category: "foundation",
-    dependencies: ["spinner"],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: [
-      "button/button.tsx",
-      "button/button.styles.ts",
-      "button/button.types.ts",
-      "button/index.ts",
-    ],
-    ariaRoles: ["button"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "icon-button",
-    displayName: "IconButton",
-    description: "Square button for icon-only actions. Requires an accessible label.",
-    category: "foundation",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils", "@loony/icons"],
-    files: ["icon-button/icon-button.tsx", "icon-button/index.ts"],
-    ariaRoles: ["button"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "link",
-    displayName: "Link",
-    description: "Accessible anchor element with external link support.",
-    category: "foundation",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils", "@loony/icons"],
-    files: ["link/link.tsx", "link/index.ts"],
-    ariaRoles: ["link"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "input",
-    displayName: "Input",
-    description: "Text input with validation state and icon element support.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["input/input.tsx", "input/index.ts"],
-    ariaRoles: ["textbox"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "textarea",
-    displayName: "Textarea",
-    description: "Multi-line text input.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["textarea/textarea.tsx", "textarea/index.ts"],
-    ariaRoles: ["textbox"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "checkbox",
-    displayName: "Checkbox",
-    description: "Binary selection control with indeterminate support.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-checkbox", "@loony/utils", "@loony/icons"],
-    files: ["checkbox/checkbox.tsx", "checkbox/index.ts"],
-    ariaRoles: ["checkbox"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "switch",
-    displayName: "Switch",
-    description: "Toggle control for binary on/off state.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-switch", "@loony/utils"],
-    files: ["switch/switch.tsx", "switch/index.ts"],
-    ariaRoles: ["switch"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "label",
-    displayName: "Label",
-    description: "Accessible form label with disabled peer styles.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-label", "@loony/utils"],
-    files: ["label/label.tsx", "label/index.ts"],
-    ariaRoles: [],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "select",
-    displayName: "Select",
-    description: "Accessible custom select with keyboard navigation.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-select", "@loony/utils", "@loony/icons"],
-    files: ["select/select.tsx", "select/index.ts"],
-    ariaRoles: ["listbox", "option"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "badge",
-    displayName: "Badge",
-    description: "Small status indicator or label with semantic color variants.",
-    category: "display",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["badge/badge.tsx", "badge/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "avatar",
-    displayName: "Avatar",
-    description: "User avatar with image and fallback initials.",
-    category: "display",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@radix-ui/react-avatar", "@loony/utils"],
-    files: ["avatar/avatar.tsx", "avatar/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "card",
-    displayName: "Card",
-    description: "Surface container with header, body, and footer slots.",
-    category: "display",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["card/card.tsx", "card/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "dialog",
-    displayName: "Dialog",
-    description: "Modal overlay with focus trap, scroll lock, and animation.",
-    category: "overlay",
-    dependencies: ["icon-button"],
-    npmDependencies: ["@radix-ui/react-dialog", "@loony/utils", "@loony/icons"],
-    files: ["dialog/dialog.tsx", "dialog/index.ts"],
-    ariaRoles: ["dialog"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "tooltip",
-    displayName: "Tooltip",
-    description: "Contextual hint on hover/focus. Non-interactive content only.",
-    category: "overlay",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-tooltip", "@loony/utils"],
-    files: ["tooltip/tooltip.tsx", "tooltip/index.ts"],
-    ariaRoles: ["tooltip"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "popover",
-    displayName: "Popover",
-    description: "Floating panel with interactive content.",
-    category: "overlay",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-popover", "@loony/utils"],
-    files: ["popover/popover.tsx", "popover/index.ts"],
-    ariaRoles: ["dialog"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "alert",
-    displayName: "Alert",
-    description: "Inline status messages with semantic variants and icons.",
-    category: "feedback",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils", "@loony/icons"],
-    files: ["alert/alert.tsx", "alert/index.ts"],
-    ariaRoles: ["alert"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "spinner",
-    displayName: "Spinner",
-    description: "Loading indicator. Respects prefers-reduced-motion.",
-    category: "feedback",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["spinner/spinner.tsx", "spinner/index.ts"],
-    ariaRoles: ["status"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "skeleton",
-    displayName: "Skeleton",
-    description: "Placeholder loading state with CSS pulse animation.",
-    category: "feedback",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["skeleton/skeleton.tsx", "skeleton/index.ts"],
-    ariaRoles: ["status"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "tabs",
-    displayName: "Tabs",
-    description: "Tabbed navigation with keyboard support and ARIA.",
-    category: "navigation",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-tabs", "@loony/utils"],
-    files: ["tabs/tabs.tsx", "tabs/index.ts"],
-    ariaRoles: ["tablist", "tab", "tabpanel"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "accordion",
-    displayName: "Accordion",
-    description: "Vertically stacked collapsible sections.",
-    category: "display",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-accordion", "@loony/utils", "@loony/icons"],
-    files: ["accordion/accordion.tsx", "accordion/index.ts"],
-    ariaRoles: ["region"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "stack",
-    displayName: "Stack",
-    description: "Flexbox layout primitive for vertical or horizontal stacking.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["stack/stack.tsx", "stack/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "typography",
-    displayName: "Typography",
-    description: "Text, Heading, Code, and Kbd typographic primitives.",
-    category: "foundation",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["typography/typography.tsx", "typography/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "radio",
-    displayName: "Radio",
-    description: "Radio group with accessible single-selection and size variants.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@radix-ui/react-radio-group", "@loony/utils"],
-    files: ["radio/radio.tsx", "radio/index.ts"],
-    ariaRoles: ["radio", "radiogroup"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "form-field",
-    displayName: "FormField",
-    description: "Wrapper for form controls with label, helper text, and error message.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["form-field/form-field.tsx", "form-field/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "slider",
-    displayName: "Slider",
-    description: "Range input slider with keyboard navigation and size variants.",
-    category: "form",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@radix-ui/react-slider", "@loony/utils"],
-    files: ["slider/slider.tsx", "slider/index.ts"],
-    ariaRoles: ["slider"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "flex",
-    displayName: "Flex",
-    description: "Flexbox layout primitive with direction, align, and gap variants.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["layout/flex.tsx"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "grid",
-    displayName: "Grid",
-    description: "CSS grid layout primitive with column, row, and gap variants.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["layout/grid.tsx"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "container",
-    displayName: "Container",
-    description: "Max-width centered wrapper with responsive padding.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils"],
-    files: ["layout/container.tsx"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "box",
-    displayName: "Box",
-    description: "General-purpose div primitive supporting polymorphism via `as` prop.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["layout/box.tsx"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "aspect-ratio",
-    displayName: "AspectRatio",
-    description: "Maintains a consistent width-to-height ratio.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-aspect-ratio", "@loony/utils"],
-    files: ["layout/aspect-ratio.tsx"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "spacer",
-    displayName: "Spacer",
-    description: "Flexible whitespace fill or fixed-size space between elements.",
-    category: "layout",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["layout/spacer.tsx"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "tag",
-    displayName: "Tag",
-    description: "Compact label with optional dismiss button.",
-    category: "display",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@loony/utils", "@loony/icons"],
-    files: ["tag/tag.tsx", "tag/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "progress",
-    displayName: "Progress",
-    description: "Linear progress bar with color scheme and size variants.",
-    category: "feedback",
-    dependencies: [],
-    npmDependencies: ["class-variance-authority", "@radix-ui/react-progress", "@loony/utils"],
-    files: ["progress/progress.tsx", "progress/index.ts"],
-    ariaRoles: ["progressbar"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "empty-state",
-    displayName: "EmptyState",
-    description: "Zero-data placeholder with icon, title, description, and action slot.",
-    category: "feedback",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["empty-state/empty-state.tsx", "empty-state/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "toast",
-    displayName: "Toast",
-    description: "Accessible notification toasts with Toaster provider.",
-    category: "feedback",
-    dependencies: [],
-    npmDependencies: [
-      "class-variance-authority",
-      "@radix-ui/react-toast",
-      "@loony/utils",
-      "@loony/icons",
-    ],
-    files: ["toast/toast.tsx", "toast/toaster.tsx", "toast/use-toast.ts", "toast/index.ts"],
-    ariaRoles: ["status"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "drawer",
-    displayName: "Drawer",
-    description: "Side panel overlay (sheet) from left, right, top, or bottom.",
-    category: "overlay",
-    dependencies: ["icon-button"],
-    npmDependencies: [
-      "class-variance-authority",
-      "@radix-ui/react-dialog",
-      "@loony/utils",
-      "@loony/icons",
-    ],
-    files: ["drawer/drawer.tsx", "drawer/index.ts"],
-    ariaRoles: ["dialog"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "hover-card",
-    displayName: "HoverCard",
-    description: "Preview card shown on hover over a trigger element.",
-    category: "overlay",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-hover-card", "@loony/utils"],
-    files: ["hover-card/hover-card.tsx", "hover-card/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "dropdown-menu",
-    displayName: "DropdownMenu",
-    description: "Floating context menu with items, submenus, checkboxes, and radio groups.",
-    category: "navigation",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-dropdown-menu", "@loony/utils", "@loony/icons"],
-    files: ["dropdown-menu/dropdown-menu.tsx", "dropdown-menu/index.ts"],
-    ariaRoles: ["menu", "menuitem"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "breadcrumb",
-    displayName: "Breadcrumb",
-    description: "Accessible navigation breadcrumb with separator and ellipsis support.",
-    category: "navigation",
-    dependencies: [],
-    npmDependencies: ["@loony/utils", "@loony/icons"],
-    files: ["breadcrumb/breadcrumb.tsx", "breadcrumb/index.ts"],
-    ariaRoles: ["navigation"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "pagination",
-    displayName: "Pagination",
-    description: "Page navigation with previous, next, and numbered links.",
-    category: "navigation",
-    dependencies: [],
-    npmDependencies: ["@loony/utils", "@loony/icons"],
-    files: ["pagination/pagination.tsx", "pagination/index.ts"],
-    ariaRoles: ["navigation"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "scroll-area",
-    displayName: "ScrollArea",
-    description: "Custom scroll container with styled scrollbars.",
-    category: "advanced",
-    dependencies: [],
-    npmDependencies: ["@radix-ui/react-scroll-area", "@loony/utils"],
-    files: ["scroll-area/scroll-area.tsx", "scroll-area/index.ts"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "command",
-    displayName: "Command",
-    description: "Command palette with fuzzy search, keyboard navigation, and dialog mode.",
-    category: "advanced",
-    dependencies: ["dialog"],
-    npmDependencies: ["cmdk", "@loony/utils", "@loony/icons"],
-    files: ["command/command.tsx", "command/index.ts"],
-    ariaRoles: ["combobox", "listbox", "option"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-  {
-    name: "table",
-    displayName: "Table",
-    description: "Semantic HTML table with styled rows, headers, cells, and caption.",
-    category: "display",
-    dependencies: [],
-    npmDependencies: ["@loony/utils"],
-    files: ["table/table.tsx", "table/index.ts"],
-    ariaRoles: ["table", "row", "columnheader", "cell"],
-    status: "stable",
-    tailwindVersion: "4",
-  },
-];
+export const registryFileSchema = z.object({
+  version: z.literal(1),
+  components: z.array(registryItemSchema),
+});
 
-export function getComponent(name: string): RegistryItem | undefined {
-  return registry.find((item) => item.name === name);
-}
+export class Registry {
+  constructor(readonly items: readonly RegistryItem[]) {}
 
-export function getComponentsByCategory(category: RegistryItem["category"]): RegistryItem[] {
-  return registry.filter((item) => item.category === category);
-}
-
-export function resolveComponentTree(name: string): RegistryItem[] {
-  const visited = new Set<string>();
-  const result: RegistryItem[] = [];
-
-  function resolve(componentName: string) {
-    if (visited.has(componentName)) return;
-    visited.add(componentName);
-
-    const item = getComponent(componentName);
-    if (!item) return;
-
-    for (const dep of item.dependencies) {
-      resolve(dep);
-    }
-
-    result.push(item);
+  get(name: string): RegistryItem | undefined {
+    return this.items.find((item) => item.name === name);
   }
 
-  resolve(name);
-  return result;
+  byCategory(category: RegistryItem["category"]): RegistryItem[] {
+    return this.items.filter((item) => item.category === category);
+  }
+
+  /** The component and its transitive dependencies, dependencies first. */
+  resolveTree(name: string): RegistryItem[] {
+    const visited = new Set<string>();
+    const result: RegistryItem[] = [];
+
+    const resolve = (componentName: string) => {
+      if (visited.has(componentName)) return;
+      visited.add(componentName);
+
+      const item = this.get(componentName);
+      if (!item) return;
+
+      for (const dep of item.dependencies) {
+        resolve(dep);
+      }
+
+      result.push(item);
+    };
+
+    resolve(name);
+    return result;
+  }
+}
+
+/** Validate registry JSON, with a readable error listing each bad field. */
+export function parseRegistry(json: unknown, source: string): Registry {
+  const result = registryFileSchema.safeParse(json);
+  if (!result.success) {
+    const issues = result.error.issues.map((i) => `  · ${i.path.join(".")}: ${i.message}`);
+    throw new Error(`Invalid component registry (${source}):\n${issues.join("\n")}`);
+  }
+  return new Registry(result.data.components);
+}
+
+export function readRegistryFile(path: string): Registry {
+  return parseRegistry(JSON.parse(readFileSync(path, "utf-8")) as unknown, path);
+}
+
+/** Copy of @loony/ui/registry.json bundled into dist/ at build time. */
+const BUNDLED_REGISTRY = fileURLToPath(new URL("../registry.json", import.meta.url));
+
+export interface LoadedRegistry {
+  registry: Registry;
+  /** "project": from the project's installed @loony/ui. "bundled": the CLI's own copy. */
+  source: "project" | "bundled";
+}
+
+/**
+ * Load the registry that matches the project's installed @loony/ui, falling
+ * back to the copy bundled with the CLI (e.g. `loony list` before installing).
+ */
+export function loadRegistry(cwd: string): LoadedRegistry {
+  const uiRoot = resolvePackageRoot("@loony/ui", cwd);
+  const projectFile = uiRoot ? join(uiRoot, "registry.json") : undefined;
+
+  if (projectFile && existsSync(projectFile)) {
+    return { registry: readRegistryFile(projectFile), source: "project" };
+  }
+  if (existsSync(BUNDLED_REGISTRY)) {
+    return { registry: readRegistryFile(BUNDLED_REGISTRY), source: "bundled" };
+  }
+  throw new Error(
+    "No component registry found. Install @loony/ui, or rebuild the CLI so it bundles one.",
+  );
 }

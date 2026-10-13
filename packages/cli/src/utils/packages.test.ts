@@ -10,6 +10,7 @@ import {
   installArgs,
   resolvePackageRoot,
 } from "./packages.js";
+import { Registry, type RegistryItem } from "./registry.js";
 
 let root: string;
 
@@ -104,10 +105,24 @@ describe("usageImportPath", () => {
   });
 });
 
+const base: Omit<RegistryItem, "name" | "files"> = {
+  displayName: "X",
+  description: "",
+  category: "display",
+  dependencies: [],
+  npmDependencies: [],
+  status: "stable",
+  tailwindVersion: "4",
+};
+
 describe("installedComponents", () => {
   it("lists only components with files present", () => {
     mkdirSync(join(root, "button"), { recursive: true });
     writeFileSync(join(root, "button", "button.tsx"), "");
-    expect(installedComponents(root).map((item) => item.name)).toEqual(["button"]);
+    const registry = new Registry([
+      { ...base, name: "button", files: ["button/button.tsx"] },
+      { ...base, name: "badge", files: ["badge/badge.tsx"] },
+    ]);
+    expect(installedComponents(registry, root).map((item) => item.name)).toEqual(["button"]);
   });
 });

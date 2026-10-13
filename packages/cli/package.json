@@ -16,10 +16,11 @@
   },
   "files": ["dist/**"],
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json && node scripts/bundle-registry.mjs",
     "dev": "tsc --project tsconfig.build.json --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "lint": "eslint src",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
@@ -36,8 +37,10 @@
   "devDependencies": {
     "@loony/eslint-config": "workspace:*",
     "@loony/typescript-config": "workspace:*",
+    "@loony/ui": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "2.1.9",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   }

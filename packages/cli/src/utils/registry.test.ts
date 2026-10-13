@@ -3,14 +3,18 @@ import { dirname, join, normalize, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
-  getComponent,
-  getComponentsByCategory,
-  registry,
+  Registry,
+  loadRegistry,
+  parseRegistry,
+  readRegistryFile,
   registryItemSchema,
-  resolveComponentTree,
 } from "./registry.js";
 
-const UI_SRC = join(dirname(fileURLToPath(import.meta.url)), "../../../ui/src");
+const UI_ROOT = join(dirname(fileURLToPath(import.meta.url)), "../../../ui");
+const UI_SRC = join(UI_ROOT, "src");
+const registry = readRegistryFile(join(UI_ROOT, "registry.json"));
+const getComponent = (name: string) => registry.get(name);
+const resolveComponentTree = (name: string) => registry.resolveTree(name);
 
 /** Imports `loony add` cannot satisfy by copying files or installing npm packages. */
 const PEER_PACKAGES = new Set(["react", "react-dom"]);
@@ -39,18 +43,18 @@ function packageName(specifier: string): string {
 
 describe("registry", () => {
   it("every item satisfies the schema", () => {
-    for (const item of registry) {
+    for (const item of registry.items) {
       expect(() => registryItemSchema.parse(item), item.name).not.toThrow();
     }
   });
 
   it("has unique names", () => {
-    const names = registry.map((item) => item.name);
+    const names = registry.items.map((item) => item.name);
     expect(new Set(names).size).toBe(names.length);
   });
 
   it("only depends on registered components", () => {
-    for (const item of registry) {
+    for (const item of registry.items) {
       for (const dep of item.dependencies) {
         expect(getComponent(dep), `${item.name} → ${dep}`).toBeDefined();
       }
@@ -58,14 +62,14 @@ describe("registry", () => {
   });
 
   it("lists files that exist in @loony/ui", () => {
-    for (const item of registry) {
+    for (const item of registry.items) {
       for (const file of item.files) {
         expect(existsSync(join(UI_SRC, file)), `${item.name}: ${file}`).toBe(true);
       }
     }
   });
 
-  describe.each(registry.map((item) => [item.name] as const))("%s", (name) => {
+  describe.each(registry.items.map((item) => [item.name] as const))("%s", (name) => {
     const tree = resolveComponentTree(name);
     const treeFiles = new Set(tree.flatMap((item) => item.files.map((f) => normalize(f))));
     const treeNpmDeps = new Set(tree.flatMap((item) => item.npmDependencies));
@@ -107,7 +111,7 @@ describe("resolveComponentTree", () => {
   });
 
   it("includes each component once", () => {
-    for (const item of registry) {
+    for (const item of registry.items) {
       const names = resolveComponentTree(item.name).map((i) => i.name);
       expect(new Set(names).size, item.name).toBe(names.length);
     }
@@ -117,7 +121,33 @@ describe("resolveComponentTree", () => {
 describe("getComponentsByCategory", () => {
   it("partitions the registry", () => {
     const categories = registryItemSchema.shape.category.options;
-    const total = categories.reduce((n, c) => n + getComponentsByCategory(c).length, 0);
-    expect(total).toBe(registry.length);
+    const total = categories.reduce((n, c) => n + registry.byCategory(c).length, 0);
+    expect(total).toBe(registry.items.length);
+  });
+});
+
+describe("parseRegistry", () => {
+  it("accepts the shipped @loony/ui registry", () => {
+    expect(registry).toBeInstanceOf(Registry);
+    expect(registry.items.length).toBeGreaterThan(0);
+  });
+
+  it("rejects malformed data with the offending path", () => {
+    expect(() =>
+      parseRegistry({ version: 1, components: [{ name: "x", files: "nope" }] }, "test"),
+    ).toThrow(/components\.0\.files/);
+  });
+
+  it("rejects unknown registry versions", () => {
+    expect(() => parseRegistry({ version: 2, components: [] }, "test")).toThrow(/version/);
+  });
+});
+
+describe("loadRegistry", () => {
+  it("prefers the registry of the project's installed @loony/ui", () => {
+    // packages/cli resolves @loony/ui through the workspace's node_modules
+    const loaded = loadRegistry(join(UI_ROOT, "..", "..", "apps", "docs"));
+    expect(loaded.source).toBe("project");
+    expect(loaded.registry.items).toEqual(registry.items);
   });
 });

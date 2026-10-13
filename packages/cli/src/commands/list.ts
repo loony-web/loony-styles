@@ -1,9 +1,10 @@
 import kleur from "kleur";
 import { logger } from "../utils/logger.js";
-import { registry } from "../utils/registry.js";
+import { type RegistryItem, loadRegistry } from "../utils/registry.js";
 
 interface ListOptions {
   json?: boolean;
+  cwd?: string;
 }
 
 const CATEGORY_ORDER = [
@@ -21,16 +22,19 @@ const CATEGORY_ORDER = [
  * loony list — Display all available components.
  */
 export function list(opts: ListOptions) {
+  const { registry, source } = loadRegistry(opts.cwd ?? process.cwd());
+  const items = registry.items;
+
   if (opts.json) {
-    console.log(JSON.stringify(registry, null, 2));
+    console.log(JSON.stringify(items, null, 2));
     return;
   }
 
   logger.heading("Available Components");
   logger.newline();
 
-  const byCategory = new Map<string, typeof registry>();
-  for (const item of registry) {
+  const byCategory = new Map<string, RegistryItem[]>();
+  for (const item of items) {
     const current = byCategory.get(item.category) ?? [];
     current.push(item);
     byCategory.set(item.category, current);
@@ -57,6 +61,8 @@ export function list(opts: ListOptions) {
   }
 
   console.log(
-    kleur.gray(`  Total: ${registry.length} components. Run \`loony add <name>\` to install.\n`),
+    kleur.gray(
+      `  Total: ${items.length} components${source === "bundled" ? " (bundled registry — install @loony/ui for your exact version)" : ""}. Run \`loony add <name>\` to install.\n`,
+    ),
   );
 }

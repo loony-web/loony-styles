@@ -11,7 +11,7 @@ import {
   installArgs,
   resolvePackageRoot,
 } from "../utils/packages.js";
-import { getComponent, registry, resolveComponentTree } from "../utils/registry.js";
+import { readRegistryFile } from "../utils/registry.js";
 
 interface AddOptions {
   cwd: string;
@@ -39,11 +39,25 @@ export async function add(components: string[], opts: AddOptions) {
   const config = readConfig(cwd);
   const targetDir = opts.path ?? join(cwd, config.componentsDir);
 
+  // Component sources ship inside the @loony/ui package.
+  const uiPackagePath = resolvePackageRoot("@loony/ui", cwd);
+  if (!uiPackagePath) {
+    const pm = detectPackageManager(cwd);
+    p.cancel(
+      `@loony/ui is not installed. Run \`${pm} ${installArgs(pm, ["-D", "@loony/ui"]).join(" ")}\` first.`,
+    );
+    process.exit(1);
+  }
+
+  // Use the registry that ships with the installed sources, so the file list
+  // always matches what is on disk.
+  const registry = readRegistryFile(join(uiPackagePath, "registry.json"));
+
   // Interactive selection if no components provided
   let selectedComponents = components;
 
   if (selectedComponents.length === 0) {
-    const options = registry.map((item) => ({
+    const options = registry.items.map((item) => ({
       value: item.name,
       label: `${item.displayName} — ${item.description}`,
       hint: item.category,
@@ -63,7 +77,7 @@ export async function add(components: string[], opts: AddOptions) {
   }
 
   // Validate component names
-  const invalid = selectedComponents.filter((name) => !getComponent(name));
+  const invalid = selectedComponents.filter((name) => !registry.get(name));
   if (invalid.length > 0) {
     for (const name of invalid) {
       logger.error(`Unknown component: "${name}". Run \`loony list\` to see available components.`);
@@ -74,7 +88,7 @@ export async function add(components: string[], opts: AddOptions) {
   // Resolve full dependency tree
   const allComponents = new Set<string>();
   for (const name of selectedComponents) {
-    for (const item of resolveComponentTree(name)) {
+    for (const item of registry.resolveTree(name)) {
       allComponents.add(item.name);
     }
   }
@@ -98,23 +112,13 @@ export async function add(components: string[], opts: AddOptions) {
     }
   }
 
-  // Component sources ship inside the @loony/ui package.
-  const uiPackagePath = resolvePackageRoot("@loony/ui", cwd);
-  if (!uiPackagePath) {
-    const pm = detectPackageManager(cwd);
-    p.cancel(
-      `@loony/ui is not installed. Run \`${pm} ${installArgs(pm, ["-D", "@loony/ui"]).join(" ")}\` first.`,
-    );
-    process.exit(1);
-  }
-
   const spinner = p.spinner();
   spinner.start(`Installing ${toInstall.length} component(s)...`);
 
   const npmDeps = new Set<string>();
 
   for (const componentName of toInstall) {
-    const item = getComponent(componentName);
+    const item = registry.get(componentName);
     if (!item) continue;
 
     for (const file of item.files) {
@@ -166,7 +170,7 @@ export async function add(components: string[], opts: AddOptions) {
   p.note(
     toInstall
       .map((name) => {
-        const item = getComponent(name);
+        const item = registry.get(name);
         if (!item) return "";
         const importPath = usageImportPath(config.importAlias, config.componentsDir, item.files);
         return kleur.cyan(`import { ${item.displayName} } from "${importPath}";`);
