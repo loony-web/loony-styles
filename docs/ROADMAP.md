@@ -115,26 +115,26 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 73 | `Checkbox` — indeterminate support | ✅ | M |
 | 74 | `Switch` | ✅ | M |
 | 75 | `Select` — full keyboard nav | ✅ | L |
-| 76 | `Radio` / `RadioGroup` | 📋 | M |
-| 77 | `Slider` | 📋 | L |
+| 76 | `Radio` / `RadioGroup` | ✅ | M |
+| 77 | `Slider` | ✅ | L |
 | 78 | `OTP` / `PinInput` | 📋 | L |
 | 79 | `Combobox` / `Autocomplete` | 📋 | XL |
 | 80 | `FileUpload` | 📋 | L |
 | 81 | `DatePicker` | 🔮 | XL |
 | 82 | `ColorPicker` | 🔮 | XL |
-| 83 | `FormField` — wrapper with label, helper, error | 📋 | M |
+| 83 | `FormField` — wrapper with label, helper, error | ✅ | M |
 
 ## Phase 8: Layout
 
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
 | 84 | `Stack` — flex layout primitive | ✅ | S |
-| 85 | `Flex` — explicit flex utility | 📋 | S |
-| 86 | `Grid` — CSS grid primitive | 📋 | S |
-| 87 | `Container` — max-width centered wrapper | 📋 | XS |
-| 88 | `Box` — general-purpose div primitive | 📋 | XS |
-| 89 | `AspectRatio` | 📋 | S |
-| 90 | `Spacer` — flexible space fill | 📋 | XS |
+| 85 | `Flex` — explicit flex utility | ✅ | S |
+| 86 | `Grid` — CSS grid primitive | ✅ | S |
+| 87 | `Container` — max-width centered wrapper | ✅ | XS |
+| 88 | `Box` — general-purpose div primitive | ✅ | XS |
+| 89 | `AspectRatio` | ✅ | S |
+| 90 | `Spacer` — flexible space fill | ✅ | XS |
 
 ## Phase 9: Display Components
 
@@ -145,10 +145,10 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 93 | `Card` + `CardHeader` + `CardBody` + `CardFooter` | ✅ | S |
 | 94 | `Accordion` | ✅ | M |
 | 95 | `Skeleton` | ✅ | S |
-| 96 | `Table` — responsive data table | 📋 | L |
+| 96 | `Table` — responsive data table | ✅ | L |
 | 97 | `DataTable` — sortable, filterable | 📋 | XL |
 | 98 | `List` | 📋 | S |
-| 99 | `Tag` / `Chip` | 📋 | S |
+| 99 | `Tag` / `Chip` (Tag done) | 🚧 | S |
 | 100 | `Timeline` | 📋 | M |
 | 101 | `Calendar` | 🔮 | XL |
 | 102 | `Carousel` | 📋 | XL |
@@ -159,9 +159,9 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
 | 104 | `Alert` — inline status messages | ✅ | M |
-| 105 | `Toast` / Toaster — global notification system | 📋 | XL |
-| 106 | `Progress` — linear + circular | 📋 | M |
-| 107 | `EmptyState` — zero-data placeholder | 📋 | S |
+| 105 | `Toast` / Toaster — global notification system | ✅ | XL |
+| 106 | `Progress` — linear + circular (linear done) | 🚧 | M |
+| 107 | `EmptyState` — zero-data placeholder | ✅ | S |
 | 108 | `LoadingOverlay` | 📋 | M |
 
 ## Phase 11: Overlay Components
@@ -171,21 +171,21 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 109 | `Dialog` — modal with focus trap | ✅ | L |
 | 110 | `Tooltip` | ✅ | M |
 | 111 | `Popover` | ✅ | M |
-| 112 | `Drawer` / `Sheet` | 📋 | L |
-| 113 | `HoverCard` | 📋 | M |
+| 112 | `Drawer` / `Sheet` | ✅ | L |
+| 113 | `HoverCard` | ✅ | M |
 | 114 | `ContextMenu` | 📋 | L |
-| 115 | `DropdownMenu` | 📋 | L |
+| 115 | `DropdownMenu` | ✅ | L |
 
 ## Phase 12: Navigation
 
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
 | 116 | `Tabs` | ✅ | M |
-| 117 | `Breadcrumb` | 📋 | S |
-| 118 | `Pagination` | 📋 | M |
+| 117 | `Breadcrumb` | ✅ | S |
+| 118 | `Pagination` | ✅ | M |
 | 119 | `Menubar` | 📋 | L |
 | 120 | `NavigationMenu` (Radix) | 📋 | L |
-| 121 | `Command` / `CommandPalette` | 📋 | XL |
+| 121 | `Command` / `CommandPalette` (Command + CommandDialog done) | 🚧 | XL |
 | 122 | `Navbar` | 📋 | M |
 | 123 | `Sidebar` | 📋 | L |
 
@@ -193,7 +193,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
-| 124 | `ScrollArea` | 📋 | M |
+| 124 | `ScrollArea` | ✅ | M |
 | 125 | `ResizablePanels` (SplitPane) | 📋 | L |
 | 126 | `VirtualList` | 🔮 | XL |
 | 127 | `InfiniteScroll` | 🔮 | L |
@@ -223,7 +223,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 141 | Storybook themes addon (dark mode toggle) | ✅ | S |
 | 142 | Introduction MDX page | ✅ | S |
 | 143 | Button Storybook stories | ✅ | M |
-| 144 | All component Storybook stories | 📋 | XL |
+| 144 | All component Storybook stories | ✅ | XL |
 | 145 | Design token explorer | 📋 | L |
 | 146 | Icon explorer | 📋 | M |
 | 147 | Accessibility documentation per component | 📋 | L |
@@ -240,8 +240,8 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 153 | `composeRefs()` unit tests | ✅ | S |
 | 154 | `Slot` unit tests | ✅ | M |
 | 155 | `Button` unit + a11y tests | ✅ | M |
-| 156 | All form component tests | 📋 | XL |
-| 157 | All overlay component tests | 📋 | L |
+| 156 | All form component tests | 🚧 | XL |
+| 157 | All overlay component tests | 🚧 | L |
 | 158 | Visual regression tests (Chromatic) | 🔮 | L |
 | 159 | E2E tests with Playwright | 📋 | XL |
 | 160 | Coverage thresholds in CI | 📋 | S |
@@ -255,7 +255,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 163 | CSS output size analysis | 📋 | S |
 | 164 | Lighthouse accessibility audit | 📋 | M |
 | 165 | React DevTools profiler audit | 📋 | M |
-| 166 | `sideEffects: false` verification | 📋 | S |
+| 166 | `sideEffects: false` verification | ✅ | S |
 | 167 | Bundle size tracking in CI | 📋 | M |
 
 ## Phase 18: Accessibility Hardening
@@ -269,18 +269,18 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 172 | High contrast mode testing (Windows) | 📋 | M |
 | 173 | RTL layout support audit | 📋 | L |
 | 174 | Focus visible in all themes | 📋 | M |
-| 175 | Reduced motion in all animated components | 📋 | M |
+| 175 | Reduced motion in all animated components | 🚧 | M |
 
 ## Phase 19: Animation
 
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
-| 176 | Motion library integration | ✅ | S |
+| 176 | Motion library integration (dependency only — no component uses it yet) | 📋 | S |
 | 177 | Fade animation preset | 📋 | S |
 | 178 | Scale animation preset | 📋 | S |
 | 179 | Slide animation presets (4 directions) | 📋 | S |
 | 180 | Collapse animation (accordion height) | 📋 | M |
-| 181 | Modal enter/exit animation | ✅ | S |
+| 181 | Modal enter/exit animation (CSS via tw-animate-css) | ✅ | S |
 | 182 | Toast slide-in animation | 📋 | M |
 | 183 | Spring presets documentation | 📋 | S |
 | 184 | Reduced-motion fallbacks for all animations | ✅ | M |
@@ -312,7 +312,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 |---|-----------|--------|------------|
 | 196 | v0.1.0 alpha release (all stable components) | 📋 | M |
 | 197 | Changeset documentation | 📋 | S |
-| 198 | npm provenance publishing | 📋 | S |
+| 198 | npm provenance publishing | 🚧 | S |
 | 199 | Automated changelog | ✅ | S |
 | 200 | Semantic versioning policy documentation | 📋 | S |
 | 201 | Breaking change migration guide format | 📋 | S |
@@ -354,12 +354,33 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 
 ## Summary
 
+_Statuses audited against the code on 2026-10-13; see [TODO.md](TODO.md) for details._
+
 | Phase | Total | Done | In Progress | Planned | Future |
 |-------|-------|------|-------------|---------|--------|
-| Foundation + Tooling | 15 | 15 | 0 | 0 | 0 |
-| Tokens | 15 | 13 | 0 | 2 | 1 |
+| Foundation (Monorepo) | 6 | 6 | 0 | 0 | 0 |
+| Tooling | 9 | 9 | 0 | 0 | 0 |
+| Design Tokens | 15 | 13 | 0 | 1 | 1 |
 | Utilities | 21 | 18 | 1 | 2 | 0 |
 | Icons | 8 | 5 | 0 | 3 | 0 |
-| Core UI | 80+ | 30 | 0 | 40 | 10+ |
+| Core Components — Foundation | 10 | 10 | 0 | 0 | 0 |
+| Form Components | 14 | 9 | 0 | 3 | 2 |
+| Layout | 7 | 7 | 0 | 0 | 0 |
+| Display Components | 13 | 6 | 1 | 5 | 1 |
+| Feedback Components | 5 | 3 | 1 | 1 | 0 |
+| Overlay Components | 7 | 6 | 0 | 1 | 0 |
+| Navigation | 8 | 3 | 1 | 4 | 0 |
+| Advanced Components | 6 | 1 | 0 | 1 | 4 |
 | CLI | 9 | 6 | 0 | 1 | 2 |
-| **Total** | **219** | **87** | **1** | **97** | **34** |
+| Documentation | 11 | 6 | 0 | 5 | 0 |
+| Testing | 11 | 6 | 2 | 2 | 1 |
+| Performance | 7 | 1 | 0 | 6 | 0 |
+| Accessibility Hardening | 8 | 0 | 1 | 7 | 0 |
+| Animation | 9 | 2 | 0 | 7 | 0 |
+| Internationalization | 5 | 0 | 0 | 3 | 2 |
+| Templates | 6 | 0 | 0 | 6 | 0 |
+| Release | 6 | 1 | 1 | 4 | 0 |
+| Ecosystem | 8 | 0 | 0 | 1 | 7 |
+| Community | 5 | 0 | 0 | 3 | 2 |
+| Governance | 5 | 0 | 0 | 4 | 1 |
+| **Total** | **219** | **118** | **8** | **70** | **23** |
