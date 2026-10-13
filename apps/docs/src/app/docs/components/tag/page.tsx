@@ -29,7 +29,7 @@ export default function TagPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Tag } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={"<Tag>React</Tag>"}>
+        <ComponentPreview code="<Tag>React</Tag>">
           <Tag>React</Tag>
         </ComponentPreview>
       </Section>
@@ -53,15 +53,15 @@ export default function TagPage() {
       <Section id="dismissible" title="Dismissible">
         <ComponentPreview
           code={`<Tag onDismiss={() => console.log("dismissed")}>TypeScript</Tag>
-<Tag variant="outline" onDismiss={() => {}}>React</Tag>
-<Tag variant="neutral" onDismiss={() => {}}>Next.js</Tag>`}
+<Tag variant="outline" onDismiss={() => undefined}>React</Tag>
+<Tag variant="neutral" onDismiss={() => undefined}>Next.js</Tag>`}
         >
           <div className="flex flex-wrap gap-2">
-            <Tag onDismiss={() => {}}>TypeScript</Tag>
-            <Tag variant="outline" onDismiss={() => {}}>
+            <Tag onDismiss={() => undefined}>TypeScript</Tag>
+            <Tag variant="outline" onDismiss={() => undefined}>
               React
             </Tag>
-            <Tag variant="neutral" onDismiss={() => {}}>
+            <Tag variant="neutral" onDismiss={() => undefined}>
               Next.js
             </Tag>
           </div>

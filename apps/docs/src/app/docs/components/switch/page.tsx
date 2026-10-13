@@ -29,7 +29,7 @@ export default function SwitchPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Switch } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={"<Switch defaultChecked />"}>
+        <ComponentPreview code="<Switch defaultChecked />">
           <Switch defaultChecked />
         </ComponentPreview>
       </Section>

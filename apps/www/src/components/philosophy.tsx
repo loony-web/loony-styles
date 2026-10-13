@@ -123,11 +123,11 @@ export function Philosophy() {
                 </span>
                 <span style={{ color: "#79c0ff" }}>{"        solid"}</span>
                 <span style={{ color: "#e6edf3" }}>{": "}</span>
-                <span style={{ color: "#a5d6ff" }}>{"'bg-(--accent) text-white'"}</span>
+                <span style={{ color: "#a5d6ff" }}>'bg-(--accent) text-white'</span>
                 <span style={{ color: "#e6edf3" }}>{",\n"}</span>
                 <span style={{ color: "#79c0ff" }}>{"        outline"}</span>
                 <span style={{ color: "#e6edf3" }}>{": "}</span>
-                <span style={{ color: "#a5d6ff" }}>{"'border border-(--border)'"}</span>
+                <span style={{ color: "#a5d6ff" }}>'border border-(--border)'</span>
                 <span style={{ color: "#e6edf3" }}>{",\n"}</span>
                 <span style={{ color: "#8b949e", fontStyle: "italic" }}>
                   {"        // ✏️  add your own variants\n"}

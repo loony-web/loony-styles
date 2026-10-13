@@ -6,7 +6,7 @@ import {
   PropsTable,
   Section,
 } from "@/components/component-doc";
-import { FormField, Input, Textarea } from "@loony/ui";
+import { FormField, Input } from "@loony/ui";
 
 export default function FormFieldPage() {
   return (

@@ -206,10 +206,10 @@ export function Features() {
               className="group relative p-6 transition-colors"
               style={{ background: "#09090b" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = "#111113";
+                e.currentTarget.style.background = "#111113";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = "#09090b";
+                e.currentTarget.style.background = "#09090b";
               }}
             >
               {i === 0 && (

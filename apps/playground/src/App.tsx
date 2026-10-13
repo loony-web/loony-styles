@@ -577,7 +577,7 @@ export function App() {
                     <Tag variant="solid">Solid</Tag>
                     <Tag variant="outline">Outline</Tag>
                     <Tag variant="neutral">Neutral</Tag>
-                    <Tag onDismiss={() => {}}>Dismissible</Tag>
+                    <Tag onDismiss={() => undefined}>Dismissible</Tag>
                   </Stack>
                 </div>
 

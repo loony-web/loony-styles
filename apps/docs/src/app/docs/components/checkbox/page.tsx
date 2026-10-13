@@ -30,7 +30,7 @@ export default function CheckboxPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Checkbox } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={"<Checkbox defaultChecked />"}>
+        <ComponentPreview code="<Checkbox defaultChecked />">
           <Checkbox defaultChecked />
         </ComponentPreview>
       </Section>

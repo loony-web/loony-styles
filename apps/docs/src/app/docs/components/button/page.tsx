@@ -31,7 +31,7 @@ export default function ButtonPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Button } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={"<Button>Click me</Button>"}>
+        <ComponentPreview code="<Button>Click me</Button>">
           <Button>Click me</Button>
         </ComponentPreview>
       </Section>

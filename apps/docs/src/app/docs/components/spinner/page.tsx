@@ -26,7 +26,7 @@ export default function SpinnerPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Spinner } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={"<Spinner />"}>
+        <ComponentPreview code="<Spinner />">
           <Spinner />
         </ComponentPreview>
       </Section>

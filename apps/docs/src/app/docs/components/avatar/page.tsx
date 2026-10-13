@@ -6,7 +6,7 @@ import {
   PropsTable,
   Section,
 } from "@/components/component-doc";
-import { Avatar, AvatarFallback, AvatarImage } from "@loony/ui";
+import { Avatar, AvatarFallback } from "@loony/ui";
 
 export default function AvatarPage() {
   return (

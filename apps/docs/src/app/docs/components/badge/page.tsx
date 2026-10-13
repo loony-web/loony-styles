@@ -27,7 +27,7 @@ export default function BadgePage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Badge } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={"<Badge>New</Badge>"}>
+        <ComponentPreview code="<Badge>New</Badge>">
           <Badge>New</Badge>
         </ComponentPreview>
       </Section>

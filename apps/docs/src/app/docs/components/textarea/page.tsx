@@ -6,7 +6,7 @@ import {
   PropsTable,
   Section,
 } from "@/components/component-doc";
-import { FormField, Label, Textarea } from "@loony/ui";
+import { Label, Textarea } from "@loony/ui";
 
 export default function TextareaPage() {
   return (

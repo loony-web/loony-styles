@@ -79,10 +79,10 @@ export function ComponentShowcase() {
               className="group rounded-xl p-4 transition-colors"
               style={{ background: "#111113", border: "1px solid #27272a" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "#3f3f46";
+                e.currentTarget.style.borderColor = "#3f3f46";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "#27272a";
+                e.currentTarget.style.borderColor = "#27272a";
               }}
             >
               <div className="mb-3 flex items-center gap-2">
