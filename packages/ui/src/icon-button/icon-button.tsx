@@ -1,5 +1,3 @@
-"use client";
-
 import { Slot, type WithAsChild, cn } from "@loony/utils";
 import { VisuallyHidden } from "@loony/utils";
 import { type VariantProps, cva } from "class-variance-authority";

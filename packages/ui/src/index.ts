@@ -21,45 +21,53 @@ export {
   SelectItem,
   SelectSeparator,
 } from "./select/index.js";
-export { RadioGroup, RadioItem } from "./radio/radio.js";
-export { Slider } from "./slider/slider.js";
-export type { SliderProps } from "./slider/slider.js";
-export type { RadioGroupProps, RadioItemProps } from "./radio/radio.js";
-export { FormField } from "./form-field/form-field.js";
-export type { FormFieldProps } from "./form-field/form-field.js";
+export { RadioGroup, RadioItem } from "./radio/index.js";
+export { Slider } from "./slider/index.js";
+export type { SliderProps } from "./slider/index.js";
+export type { RadioGroupProps, RadioItemProps } from "./radio/index.js";
+export { FormField } from "./form-field/index.js";
+export type { FormFieldProps } from "./form-field/index.js";
 
 // Layout
 export { Stack } from "./stack/index.js";
-export { Flex } from "./layout/flex.js";
-export type { FlexProps } from "./layout/flex.js";
-export { Grid } from "./layout/grid.js";
-export type { GridProps } from "./layout/grid.js";
-export { Container } from "./layout/container.js";
-export type { ContainerProps } from "./layout/container.js";
-export { Box } from "./layout/box.js";
-export type { BoxProps } from "./layout/box.js";
-export { AspectRatio } from "./layout/aspect-ratio.js";
-export { Spacer } from "./layout/spacer.js";
+export type { StackProps } from "./stack/index.js";
+export { Flex } from "./layout/index.js";
+export type { FlexProps } from "./layout/index.js";
+export { Grid } from "./layout/index.js";
+export type { GridProps } from "./layout/index.js";
+export { Container } from "./layout/index.js";
+export type { ContainerProps } from "./layout/index.js";
+export { Box } from "./layout/index.js";
+export type { BoxProps } from "./layout/index.js";
+export { AspectRatio } from "./layout/index.js";
+export { Spacer } from "./layout/index.js";
 
 // Display
 export { Badge } from "./badge/index.js";
 export { Avatar, AvatarImage, AvatarFallback } from "./avatar/index.js";
-export { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter } from "./card/index.js";
-export { Tag } from "./tag/tag.js";
-export type { TagProps } from "./tag/tag.js";
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardBody,
+  CardFooter,
+} from "./card/index.js";
+export { Tag } from "./tag/index.js";
+export type { TagProps } from "./tag/index.js";
 
 // Feedback
 export { Alert, AlertTitle, AlertDescription } from "./alert/index.js";
 export { Spinner } from "./spinner/index.js";
 export { Skeleton } from "./skeleton/index.js";
-export { Progress } from "./progress/progress.js";
-export type { ProgressProps } from "./progress/progress.js";
-export { EmptyState } from "./empty-state/empty-state.js";
-export type { EmptyStateProps } from "./empty-state/empty-state.js";
-export { Toast, ToastAction, ToastProvider, ToastViewport } from "./toast/toast.js";
-export type { ToastProps } from "./toast/toast.js";
-export { Toaster } from "./toast/toaster.js";
-export { useToast } from "./toast/use-toast.js";
+export { Progress } from "./progress/index.js";
+export type { ProgressProps } from "./progress/index.js";
+export { EmptyState } from "./empty-state/index.js";
+export type { EmptyStateProps } from "./empty-state/index.js";
+export { Toast, ToastAction, ToastProvider, ToastViewport } from "./toast/index.js";
+export type { ToastProps } from "./toast/index.js";
+export { Toaster } from "./toast/index.js";
+export { useToast } from "./toast/index.js";
 
 // Overlay
 export {
@@ -86,13 +94,13 @@ export {
   DrawerTitle,
   DrawerDescription,
   DrawerOverlay,
-} from "./drawer/drawer.js";
-export type { DrawerContentProps } from "./drawer/drawer.js";
+} from "./drawer/index.js";
+export type { DrawerContentProps } from "./drawer/index.js";
 export {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
-} from "./hover-card/hover-card.js";
+} from "./hover-card/index.js";
 
 // Navigation
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs/index.js";
@@ -103,8 +111,8 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
-} from "./breadcrumb/breadcrumb.js";
-export type { BreadcrumbProps, BreadcrumbItemProps } from "./breadcrumb/breadcrumb.js";
+} from "./breadcrumb/index.js";
+export type { BreadcrumbProps, BreadcrumbItemProps } from "./breadcrumb/index.js";
 export {
   Pagination,
   PaginationContent,
@@ -113,7 +121,7 @@ export {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-} from "./pagination/pagination.js";
+} from "./pagination/index.js";
 
 // Expandable
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordion/index.js";
@@ -135,10 +143,10 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
   DropdownMenuPortal,
-} from "./dropdown-menu/dropdown-menu.js";
+} from "./dropdown-menu/index.js";
 
 // Utilities
-export { ScrollArea, ScrollBar } from "./scroll-area/scroll-area.js";
+export { ScrollArea, ScrollBar } from "./scroll-area/index.js";
 
 // Table
 export {
@@ -150,7 +158,7 @@ export {
   TableHead,
   TableCell,
   TableCaption,
-} from "./table/table.js";
+} from "./table/index.js";
 
 // Command
 export {
@@ -163,4 +171,4 @@ export {
   CommandItem,
   CommandSeparator,
   CommandShortcut,
-} from "./command/command.js";
+} from "./command/index.js";

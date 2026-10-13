@@ -1,5 +1,3 @@
-"use client";
-
 import { Slot } from "@loony/utils";
 import { cn } from "@loony/utils";
 import { Spinner } from "../spinner/spinner.js";

@@ -1,5 +1,3 @@
-"use client";
-
 import { ExternalLinkIcon } from "@loony/icons";
 import { Slot, type WithAsChild, cn } from "@loony/utils";
 import { VisuallyHidden } from "@loony/utils";

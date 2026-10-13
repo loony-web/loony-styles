@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@loony/utils";
 import { type VariantProps, cva } from "class-variance-authority";
 import type { ComponentPropsWithRef } from "react";

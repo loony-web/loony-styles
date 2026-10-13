@@ -1,5 +1,3 @@
-"use client";
-
 import { XIcon } from "@loony/icons";
 import { cn } from "@loony/utils";
 import { type VariantProps, cva } from "class-variance-authority";

@@ -1,5 +1,3 @@
-"use client";
-
 import { ChevronRightIcon } from "@loony/icons";
 import { cn } from "@loony/utils";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";

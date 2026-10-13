@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@loony/utils";
 import type { ComponentPropsWithoutRef } from "react";
 
