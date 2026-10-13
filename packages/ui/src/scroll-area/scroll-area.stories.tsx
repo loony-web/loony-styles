@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Vertical: Story = {
   render: () => (
-    <ScrollArea className="h-64 w-48 rounded-md border border-[--loony-color-border] p-4">
+    <ScrollArea className="h-64 w-48 rounded-md border border-(--loony-color-border) p-4">
       <div className="space-y-2">
         {Array.from({ length: 30 }, (_, i) => (
           <div key={i} className="text-sm">
@@ -26,12 +26,12 @@ export const Vertical: Story = {
 
 export const Horizontal: Story = {
   render: () => (
-    <ScrollArea className="w-80 rounded-md border border-[--loony-color-border] p-4">
+    <ScrollArea className="w-80 rounded-md border border-(--loony-color-border) p-4">
       <div className="flex gap-4" style={{ width: "max-content" }}>
         {Array.from({ length: 20 }, (_, i) => (
           <div
             key={i}
-            className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md bg-[--loony-color-surface] text-sm"
+            className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md bg-(--loony-color-surface) text-sm"
           >
             {i + 1}
           </div>
@@ -44,11 +44,11 @@ export const Horizontal: Story = {
 
 export const Both: Story = {
   render: () => (
-    <ScrollArea className="h-64 w-80 rounded-md border border-[--loony-color-border] p-4">
+    <ScrollArea className="h-64 w-80 rounded-md border border-(--loony-color-border) p-4">
       <div style={{ width: "600px" }}>
         {Array.from({ length: 20 }, (_, i) => (
           <div key={i} className="flex gap-4 py-1 text-sm">
-            <span className="w-8 text-[--loony-color-fg-muted]">{i + 1}</span>
+            <span className="w-8 text-(--loony-color-fg-muted)">{i + 1}</span>
             <span>{"Lorem ipsum dolor sit amet consectetur ".repeat(3)}</span>
           </div>
         ))}

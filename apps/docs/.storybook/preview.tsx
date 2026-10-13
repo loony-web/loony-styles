@@ -1,5 +1,5 @@
-import type { Preview } from "@storybook/react";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
+import type { Preview } from "@storybook/react";
 import "@loony/ui/styles";
 
 const preview: Preview = {
@@ -21,7 +21,7 @@ const preview: Preview = {
       config: {
         rules: [
           {
-            // Disabled for Storybook-specific layout issues, not component issues
+            // Kept on: real browsers can compute contrast (jsdom unit tests cannot).
             id: "color-contrast",
             enabled: true,
           },

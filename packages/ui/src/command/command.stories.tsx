@@ -1,3 +1,4 @@
+import { PlusIcon, SearchIcon, SettingsIcon, UserIcon } from "@loony/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../button/button.js";
@@ -12,12 +13,6 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "./command.js";
-import {
-  SettingsIcon,
-  UserIcon,
-  SearchIcon,
-  PlusIcon,
-} from "@loony/icons";
 
 const meta = {
   title: "Advanced/Command",
@@ -30,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <Command className="rounded-lg border border-[--loony-color-border] shadow-md w-80">
+    <Command className="rounded-lg border border-(--loony-color-border) shadow-md w-80">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
@@ -68,8 +63,10 @@ function CommandDialogDemo() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <p className="text-sm text-[--loony-color-fg-muted] mb-4">
-        Press <kbd className="rounded border border-[--loony-color-border] px-1.5 py-0.5 text-xs">⌘K</kbd> or click
+      <p className="text-sm text-(--loony-color-fg-muted) mb-4">
+        Press{" "}
+        <kbd className="rounded border border-(--loony-color-border) px-1.5 py-0.5 text-xs">⌘K</kbd>{" "}
+        or click
       </p>
       <Button onClick={() => setOpen(true)}>Open Command Palette</Button>
       <CommandDialog open={open} onOpenChange={setOpen}>

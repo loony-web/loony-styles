@@ -33,7 +33,7 @@ export const Right: Story = {
           <DrawerDescription>Manage your account preferences.</DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
-          <p className="text-sm text-[--loony-color-fg-muted]">Drawer content goes here.</p>
+          <p className="text-sm text-(--loony-color-fg-muted)">Drawer content goes here.</p>
         </DrawerBody>
         <DrawerFooter>
           <DrawerClose asChild>
@@ -59,7 +59,11 @@ export const Left: Story = {
         <DrawerBody>
           <nav className="flex flex-col gap-1">
             {["Dashboard", "Users", "Settings", "Analytics"].map((item) => (
-              <button key={item} type="button" className="rounded px-3 py-2 text-left text-sm hover:bg-[--loony-color-surface-hover]">
+              <button
+                key={item}
+                type="button"
+                className="rounded px-3 py-2 text-left text-sm hover:bg-(--loony-color-surface-hover)"
+              >
                 {item}
               </button>
             ))}
@@ -85,7 +89,7 @@ export const Bottom: Story = {
           <div className="grid grid-cols-4 gap-4 py-2">
             {["Copy Link", "Twitter", "Email", "More"].map((opt) => (
               <button key={opt} type="button" className="flex flex-col items-center gap-1 text-xs">
-                <div className="h-12 w-12 rounded-full bg-[--loony-color-surface]" />
+                <div className="h-12 w-12 rounded-full bg-(--loony-color-surface)" />
                 {opt}
               </button>
             ))}

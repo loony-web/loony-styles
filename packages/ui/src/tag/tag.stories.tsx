@@ -50,7 +50,7 @@ export const AllDismissible: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
       {["React", "TypeScript", "Tailwind", "Radix UI"].map((tag) => (
-        <Tag key={tag} onDismiss={() => {}} dismissLabel={`Remove ${tag}`}>
+        <Tag key={tag} onDismiss={() => undefined} dismissLabel={`Remove ${tag}`}>
           {tag}
         </Tag>
       ))}
