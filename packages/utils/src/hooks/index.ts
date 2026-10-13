@@ -9,4 +9,5 @@ export { useId } from "./use-id.js";
 export { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect.js";
 export { useOutsideClick } from "./use-outside-click.js";
 export { usePrevious } from "./use-previous.js";
+export { useReducedMotion } from "./use-reduced-motion.js";
 export { useSize } from "./use-size.js";

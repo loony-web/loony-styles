@@ -21,5 +21,6 @@ export {
   useIsomorphicLayoutEffect,
   useOutsideClick,
   usePrevious,
+  useReducedMotion,
   useSize,
 } from "./hooks/index.js";
