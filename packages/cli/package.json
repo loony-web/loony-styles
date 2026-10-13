@@ -34,6 +34,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@loony/eslint-config": "workspace:*",
     "@loony/typescript-config": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.2",

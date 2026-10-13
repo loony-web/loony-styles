@@ -1,8 +1,9 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { readConfig } from "../utils/config.js";
-import { getComponent } from "../utils/registry.js";
 import { logger } from "../utils/logger.js";
+import { resolvePackageRoot } from "../utils/packages.js";
+import { type RegistryItem, getComponent, registry } from "../utils/registry.js";
 
 interface DiffOptions {
   cwd: string;
@@ -13,6 +14,7 @@ interface DiffOptions {
  *
  * Compares the user's installed component files against the source
  * in node_modules/@loony/ui so they know what's changed upstream.
+ * Without a component name, diffs every component found in componentsDir.
  */
 export async function diff(component: string | undefined, opts: DiffOptions) {
   const cwd = opts.cwd ?? process.cwd();
@@ -21,22 +23,30 @@ export async function diff(component: string | undefined, opts: DiffOptions) {
 
   const { execa } = await import("execa");
 
-  const components = component ? [getComponent(component)].filter(Boolean) : [];
-
-  if (!components.length && component) {
-    logger.error(`Unknown component: "${component}"`);
-    process.exit(1);
+  let components: RegistryItem[];
+  if (component) {
+    const item = getComponent(component);
+    if (!item) {
+      logger.error(`Unknown component: "${component}"`);
+      process.exit(1);
+    }
+    components = [item];
+  } else {
+    components = installedComponents(componentsDir);
+    if (components.length === 0) {
+      logger.warn(`No Loony components found in ${config.componentsDir}.`);
+      return;
+    }
   }
 
-  const uiPackagePath = join(cwd, "node_modules", "@loony", "ui");
+  const uiPackagePath = resolvePackageRoot("@loony/ui", cwd);
 
-  if (!existsSync(uiPackagePath)) {
+  if (!uiPackagePath) {
     logger.error("@loony/ui is not installed. Run `pnpm add @loony/ui` first.");
     process.exit(1);
   }
 
   for (const item of components) {
-    if (!item) continue;
     logger.heading(`Diff: ${item.displayName}`);
 
     for (const file of item.files) {
@@ -54,9 +64,13 @@ export async function diff(component: string | undefined, opts: DiffOptions) {
       }
 
       try {
-        const result = await execa("diff", ["--unified=3", "--color=always", localPath, upstreamPath], {
-          reject: false,
-        });
+        const result = await execa(
+          "diff",
+          ["--unified=3", "--color=always", localPath, upstreamPath],
+          {
+            reject: false,
+          },
+        );
 
         if (result.stdout) {
           console.log(result.stdout);
@@ -68,4 +82,11 @@ export async function diff(component: string | undefined, opts: DiffOptions) {
       }
     }
   }
+}
+
+/** Registry components with at least one file present in the components directory. */
+export function installedComponents(componentsDir: string): RegistryItem[] {
+  return registry.filter((item) =>
+    item.files.some((file) => existsSync(join(componentsDir, file))),
+  );
 }

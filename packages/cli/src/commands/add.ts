@@ -1,11 +1,17 @@
-import * as p from "@clack/prompts";
-import kleur from "kleur";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { dirname, join } from "node:path";
+import * as p from "@clack/prompts";
 import { execa } from "execa";
+import kleur from "kleur";
 import { readConfig } from "../utils/config.js";
-import { registry, resolveComponentTree, getComponent } from "../utils/registry.js";
 import { logger } from "../utils/logger.js";
+import {
+  declaredDependencies,
+  detectPackageManager,
+  installArgs,
+  resolvePackageRoot,
+} from "../utils/packages.js";
+import { getComponent, registry, resolveComponentTree } from "../utils/registry.js";
 
 interface AddOptions {
   cwd: string;
@@ -53,7 +59,7 @@ export async function add(components: string[], opts: AddOptions) {
       process.exit(0);
     }
 
-    selectedComponents = selected as string[];
+    selectedComponents = selected;
   }
 
   // Validate component names
@@ -92,8 +98,15 @@ export async function add(components: string[], opts: AddOptions) {
     }
   }
 
-  // Find source files in @loony/ui
-  const uiPackagePath = findPackagePath("@loony/ui", cwd);
+  // Component sources ship inside the @loony/ui package.
+  const uiPackagePath = resolvePackageRoot("@loony/ui", cwd);
+  if (!uiPackagePath) {
+    const pm = detectPackageManager(cwd);
+    p.cancel(
+      `@loony/ui is not installed. Run \`${pm} ${installArgs(pm, ["-D", "@loony/ui"]).join(" ")}\` first.`,
+    );
+    process.exit(1);
+  }
 
   const spinner = p.spinner();
   spinner.start(`Installing ${toInstall.length} component(s)...`);
@@ -130,22 +143,23 @@ export async function add(components: string[], opts: AddOptions) {
 
   spinner.stop(`${toInstall.length} component(s) installed to ${targetDir}`);
 
-  // Install npm dependencies
-  if (npmDeps.size > 0) {
-    const depsToInstall = Array.from(npmDeps).filter((dep) => !dep.startsWith("@loony/"));
+  // Install npm dependencies the project doesn't already declare. @loony/*
+  // packages are included: copied components import @loony/utils and friends.
+  const declared = declaredDependencies(cwd);
+  const depsToInstall = [...npmDeps].filter((dep) => !declared.has(dep));
 
-    if (depsToInstall.length > 0) {
-      const installSpinner = p.spinner();
-      installSpinner.start(`Installing npm packages: ${depsToInstall.join(", ")}`);
+  if (depsToInstall.length > 0) {
+    const pm = detectPackageManager(cwd);
+    const args = installArgs(pm, depsToInstall);
+    const installSpinner = p.spinner();
+    installSpinner.start(`Installing npm packages: ${depsToInstall.join(", ")}`);
 
-      try {
-        const pm = detectPackageManager(cwd);
-        await execa(pm, [pm === "npm" ? "install" : "add", ...depsToInstall], { cwd });
-        installSpinner.stop("Dependencies installed.");
-      } catch {
-        installSpinner.stop("Failed to install dependencies. Install manually:");
-        logger.warn(`pnpm add ${depsToInstall.join(" ")}`);
-      }
+    try {
+      await execa(pm, args, { cwd });
+      installSpinner.stop("Dependencies installed.");
+    } catch {
+      installSpinner.stop("Failed to install dependencies. Install manually:");
+      logger.warn(`${pm} ${args.join(" ")}`);
     }
   }
 
@@ -153,8 +167,8 @@ export async function add(components: string[], opts: AddOptions) {
     toInstall
       .map((name) => {
         const item = getComponent(name);
-        if (!item?.files[0]) return "";
-        const importPath = `${config.importAlias}/components/ui/${item.files[0]?.replace(/\.tsx?$/, "")}`;
+        if (!item) return "";
+        const importPath = usageImportPath(config.importAlias, config.componentsDir, item.files);
         return kleur.cyan(`import { ${item.displayName} } from "${importPath}";`);
       })
       .filter(Boolean)
@@ -165,19 +179,16 @@ export async function add(components: string[], opts: AddOptions) {
   p.outro(kleur.green("Done."));
 }
 
-function findPackagePath(packageName: string, cwd: string): string {
-  try {
-    const resolvedPath = require.resolve(`${packageName}/package.json`, { paths: [cwd] });
-    return dirname(resolvedPath);
-  } catch {
-    // Fallback: assume monorepo structure
-    return join(cwd, "../../packages/ui");
-  }
-}
-
-function detectPackageManager(cwd: string): string {
-  if (existsSync(join(cwd, "pnpm-lock.yaml"))) return "pnpm";
-  if (existsSync(join(cwd, "yarn.lock"))) return "yarn";
-  if (existsSync(join(cwd, "bun.lockb"))) return "bun";
-  return "npm";
+/**
+ * Import specifier for an installed component, e.g. "@/components/ui/button".
+ * The alias conventionally maps to src/, so a leading "src/" is dropped. Points
+ * at the folder when its index.ts was installed, otherwise at the first file.
+ */
+export function usageImportPath(alias: string, componentsDir: string, files: string[]): string {
+  const base = `${alias}/${componentsDir.replace(/^\.?\/?src\//, "")}`;
+  const folder = files[0]?.split("/")[0] ?? "";
+  const target = files.includes(`${folder}/index.ts`)
+    ? folder
+    : (files[0] ?? "").replace(/\.tsx?$/, "");
+  return `${base}/${target}`;
 }
