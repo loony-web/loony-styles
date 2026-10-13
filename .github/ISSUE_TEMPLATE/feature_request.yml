@@ -1,0 +1,32 @@
+name: Feature Request
+description: Suggest an improvement to an existing component, token, utility, or tool
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: Which package or component does this affect?
+      placeholder: e.g. @loony/ui Select, @loony/cli add, tokens
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do, and what gets in the way today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: The API or behaviour you'd like. Code sketches welcome.
+      render: tsx
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

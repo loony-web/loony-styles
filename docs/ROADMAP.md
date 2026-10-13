@@ -2,7 +2,7 @@
 
 **100+ milestones across 25 phases.**
 
-Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
+Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future · ➖ Won't do
 
 ---
 
@@ -74,8 +74,8 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 47 | `Presence` (deferred unmount for animations) | ✅ | XL |
 | 48 | `VisuallyHidden` | ✅ | S |
 | 49 | Utility tests (>95% coverage) | 🚧 | M |
-| 50 | `useReducedMotion()` hook | 📋 | S |
-| 51 | `useMergeRefs()` alias | 📋 | XS |
+| 50 | `useReducedMotion()` hook | ✅ | S |
+| 51 | `useMergeRefs()` alias (won't do: same as `useComposedRefs`) | ➖ | XS |
 
 ## Phase 5: Icons
 
@@ -118,7 +118,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 76 | `Radio` / `RadioGroup` | ✅ | M |
 | 77 | `Slider` | ✅ | L |
 | 78 | `OTP` / `PinInput` | 📋 | L |
-| 79 | `Combobox` / `Autocomplete` | 📋 | XL |
+| 79 | `Combobox` / `Autocomplete` (Combobox done; Autocomplete pending) | 🚧 | XL |
 | 80 | `FileUpload` | 📋 | L |
 | 81 | `DatePicker` | 🔮 | XL |
 | 82 | `ColorPicker` | 🔮 | XL |
@@ -240,11 +240,11 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | 153 | `composeRefs()` unit tests | ✅ | S |
 | 154 | `Slot` unit tests | ✅ | M |
 | 155 | `Button` unit + a11y tests | ✅ | M |
-| 156 | All form component tests | 🚧 | XL |
-| 157 | All overlay component tests | 🚧 | L |
+| 156 | All form component tests | ✅ | XL |
+| 157 | All overlay component tests | ✅ | L |
 | 158 | Visual regression tests (Chromatic) | 🔮 | L |
 | 159 | E2E tests with Playwright | 📋 | XL |
-| 160 | Coverage thresholds in CI | 📋 | S |
+| 160 | Coverage thresholds in CI | ✅ | S |
 
 ## Phase 17: Performance
 
@@ -275,7 +275,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
-| 176 | Motion library integration (dependency only — no component uses it yet) | 📋 | S |
+| 176 | Motion library integration (superseded by ADR-009: CSS-first) | ➖ | S |
 | 177 | Fade animation preset | 📋 | S |
 | 178 | Scale animation preset | 📋 | S |
 | 179 | Slide animation presets (4 directions) | 📋 | S |
@@ -334,9 +334,9 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
-| 210 | CONTRIBUTING.md | 📋 | S |
+| 210 | CONTRIBUTING.md | ✅ | S |
 | 211 | CODE_OF_CONDUCT.md | 📋 | XS |
-| 212 | Security policy | 📋 | S |
+| 212 | Security policy | ✅ | S |
 | 213 | Discord / discussion community | 🔮 | M |
 | 214 | Office hours / issue triage cadence | 🔮 | M |
 
@@ -345,7 +345,7 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 | # | Milestone | Status | Complexity |
 |---|-----------|--------|------------|
 | 215 | Maintainer handbook | 📋 | M |
-| 216 | Component acceptance criteria | 📋 | S |
+| 216 | Component acceptance criteria (Definition of Done in CONTRIBUTING.md) | ✅ | S |
 | 217 | Deprecation policy | 📋 | S |
 | 218 | LTS (Long Term Support) policy | 🔮 | M |
 | 219 | Public roadmap publishing | 📋 | S |
@@ -356,31 +356,31 @@ Legend: ✅ Done · 🚧 In Progress · 📋 Planned · 🔮 Future
 
 _Statuses audited against the code on 2026-10-13; see [TODO.md](TODO.md) for details._
 
-| Phase | Total | Done | In Progress | Planned | Future |
-|-------|-------|------|-------------|---------|--------|
-| Foundation (Monorepo) | 6 | 6 | 0 | 0 | 0 |
-| Tooling | 9 | 9 | 0 | 0 | 0 |
-| Design Tokens | 15 | 13 | 0 | 1 | 1 |
-| Utilities | 21 | 18 | 1 | 2 | 0 |
-| Icons | 8 | 5 | 0 | 3 | 0 |
-| Core Components — Foundation | 10 | 10 | 0 | 0 | 0 |
-| Form Components | 14 | 9 | 0 | 3 | 2 |
-| Layout | 7 | 7 | 0 | 0 | 0 |
-| Display Components | 13 | 6 | 1 | 5 | 1 |
-| Feedback Components | 5 | 3 | 1 | 1 | 0 |
-| Overlay Components | 7 | 6 | 0 | 1 | 0 |
-| Navigation | 8 | 3 | 1 | 4 | 0 |
-| Advanced Components | 6 | 1 | 0 | 1 | 4 |
-| CLI | 9 | 6 | 0 | 1 | 2 |
-| Documentation | 11 | 6 | 0 | 5 | 0 |
-| Testing | 11 | 6 | 2 | 2 | 1 |
-| Performance | 7 | 1 | 0 | 6 | 0 |
-| Accessibility Hardening | 8 | 0 | 1 | 7 | 0 |
-| Animation | 9 | 2 | 0 | 7 | 0 |
-| Internationalization | 5 | 0 | 0 | 3 | 2 |
-| Templates | 6 | 0 | 0 | 6 | 0 |
-| Release | 6 | 1 | 1 | 4 | 0 |
-| Ecosystem | 8 | 0 | 0 | 1 | 7 |
-| Community | 5 | 0 | 0 | 3 | 2 |
-| Governance | 5 | 0 | 0 | 4 | 1 |
-| **Total** | **219** | **118** | **8** | **70** | **23** |
+| Phase | Total | Done | In Progress | Planned | Future | Won't do |
+|-------|-------|------|-------------|---------|--------|----------|
+| Foundation (Monorepo) | 6 | 6 | 0 | 0 | 0 | 0 |
+| Tooling | 9 | 9 | 0 | 0 | 0 | 0 |
+| Design Tokens | 15 | 13 | 0 | 1 | 1 | 0 |
+| Utilities | 21 | 19 | 1 | 0 | 0 | 1 |
+| Icons | 8 | 5 | 0 | 3 | 0 | 0 |
+| Core Components — Foundation | 10 | 10 | 0 | 0 | 0 | 0 |
+| Form Components | 14 | 9 | 1 | 2 | 2 | 0 |
+| Layout | 7 | 7 | 0 | 0 | 0 | 0 |
+| Display Components | 13 | 6 | 1 | 5 | 1 | 0 |
+| Feedback Components | 5 | 3 | 1 | 1 | 0 | 0 |
+| Overlay Components | 7 | 6 | 0 | 1 | 0 | 0 |
+| Navigation | 8 | 3 | 1 | 4 | 0 | 0 |
+| Advanced Components | 6 | 1 | 0 | 1 | 4 | 0 |
+| CLI | 9 | 6 | 0 | 1 | 2 | 0 |
+| Documentation | 11 | 6 | 0 | 5 | 0 | 0 |
+| Testing | 11 | 9 | 0 | 1 | 1 | 0 |
+| Performance | 7 | 1 | 0 | 6 | 0 | 0 |
+| Accessibility Hardening | 8 | 0 | 1 | 7 | 0 | 0 |
+| Animation | 9 | 2 | 0 | 6 | 0 | 1 |
+| Internationalization | 5 | 0 | 0 | 3 | 2 | 0 |
+| Templates | 6 | 0 | 0 | 6 | 0 | 0 |
+| Release | 6 | 1 | 1 | 4 | 0 | 0 |
+| Ecosystem | 8 | 0 | 0 | 1 | 7 | 0 |
+| Community | 5 | 2 | 0 | 1 | 2 | 0 |
+| Governance | 5 | 1 | 0 | 3 | 1 | 0 |
+| **Total** | **219** | **125** | **7** | **62** | **23** | **2** |

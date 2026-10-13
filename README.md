@@ -34,7 +34,7 @@ Loony takes the "copy the source into your project" approach of shadcn/ui, but i
 
 ## Requirements
 
-- Node.js **>= 20**
+- Node.js **>= 22**
 - pnpm **>= 9** (the repo pins `pnpm@9.15.0` via `packageManager`, so `corepack enable` is enough)
 
 ## Getting started
@@ -63,6 +63,7 @@ pnpm --filter @loony/docs storybook   # Storybook      → http://localhost:6006
 | `pnpm dev` | Every `dev` task, in parallel |
 | `pnpm typecheck` | `tsc --noEmit` everywhere |
 | `pnpm test` / `pnpm test:watch` | Vitest + React Testing Library (jsdom) |
+| `pnpm test:coverage` | Tests with coverage floors enforced |
 | `pnpm lint` | ESLint in each package |
 | `pnpm check` / `pnpm format` | Biome lint + format (write mode) |
 | `pnpm format:check` | Biome format check |
@@ -153,8 +154,9 @@ The key decisions are written up as ADRs in [`docs/adrs`](docs/adrs):
 | [004](docs/adrs/004-formatter-biome-vs-prettier.md) | Biome for formatting, ESLint kept for type-aware and plugin rules |
 | [005](docs/adrs/005-token-layering.md) | Three token layers (primitive → semantic → component), colors in `oklch()` |
 | [006](docs/adrs/006-accessibility-radix-vs-custom.md) | Radix primitives for complex widgets, native HTML for simple ones |
-| [007](docs/adrs/007-animation-motion.md) | Motion (motion.dev) for physics and exit animations, CSS for the rest |
+| [007](docs/adrs/007-animation-motion.md) | ~~Motion for animation~~, superseded by 009 |
 | [008](docs/adrs/008-rsc-compatibility.md) | `"use client"` at the leaf, never in the barrel |
+| [009](docs/adrs/009-css-first-animation.md) | CSS-first animation (`tw-animate-css` + motion tokens); Motion only where physics is required |
 
 Conventions:
 
@@ -204,7 +206,9 @@ Versioning uses [Changesets](https://github.com/changesets/changesets). `@loony/
 - [Open work & known issues](docs/TODO.md)
 - [ADRs](docs/adrs)
 - [Original project brief](docs/prompt.md)
+- [Contributing](CONTRIBUTING.md): setup, conventions, and the component Definition of Done
+- [Security policy](SECURITY.md)
 
 ## License
 
-MIT (declared in `package.json`; a `LICENSE` file has not been added yet).
+[MIT](LICENSE)

@@ -1,0 +1,50 @@
+name: Component Proposal
+description: Propose a new component for @loony/ui
+labels: ["component-proposal", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New components must meet the Definition of Done in CONTRIBUTING.md
+        (stories, tests incl. keyboard + axe, docs page, registry entry).
+
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+      placeholder: e.g. Combobox
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use cases
+      description: What problems does it solve? Why can't existing components compose to solve them?
+    validations:
+      required: true
+
+  - type: input
+    id: aria-pattern
+    attributes:
+      label: WAI-ARIA pattern
+      description: The APG pattern it follows, if any.
+      placeholder: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API
+      description: Compound parts, props, and an example. Use asChild (not `as`) for polymorphism.
+      render: tsx
+
+  - type: dropdown
+    id: primitive
+    attributes:
+      label: Built on
+      options:
+        - Radix primitive
+        - Other headless library
+        - Custom implementation
+    validations:
+      required: true
