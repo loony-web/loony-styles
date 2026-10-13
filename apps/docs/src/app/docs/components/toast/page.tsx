@@ -14,7 +14,7 @@ import { useState } from "react";
 function ToastDemo({
   variant,
 }: { variant?: "default" | "success" | "danger" | "warning" | "info" }) {
-  const [toasts, setToasts] = useState<Array<{ id: number; open: boolean }>>([]);
+  const [toasts, setToasts] = useState<{ id: number; open: boolean }[]>([]);
 
   const addToast = () => {
     const id = Date.now();
@@ -75,6 +75,7 @@ export default function ToastPage() {
         { id: "installation", label: "Installation" },
         { id: "usage", label: "Usage" },
         { id: "variants", label: "Variants" },
+        { id: "global", label: "Global toasts" },
         { id: "api", label: "API Reference" },
       ]}
     >
@@ -131,6 +132,34 @@ export function Example() {
             <ToastDemo variant="info" />
           </div>
         </ComponentPreview>
+      </Section>
+
+      <Section id="global" title="Global toasts">
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
+          Mount one <code>&lt;Toaster /&gt;</code> near the root of your app, then raise toasts from
+          anywhere with <code>useToast()</code>, or with the standalone <code>toast()</code>{" "}
+          function outside components (for example, in a data-fetching callback). They share one
+          list.
+        </p>
+        <CodeBlock>{`// app/layout.tsx
+import { Toaster } from "@loony/ui";
+
+<body>
+  {children}
+  <Toaster />
+</body>
+
+// anywhere in a client component
+import { useToast } from "@loony/ui";
+
+const { toast } = useToast();
+toast({ title: "Saved", description: "All changes saved.", variant: "success" });
+
+// outside React
+import { toast, dismissToast } from "@loony/ui";
+
+const id = toast({ title: "Uploading…" });
+dismissToast(id);`}</CodeBlock>
       </Section>
 
       <Section id="api" title="API Reference">

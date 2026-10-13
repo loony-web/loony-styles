@@ -1,7 +1,7 @@
 "use client";
 
-import { Toast, ToastProvider, ToastViewport } from "./toast";
-import { useToast } from "./use-toast";
+import { Toast, ToastProvider, ToastViewport } from "./toast.js";
+import { useToast } from "./use-toast.js";
 
 export function Toaster() {
   const { toasts, dismiss, remove } = useToast();
