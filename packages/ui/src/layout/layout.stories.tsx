@@ -56,13 +56,10 @@ export const ContainerSizes: Story = {
   ),
 };
 
-export const BoxAsSection: Story = {
+export const BoxAsChild: Story = {
   render: () => (
-    <Box
-      as="section"
-      className="rounded-(--loony-radius-md) border border-(--loony-color-border) p-4"
-    >
-      A Box rendered as a &lt;section&gt;.
+    <Box asChild className="rounded-(--loony-radius-md) border border-(--loony-color-border) p-4">
+      <section>A Box rendered as a &lt;section&gt; via asChild.</section>
     </Box>
   ),
 };

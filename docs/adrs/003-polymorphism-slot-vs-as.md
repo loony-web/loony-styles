@@ -38,3 +38,5 @@ Use the **`asChild` + Slot** pattern. No `as` prop.
 
 Every component that supports polymorphism exposes `asChild?: boolean`.
 The `Slot` utility in `@loony/utils` is the single implementation shared by all.
+
+**Exception:** `Heading` accepts `as?: "h1" | … | "h6"`. This changes the semantic heading level independently of the visual `level`. It isn't element polymorphism (the element is always a heading), so it keeps type safety and is allowed.

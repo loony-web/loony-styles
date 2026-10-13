@@ -1,6 +1,6 @@
-import { cn } from "@loony/utils";
+import { Slot, type WithAsChild, cn } from "@loony/utils";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithRef, ElementType } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 // ============================================================
 // Text
@@ -51,23 +51,23 @@ const textVariants = cva("", {
 
 interface TextProps
   extends Omit<ComponentPropsWithRef<"p">, "color">,
-    VariantProps<typeof textVariants> {
-  as?: ElementType;
-}
+    VariantProps<typeof textVariants>,
+    WithAsChild {}
 
 /**
  * Text — Generic text rendering with semantic variants.
  *
- * Renders as <p> by default. Use `as` to render as span, label, div, etc.
+ * Renders as <p> by default. Use `asChild` (ADR-003) to apply the text styles
+ * to a span, label, div, etc.
  *
  * @example
  * <Text>Body text</Text>
  * <Text size="sm" color="muted">Helper text</Text>
- * <Text as="span" weight="semibold">Inline text</Text>
+ * <Text asChild weight="semibold"><span>Inline text</span></Text>
  */
 export function Text({
   className,
-  as: Tag = "p",
+  asChild = false,
   size,
   weight,
   color,
@@ -75,6 +75,7 @@ export function Text({
   truncate,
   ...props
 }: TextProps) {
+  const Tag = asChild ? Slot : "p";
   return (
     <Tag
       className={cn(textVariants({ size, weight, color, align, truncate }), className)}
