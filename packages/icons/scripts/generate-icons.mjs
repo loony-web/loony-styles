@@ -11,9 +11,9 @@
  * Updates barrel:         packages/icons/src/index.ts
  */
 
-import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
-import { join, basename, extname } from "node:path";
 import { existsSync } from "node:fs";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { basename, extname, join } from "node:path";
 
 const RAW_DIR = new URL("../raw-svgs", import.meta.url).pathname;
 const OUT_DIR = new URL("../src/icons", import.meta.url).pathname;
@@ -38,10 +38,7 @@ function extractSvgPaths(svgContent) {
   const innerMatch = svgContent.match(/<svg[^>]*>([\s\S]*?)<\/svg>/);
   if (!innerMatch) throw new Error("No SVG content found");
 
-  return innerMatch[1]
-    .trim()
-    .replace(/\s+/g, " ")
-    .replace(/ \/>/g, " />");
+  return innerMatch[1].trim().replace(/\s+/g, " ").replace(/ \/>/g, " />");
 }
 
 async function generateIcon(svgFile) {
@@ -86,9 +83,7 @@ async function main() {
   const generated = await Promise.all(files.map(generateIcon));
 
   // Read existing index to preserve manually-added exports
-  const existingIndex = existsSync(INDEX_FILE)
-    ? await readFile(INDEX_FILE, "utf-8")
-    : "";
+  const existingIndex = existsSync(INDEX_FILE) ? await readFile(INDEX_FILE, "utf-8") : "";
 
   const newExports = generated
     .map(({ name, componentName }) => `export { ${componentName} } from "./icons/${name}.js";`)
@@ -96,7 +91,7 @@ async function main() {
     .join("\n");
 
   if (newExports) {
-    await writeFile(INDEX_FILE, existingIndex.trimEnd() + "\n" + newExports + "\n");
+    await writeFile(INDEX_FILE, `${existingIndex.trimEnd()}\n${newExports}\n`);
     console.log("Updated index.ts with new exports.");
   }
 

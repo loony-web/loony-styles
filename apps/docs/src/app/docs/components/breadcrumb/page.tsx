@@ -1,5 +1,19 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@loony/ui";
 
 export default function BreadcrumbPage_() {
   return (
@@ -99,8 +113,18 @@ export default function BreadcrumbPage_() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "separator", type: "ReactNode", default: "<ChevronRightIcon />", description: "Custom separator between items." },
-            { name: "isCurrentPage", type: "boolean", default: "false", description: "Marks the item as the current page (adds aria-current)." },
+            {
+              name: "separator",
+              type: "ReactNode",
+              default: "<ChevronRightIcon />",
+              description: "Custom separator between items.",
+            },
+            {
+              name: "isCurrentPage",
+              type: "boolean",
+              default: "false",
+              description: "Marks the item as the current page (adds aria-current).",
+            },
           ]}
         />
       </Section>

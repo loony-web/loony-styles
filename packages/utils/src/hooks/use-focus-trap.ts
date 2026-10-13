@@ -17,7 +17,7 @@ const FOCUSABLE_SELECTOR = [
 
 function getFocusable(container: HTMLElement): HTMLElement[] {
   return Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
-    (el) => !el.closest("[hidden]") && !el.closest("[aria-hidden='true']"),
+    (el) => !(el.closest("[hidden]") || el.closest("[aria-hidden='true']")),
   );
 }
 
@@ -89,11 +89,9 @@ export function useFocusTrap(
           event.preventDefault();
           last?.focus({ preventScroll: true });
         }
-      } else {
-        if (document.activeElement === last || !container.contains(document.activeElement)) {
-          event.preventDefault();
-          first?.focus({ preventScroll: true });
-        }
+      } else if (document.activeElement === last || !container.contains(document.activeElement)) {
+        event.preventDefault();
+        first?.focus({ preventScroll: true });
       }
     };
 

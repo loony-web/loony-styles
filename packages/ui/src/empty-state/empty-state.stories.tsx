@@ -1,6 +1,6 @@
+import { SearchIcon } from "@loony/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../button/button.js";
-import { SearchIcon } from "@loony/icons";
 import { EmptyState } from "./empty-state.js";
 
 const meta = {
@@ -32,7 +32,11 @@ export const WithIcon: Story = {
     icon: <SearchIcon className="h-6 w-6" />,
     title: "No search results",
     description: 'No results for "component library". Try a different search term.',
-    action: <Button size="sm" variant="outline">Browse All</Button>,
+    action: (
+      <Button size="sm" variant="outline">
+        Browse All
+      </Button>
+    ),
   },
 };
 

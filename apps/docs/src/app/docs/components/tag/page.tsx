@@ -1,6 +1,13 @@
 "use client";
 
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Tag } from "@loony/ui";
 
 export default function TagPage() {
@@ -22,7 +29,7 @@ export default function TagPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Tag } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={`<Tag>React</Tag>`}>
+        <ComponentPreview code={"<Tag>React</Tag>"}>
           <Tag>React</Tag>
         </ComponentPreview>
       </Section>
@@ -51,8 +58,12 @@ export default function TagPage() {
         >
           <div className="flex flex-wrap gap-2">
             <Tag onDismiss={() => {}}>TypeScript</Tag>
-            <Tag variant="outline" onDismiss={() => {}}>React</Tag>
-            <Tag variant="neutral" onDismiss={() => {}}>Next.js</Tag>
+            <Tag variant="outline" onDismiss={() => {}}>
+              React
+            </Tag>
+            <Tag variant="neutral" onDismiss={() => {}}>
+              Next.js
+            </Tag>
           </div>
         </ComponentPreview>
       </Section>
@@ -60,11 +71,36 @@ export default function TagPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "variant", type: '"solid" | "subtle" | "outline" | "neutral"', default: '"subtle"', description: "Visual style variant." },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Size of the tag." },
-            { name: "onDismiss", type: "MouseEventHandler<HTMLButtonElement>", default: "—", description: "If provided, renders a dismiss button." },
-            { name: "dismissLabel", type: "string", default: '"Remove"', description: "Accessible label for the dismiss button." },
-            { name: "icon", type: "ReactNode", default: "—", description: "Icon to display before the label." },
+            {
+              name: "variant",
+              type: '"solid" | "subtle" | "outline" | "neutral"',
+              default: '"subtle"',
+              description: "Visual style variant.",
+            },
+            {
+              name: "size",
+              type: '"sm" | "md" | "lg"',
+              default: '"md"',
+              description: "Size of the tag.",
+            },
+            {
+              name: "onDismiss",
+              type: "MouseEventHandler<HTMLButtonElement>",
+              default: "—",
+              description: "If provided, renders a dismiss button.",
+            },
+            {
+              name: "dismissLabel",
+              type: "string",
+              default: '"Remove"',
+              description: "Accessible label for the dismiss button.",
+            },
+            {
+              name: "icon",
+              type: "ReactNode",
+              default: "—",
+              description: "Icon to display before the label.",
+            },
           ]}
         />
       </Section>

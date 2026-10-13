@@ -32,9 +32,7 @@ export function useToast() {
   }, []);
 
   const dismiss = useCallback((id: string) => {
-    setToasts((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, open: false } : t)),
-    );
+    setToasts((prev) => prev.map((t) => (t.id === id ? { ...t, open: false } : t)));
   }, []);
 
   const remove = useCallback((id: string) => {

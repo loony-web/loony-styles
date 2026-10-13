@@ -1,6 +1,6 @@
-import { z } from "zod";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { z } from "zod";
 
 /**
  * Loony project configuration schema.
@@ -58,5 +58,5 @@ export function readConfig(cwd: string): LoonyCLIConfig {
 
 export function writeConfig(cwd: string, config: LoonyCLIConfig): void {
   const configPath = resolveConfigPath(cwd);
-  writeFileSync(configPath, JSON.stringify(config, null, 2) + "\n", "utf-8");
+  writeFileSync(configPath, `${JSON.stringify(config, null, 2)}\n`, "utf-8");
 }

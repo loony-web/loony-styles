@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Progress } from "@loony/ui";
 
 export default function ProgressPage() {
@@ -64,10 +71,30 @@ export default function ProgressPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "value", type: "number", default: "0", description: "Current progress value (0–100)." },
-            { name: "size", type: '"xs" | "sm" | "md" | "lg"', default: '"md"', description: "Height of the progress bar." },
-            { name: "colorScheme", type: '"accent" | "success" | "warning" | "danger"', default: '"accent"', description: "Color of the filled indicator." },
-            { name: "label", type: "string", default: "—", description: "Accessible label (aria-label)." },
+            {
+              name: "value",
+              type: "number",
+              default: "0",
+              description: "Current progress value (0–100).",
+            },
+            {
+              name: "size",
+              type: '"xs" | "sm" | "md" | "lg"',
+              default: '"md"',
+              description: "Height of the progress bar.",
+            },
+            {
+              name: "colorScheme",
+              type: '"accent" | "success" | "warning" | "danger"',
+              default: '"accent"',
+              description: "Color of the filled indicator.",
+            },
+            {
+              name: "label",
+              type: "string",
+              default: "—",
+              description: "Accessible label (aria-label).",
+            },
           ]}
         />
       </Section>

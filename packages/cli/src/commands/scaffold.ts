@@ -1,7 +1,7 @@
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import * as p from "@clack/prompts";
 import kleur from "kleur";
-import { mkdirSync, writeFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
 import { readConfig } from "../utils/config.js";
 import { logger } from "../utils/logger.js";
 
@@ -24,7 +24,10 @@ function toKebabCase(str: string): string {
     .toLowerCase();
 }
 
-function generateComponentTemplate(name: string, ts: boolean): {
+function generateComponentTemplate(
+  name: string,
+  ts: boolean,
+): {
   component: string;
   styles: string;
   types: string;
@@ -173,7 +176,7 @@ export async function scaffold(name: string, opts: ScaffoldOptions) {
   const templates = generateComponentTemplate(name, config.typescript);
   const ext = config.typescript ? "tsx" : "jsx";
 
-  const files: Array<[string, string]> = [
+  const files: [string, string][] = [
     [`${kebabName}.${ext}`, templates.component],
     [`${kebabName}.styles.ts`, templates.styles],
     [`${kebabName}.types.ts`, templates.types],
@@ -189,7 +192,7 @@ export async function scaffold(name: string, opts: ScaffoldOptions) {
 
   p.note(
     [
-      `Import your component:`,
+      "Import your component:",
       "",
       kleur.cyan(
         `import { ${pascalName} } from "${config.importAlias}/components/ui/${kebabName}";`,

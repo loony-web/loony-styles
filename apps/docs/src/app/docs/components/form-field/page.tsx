@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { FormField, Input, Textarea } from "@loony/ui";
 
 export default function FormFieldPage() {
@@ -90,12 +97,42 @@ export default function FormFieldPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "label", type: "ReactNode", default: "—", description: "Label text displayed above the control." },
-            { name: "htmlFor", type: "string", default: "—", description: "Associates the label with the control via id." },
-            { name: "helperText", type: "ReactNode", default: "—", description: "Supporting text shown when there is no error." },
-            { name: "errorMessage", type: "ReactNode", default: "—", description: "Error message that replaces helper text. Sets role=alert." },
-            { name: "isRequired", type: "boolean", default: "false", description: "Appends a required asterisk to the label." },
-            { name: "isDisabled", type: "boolean", default: "false", description: "Dims the entire field." },
+            {
+              name: "label",
+              type: "ReactNode",
+              default: "—",
+              description: "Label text displayed above the control.",
+            },
+            {
+              name: "htmlFor",
+              type: "string",
+              default: "—",
+              description: "Associates the label with the control via id.",
+            },
+            {
+              name: "helperText",
+              type: "ReactNode",
+              default: "—",
+              description: "Supporting text shown when there is no error.",
+            },
+            {
+              name: "errorMessage",
+              type: "ReactNode",
+              default: "—",
+              description: "Error message that replaces helper text. Sets role=alert.",
+            },
+            {
+              name: "isRequired",
+              type: "boolean",
+              default: "false",
+              description: "Appends a required asterisk to the label.",
+            },
+            {
+              name: "isDisabled",
+              type: "boolean",
+              default: "false",
+              description: "Dims the entire field.",
+            },
           ]}
         />
       </Section>

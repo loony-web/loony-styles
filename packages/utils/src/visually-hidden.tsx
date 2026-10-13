@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { cn } from "./cn.js";
 
 type VisuallyHiddenProps = ComponentPropsWithRef<"span">;

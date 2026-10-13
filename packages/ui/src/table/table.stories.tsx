@@ -23,7 +23,12 @@ type Story = StoryObj<typeof meta>;
 const invoices = [
   { id: "INV-001", paymentStatus: "Paid", totalAmount: "$250.00", paymentMethod: "Credit Card" },
   { id: "INV-002", paymentStatus: "Pending", totalAmount: "$150.00", paymentMethod: "PayPal" },
-  { id: "INV-003", paymentStatus: "Unpaid", totalAmount: "$350.00", paymentMethod: "Bank Transfer" },
+  {
+    id: "INV-003",
+    paymentStatus: "Unpaid",
+    totalAmount: "$350.00",
+    paymentMethod: "Bank Transfer",
+  },
   { id: "INV-004", paymentStatus: "Paid", totalAmount: "$450.00", paymentMethod: "Credit Card" },
   { id: "INV-005", paymentStatus: "Paid", totalAmount: "$550.00", paymentMethod: "PayPal" },
 ];
@@ -50,8 +55,8 @@ export const Default: Story = {
                   invoice.paymentStatus === "Paid"
                     ? "success-subtle"
                     : invoice.paymentStatus === "Pending"
-                    ? "warning-subtle"
-                    : "danger-subtle"
+                      ? "warning-subtle"
+                      : "danger-subtle"
                 }
               >
                 {invoice.paymentStatus}

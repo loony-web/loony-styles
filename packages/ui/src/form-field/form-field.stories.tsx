@@ -35,11 +35,7 @@ export const Required: Story = {
 export const WithError: Story = {
   render: () => (
     <div className="w-80">
-      <FormField
-        label="Username"
-        htmlFor="username"
-        errorMessage="This username is already taken."
-      >
+      <FormField label="Username" htmlFor="username" errorMessage="This username is already taken.">
         <Input id="username" defaultValue="johndoe" aria-invalid />
       </FormField>
     </div>
@@ -75,7 +71,12 @@ export const Complete: Story = {
       <FormField label="Full name" htmlFor="c-name" isRequired>
         <Input id="c-name" placeholder="John Doe" />
       </FormField>
-      <FormField label="Email" htmlFor="c-email" isRequired helperText="We'll never share your email.">
+      <FormField
+        label="Email"
+        htmlFor="c-email"
+        isRequired
+        helperText="We'll never share your email."
+      >
         <Input id="c-email" type="email" placeholder="hello@example.com" />
       </FormField>
       <FormField label="Username" htmlFor="c-username" errorMessage="Username already taken.">

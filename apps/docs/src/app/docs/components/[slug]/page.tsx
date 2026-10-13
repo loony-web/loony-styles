@@ -1,6 +1,6 @@
+import { CodeBlock, ComponentDoc, Section } from "@/components/component-doc";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CodeBlock, ComponentDoc, Section } from "@/components/component-doc";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -30,7 +30,8 @@ const componentData: Record<
   },
   avatar: {
     name: "Avatar",
-    description: "User avatar with image, fallback initials, and 6 size variants. Built on Radix UI Avatar.",
+    description:
+      "User avatar with image, fallback initials, and 6 size variants. Built on Radix UI Avatar.",
     radix: "https://www.radix-ui.com/docs/primitives/components/avatar",
     import: `import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"`,
     usage: `<Avatar size="md">
@@ -40,7 +41,8 @@ const componentData: Record<
   },
   accordion: {
     name: "Accordion",
-    description: "Vertically stacked collapsible sections with keyboard navigation. Built on Radix UI Accordion.",
+    description:
+      "Vertically stacked collapsible sections with keyboard navigation. Built on Radix UI Accordion.",
     radix: "https://www.radix-ui.com/docs/primitives/components/accordion",
     aria: ["region", "button"],
     import: `import {
@@ -73,7 +75,8 @@ const componentData: Record<
   },
   select: {
     name: "Select",
-    description: "Accessible custom select with keyboard navigation, groups, and scroll buttons. Built on Radix UI Select.",
+    description:
+      "Accessible custom select with keyboard navigation, groups, and scroll buttons. Built on Radix UI Select.",
     radix: "https://www.radix-ui.com/docs/primitives/components/select",
     aria: ["listbox", "option"],
     import: `import {
@@ -129,7 +132,8 @@ import { Label } from "@/components/ui/label"`,
   },
   tooltip: {
     name: "Tooltip",
-    description: "Contextual hint shown on hover/focus. For non-interactive supplementary content only.",
+    description:
+      "Contextual hint shown on hover/focus. For non-interactive supplementary content only.",
     radix: "https://www.radix-ui.com/docs/primitives/components/tooltip",
     aria: ["tooltip"],
     import: `import {
@@ -148,7 +152,8 @@ import { Label } from "@/components/ui/label"`,
   },
   toast: {
     name: "Toast",
-    description: "Accessible notifications with 5 variants, auto-dismiss, and imperative API via useToast().",
+    description:
+      "Accessible notifications with 5 variants, auto-dismiss, and imperative API via useToast().",
     radix: "https://www.radix-ui.com/docs/primitives/components/toast",
     aria: ["status"],
     import: `import { Toaster, useToast } from "@/components/ui/toast"`,
@@ -172,7 +177,8 @@ function MyComponent() {
   },
   progress: {
     name: "Progress",
-    description: "Linear progress bar with 4 color schemes and 4 sizes. Built on Radix UI Progress.",
+    description:
+      "Linear progress bar with 4 color schemes and 4 sizes. Built on Radix UI Progress.",
     radix: "https://www.radix-ui.com/docs/primitives/components/progress",
     aria: ["progressbar"],
     import: `import { Progress } from "@/components/ui/progress"`,
@@ -182,7 +188,8 @@ function MyComponent() {
   },
   drawer: {
     name: "Drawer",
-    description: "Side panel overlay from left, right, top, or bottom. Shares the Dialog accessibility contract.",
+    description:
+      "Side panel overlay from left, right, top, or bottom. Shares the Dialog accessibility contract.",
     aria: ["dialog"],
     import: `import {
   Drawer, DrawerTrigger, DrawerContent,
@@ -250,7 +257,8 @@ function MyComponent() {
   },
   "dropdown-menu": {
     name: "DropdownMenu",
-    description: "Floating context menu with items, submenus, checkboxes, and radio groups. Built on Radix UI DropdownMenu.",
+    description:
+      "Floating context menu with items, submenus, checkboxes, and radio groups. Built on Radix UI DropdownMenu.",
     radix: "https://www.radix-ui.com/docs/primitives/components/dropdown-menu",
     aria: ["menu", "menuitem"],
     import: `import {
@@ -277,7 +285,8 @@ function MyComponent() {
   },
   command: {
     name: "Command",
-    description: "Command palette with fuzzy search, keyboard navigation, and modal mode. Powered by cmdk.",
+    description:
+      "Command palette with fuzzy search, keyboard navigation, and modal mode. Powered by cmdk.",
     aria: ["combobox", "listbox"],
     import: `import {
   Command, CommandInput, CommandList,
@@ -316,7 +325,8 @@ useEffect(() => {
   },
   "icon-button": {
     name: "IconButton",
-    description: "A square button for icon-only actions. Requires an accessible label — renders sr-only text or aria-label.",
+    description:
+      "A square button for icon-only actions. Requires an accessible label — renders sr-only text or aria-label.",
     aria: ["button"],
     import: `import { IconButton } from "@/components/ui/icon-button"
 import { TrashIcon } from "@loony/icons"`,
@@ -351,7 +361,8 @@ import { TrashIcon } from "@loony/icons"`,
   },
   typography: {
     name: "Typography",
-    description: "Semantic heading and body text components with correct HTML elements and token-driven styles.",
+    description:
+      "Semantic heading and body text components with correct HTML elements and token-driven styles.",
     import: `import { Heading, Text, Code, Lead } from "@/components/ui/typography"`,
     usage: `<Heading as="h1" size="4xl">Page Title</Heading>
 <Heading as="h2" size="2xl">Section</Heading>
@@ -365,7 +376,8 @@ import { TrashIcon } from "@loony/icons"`,
   },
   spinner: {
     name: "Spinner",
-    description: "Animated loading indicator with 4 sizes. Renders with role='status' and a sr-only label.",
+    description:
+      "Animated loading indicator with 4 sizes. Renders with role='status' and a sr-only label.",
     aria: ["status"],
     import: `import { Spinner } from "@/components/ui/spinner"`,
     usage: `<Spinner />
@@ -415,7 +427,8 @@ const [value, setValue] = useState("option-1")
   },
   slider: {
     name: "Slider",
-    description: "Range input with keyboard navigation, multiple thumbs for range selection, and 3 sizes.",
+    description:
+      "Range input with keyboard navigation, multiple thumbs for range selection, and 3 sizes.",
     radix: "https://www.radix-ui.com/docs/primitives/components/slider",
     aria: ["slider"],
     import: `import { Slider } from "@/components/ui/slider"`,
@@ -434,7 +447,8 @@ const [value, setValue] = useState([40])
   },
   "form-field": {
     name: "FormField",
-    description: "Wraps any form control with a label, helper text, and error message. Handles ARIA wiring automatically.",
+    description:
+      "Wraps any form control with a label, helper text, and error message. Handles ARIA wiring automatically.",
     import: `import { FormField } from "@/components/ui/form-field"`,
     usage: `<FormField
   label="Email address"
@@ -460,7 +474,8 @@ const [value, setValue] = useState([40])
   },
   label: {
     name: "Label",
-    description: "Accessible form label built on Radix UI Label. Clicking it focuses the associated control.",
+    description:
+      "Accessible form label built on Radix UI Label. Clicking it focuses the associated control.",
     radix: "https://www.radix-ui.com/docs/primitives/components/label",
     import: `import { Label } from "@/components/ui/label"`,
     usage: `<div className="flex flex-col gap-1.5">
@@ -493,7 +508,8 @@ const [value, setValue] = useState([40])
   },
   flex: {
     name: "Flex",
-    description: "Low-level flex container with full control over direction, wrap, align, justify, and gap.",
+    description:
+      "Low-level flex container with full control over direction, wrap, align, justify, and gap.",
     import: `import { Flex } from "@/components/ui/layout"`,
     usage: `<Flex direction="row" align="center" justify="between" gap="4">
   <Logo />
@@ -543,7 +559,8 @@ const [value, setValue] = useState([40])
   },
   box: {
     name: "Box",
-    description: "Generic layout primitive — a div with no opinions. Use when none of the semantic layout components fit.",
+    description:
+      "Generic layout primitive — a div with no opinions. Use when none of the semantic layout components fit.",
     import: `import { Box } from "@/components/ui/layout"`,
     usage: `<Box className="bg-surface rounded-xl p-6">
   <Heading as="h2">Custom layout</Heading>
@@ -577,7 +594,8 @@ const [value, setValue] = useState([40])
   },
   spacer: {
     name: "Spacer",
-    description: "Invisible element that pushes siblings apart. Renders aria-hidden. Prefer gap when possible.",
+    description:
+      "Invisible element that pushes siblings apart. Renders aria-hidden. Prefer gap when possible.",
     import: `import { Spacer } from "@/components/ui/layout"`,
     usage: `{/* Push nav items to opposite ends */}
 <Flex direction="row" align="center">
@@ -593,7 +611,8 @@ const [value, setValue] = useState([40])
   },
   skeleton: {
     name: "Skeleton",
-    description: "Placeholder loading state with pulse animation. Use it to match the shape of the content it replaces.",
+    description:
+      "Placeholder loading state with pulse animation. Use it to match the shape of the content it replaces.",
     import: `import { Skeleton } from "@/components/ui/skeleton"`,
     usage: `{/* Line skeletons */}
 <div className="space-y-2">
@@ -613,7 +632,8 @@ const [value, setValue] = useState([40])
   },
   tag: {
     name: "Tag",
-    description: "Dismissible label chip with 4 visual variants and 3 sizes. Optional onDismiss for removable tags.",
+    description:
+      "Dismissible label chip with 4 visual variants and 3 sizes. Optional onDismiss for removable tags.",
     import: `import { Tag } from "@/components/ui/tag"`,
     usage: `<Tag>React</Tag>
 <Tag variant="solid">TypeScript</Tag>
@@ -672,7 +692,8 @@ import { FolderOpenIcon } from "@loony/icons"`,
   },
   popover: {
     name: "Popover",
-    description: "Floating content panel anchored to a trigger. Supports all placement sides. Built on Radix UI Popover.",
+    description:
+      "Floating content panel anchored to a trigger. Supports all placement sides. Built on Radix UI Popover.",
     radix: "https://www.radix-ui.com/docs/primitives/components/popover",
     aria: ["dialog"],
     import: `import {
@@ -695,7 +716,8 @@ import { FolderOpenIcon } from "@loony/icons"`,
   },
   "hover-card": {
     name: "HoverCard",
-    description: "Preview card revealed on hover for sighted users with pointing devices. Built on Radix UI HoverCard.",
+    description:
+      "Preview card revealed on hover for sighted users with pointing devices. Built on Radix UI HoverCard.",
     radix: "https://www.radix-ui.com/docs/primitives/components/hover-card",
     import: `import {
   HoverCard, HoverCardTrigger, HoverCardContent
@@ -720,7 +742,8 @@ import { FolderOpenIcon } from "@loony/icons"`,
   },
   breadcrumb: {
     name: "Breadcrumb",
-    description: "Navigation trail showing hierarchy. Uses <nav aria-label='Breadcrumb'> and structured list markup.",
+    description:
+      "Navigation trail showing hierarchy. Uses <nav aria-label='Breadcrumb'> and structured list markup.",
     aria: ["navigation"],
     import: `import {
   Breadcrumb, BreadcrumbList, BreadcrumbItem,
@@ -744,7 +767,8 @@ import { FolderOpenIcon } from "@loony/icons"`,
   },
   pagination: {
     name: "Pagination",
-    description: "Page navigation with prev/next, page number buttons, and ellipsis for large page counts.",
+    description:
+      "Page navigation with prev/next, page number buttons, and ellipsis for large page counts.",
     aria: ["navigation"],
     import: `import { Pagination } from "@/components/ui/pagination"`,
     usage: `const [page, setPage] = useState(1)
@@ -765,7 +789,8 @@ import { FolderOpenIcon } from "@loony/icons"`,
   },
   "scroll-area": {
     name: "ScrollArea",
-    description: "Custom scrollbar with consistent cross-browser styling. Built on Radix UI ScrollArea.",
+    description:
+      "Custom scrollbar with consistent cross-browser styling. Built on Radix UI ScrollArea.",
     radix: "https://www.radix-ui.com/docs/primitives/components/scroll-area",
     import: `import { ScrollArea } from "@/components/ui/scroll-area"`,
     usage: `{/* Fixed-height container with custom scrollbar */}

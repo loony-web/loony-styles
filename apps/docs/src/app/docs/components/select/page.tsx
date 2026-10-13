@@ -1,5 +1,21 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@loony/ui";
 
 export default function SelectPage() {
   return (
@@ -121,11 +137,36 @@ export default function SelectPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "value", type: "string", default: "—", description: "Controlled selected value." },
-            { name: "defaultValue", type: "string", default: "—", description: "Initial selected value (uncontrolled)." },
-            { name: "onValueChange", type: "(value: string) => void", default: "—", description: "Callback when selected value changes." },
-            { name: "disabled", type: "boolean", default: "false", description: "Prevents user interaction." },
-            { name: "placeholder", type: "string", default: "—", description: "Placeholder text when no value is selected (on SelectValue)." },
+            {
+              name: "value",
+              type: "string",
+              default: "—",
+              description: "Controlled selected value.",
+            },
+            {
+              name: "defaultValue",
+              type: "string",
+              default: "—",
+              description: "Initial selected value (uncontrolled).",
+            },
+            {
+              name: "onValueChange",
+              type: "(value: string) => void",
+              default: "—",
+              description: "Callback when selected value changes.",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Prevents user interaction.",
+            },
+            {
+              name: "placeholder",
+              type: "string",
+              default: "—",
+              description: "Placeholder text when no value is selected (on SelectValue).",
+            },
           ]}
         />
       </Section>

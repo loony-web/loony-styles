@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Badge } from "@loony/ui";
 
 export default function BadgePage() {
@@ -20,7 +27,7 @@ export default function BadgePage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Badge } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={`<Badge>New</Badge>`}>
+        <ComponentPreview code={"<Badge>New</Badge>"}>
           <Badge>New</Badge>
         </ComponentPreview>
       </Section>
@@ -70,8 +77,18 @@ export default function BadgePage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "variant", type: '"solid" | "subtle" | "outline" | "danger" | "danger-subtle" | "success" | "success-subtle" | "warning" | "warning-subtle" | "neutral"', default: '"solid"', description: "Visual style variant." },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Size of the badge." },
+            {
+              name: "variant",
+              type: '"solid" | "subtle" | "outline" | "danger" | "danger-subtle" | "success" | "success-subtle" | "warning" | "warning-subtle" | "neutral"',
+              default: '"solid"',
+              description: "Visual style variant.",
+            },
+            {
+              name: "size",
+              type: '"sm" | "md" | "lg"',
+              default: '"md"',
+              description: "Size of the badge.",
+            },
           ]}
         />
       </Section>

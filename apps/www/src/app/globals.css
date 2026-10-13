@@ -2,34 +2,38 @@
 
 /* ── Design tokens — dark-first for the marketing site ──────────────────── */
 :root {
-  --bg:          #09090b;
-  --bg-2:        #111113;
-  --bg-3:        #18181b;
-  --surface:     #1c1c1f;
-  --border:      #27272a;
-  --border-2:    #3f3f46;
-  --fg:          #fafafa;
-  --fg-muted:    #a1a1aa;
-  --fg-subtle:   #52525b;
-  --accent:      #3b82f6;
-  --accent-2:    #2563eb;
+  --bg: #09090b;
+  --bg-2: #111113;
+  --bg-3: #18181b;
+  --surface: #1c1c1f;
+  --border: #27272a;
+  --border-2: #3f3f46;
+  --fg: #fafafa;
+  --fg-muted: #a1a1aa;
+  --fg-subtle: #52525b;
+  --accent: #3b82f6;
+  --accent-2: #2563eb;
   --accent-glow: rgba(59, 130, 246, 0.15);
 
   /* Keep --loony-* aliases so shared component code still works */
-  --loony-color-bg:           var(--bg);
-  --loony-color-surface:      var(--bg-2);
-  --loony-color-border:       var(--border);
+  --loony-color-bg: var(--bg);
+  --loony-color-surface: var(--bg-2);
+  --loony-color-border: var(--border);
   --loony-color-border-strong: var(--border-2);
-  --loony-color-fg:           var(--fg);
-  --loony-color-fg-muted:     var(--fg-muted);
-  --loony-color-fg-subtle:    var(--fg-subtle);
-  --loony-color-accent:       var(--accent);
+  --loony-color-fg: var(--fg);
+  --loony-color-fg-muted: var(--fg-muted);
+  --loony-color-fg-subtle: var(--fg-subtle);
+  --loony-color-accent: var(--accent);
   --loony-font-sans: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
   --loony-font-mono: var(--font-mono, ui-monospace, monospace);
 }
 
 /* ── Base ───────────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -47,29 +51,61 @@ body {
   min-height: 100dvh;
 }
 
-::selection { background-color: rgba(59, 130, 246, 0.25); }
+::selection {
+  background-color: rgba(59, 130, 246, 0.25);
+}
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #71717a; }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
 
 /* ── Animations ─────────────────────────────────────────────────────────── */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
 }
 @keyframes shimmer {
-  from { background-position: -200% center; }
-  to   { background-position: 200% center; }
+  from {
+    background-position: -200% center;
+  }
+  to {
+    background-position: 200% center;
+  }
 }
 
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
 .animate-shimmer {
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;

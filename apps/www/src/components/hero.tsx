@@ -3,14 +3,20 @@
 import Link from "next/link";
 
 /* ── Mini component previews ─────────────────────────────────────── */
-function PreviewButton({ children, variant = "solid" }: { children: string; variant?: "solid" | "outline" | "ghost" }) {
+function PreviewButton({
+  children,
+  variant = "solid",
+}: { children: string; variant?: "solid" | "outline" | "ghost" }) {
   const styles: Record<string, string> = {
-    solid:   "bg-[#3b82f6] text-white hover:bg-[#2563eb]",
+    solid: "bg-[#3b82f6] text-white hover:bg-[#2563eb]",
     outline: "border border-[#374151] text-[#e5e7eb] hover:bg-[#1f2937]",
-    ghost:   "text-[#9ca3af] hover:text-[#e5e7eb] hover:bg-[#1f2937]",
+    ghost: "text-[#9ca3af] hover:text-[#e5e7eb] hover:bg-[#1f2937]",
   };
   return (
-    <button type="button" className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${styles[variant]}`}>
+    <button
+      type="button"
+      className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${styles[variant]}`}
+    >
       {children}
     </button>
   );
@@ -26,19 +32,29 @@ function PreviewInput({ placeholder }: { placeholder: string }) {
   );
 }
 
-function PreviewBadge({ children, color = "blue" }: { children: string; color?: "blue" | "green" | "orange" | "purple" }) {
+function PreviewBadge({
+  children,
+  color = "blue",
+}: { children: string; color?: "blue" | "green" | "orange" | "purple" }) {
   const c: Record<string, string> = {
-    blue:   "bg-[#1e3a5f] text-[#60a5fa]",
-    green:  "bg-[#052e16] text-[#4ade80]",
+    blue: "bg-[#1e3a5f] text-[#60a5fa]",
+    green: "bg-[#052e16] text-[#4ade80]",
     orange: "bg-[#431407] text-[#fb923c]",
     purple: "bg-[#2e1065] text-[#c084fc]",
   };
-  return <span className={`rounded-full px-2.5 py-0.5 text-[0.6875rem] font-medium ${c[color]}`}>{children}</span>;
+  return (
+    <span className={`rounded-full px-2.5 py-0.5 text-[0.6875rem] font-medium ${c[color]}`}>
+      {children}
+    </span>
+  );
 }
 
 function PreviewAvatar({ initials, color }: { initials: string; color: string }) {
   return (
-    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white" style={{ background: color }}>
+    <div
+      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white"
+      style={{ background: color }}
+    >
       {initials}
     </div>
   );
@@ -48,7 +64,9 @@ function PreviewAvatar({ initials, color }: { initials: string; color: string })
 function ButtonsCard() {
   return (
     <div className="rounded-xl border border-[#1f2937] bg-[#0d1117] p-4">
-      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">Buttons</p>
+      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">
+        Buttons
+      </p>
       <div className="flex flex-wrap gap-2">
         <PreviewButton variant="solid">Get started</PreviewButton>
         <PreviewButton variant="outline">Learn more</PreviewButton>
@@ -67,7 +85,9 @@ function ButtonsCard() {
 function FormCard() {
   return (
     <div className="rounded-xl border border-[#1f2937] bg-[#0d1117] p-4">
-      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">Form</p>
+      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">
+        Form
+      </p>
       <div className="space-y-2">
         <PreviewInput placeholder="Your name" />
         <PreviewInput placeholder="Email address" />
@@ -84,16 +104,27 @@ function StatsCard() {
   const bars = [40, 65, 50, 80, 60, 90, 75];
   return (
     <div className="rounded-xl border border-[#1f2937] bg-[#0d1117] p-4">
-      <p className="mb-1 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">Analytics</p>
+      <p className="mb-1 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">
+        Analytics
+      </p>
       <p className="mb-3 text-xl font-bold text-[#e5e7eb]">24,531</p>
       <div className="flex h-16 items-end gap-1">
         {bars.map((h, i) => (
-          <div key={i} className="flex-1 rounded-sm bg-[#3b82f6] opacity-70" style={{ height: `${h}%`, opacity: i === bars.length - 1 ? 1 : 0.4 + (i / bars.length) * 0.5 }} />
+          <div
+            key={i}
+            className="flex-1 rounded-sm bg-[#3b82f6] opacity-70"
+            style={{
+              height: `${h}%`,
+              opacity: i === bars.length - 1 ? 1 : 0.4 + (i / bars.length) * 0.5,
+            }}
+          />
         ))}
       </div>
       <div className="mt-2 flex justify-between">
-        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(d => (
-          <span key={d} className="text-[0.5625rem] text-[#4b5563]">{d}</span>
+        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
+          <span key={d} className="text-[0.5625rem] text-[#4b5563]">
+            {d}
+          </span>
         ))}
       </div>
     </div>
@@ -108,7 +139,9 @@ function TeamCard() {
   ];
   return (
     <div className="rounded-xl border border-[#1f2937] bg-[#0d1117] p-4">
-      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">Team</p>
+      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">
+        Team
+      </p>
       <div className="space-y-2.5">
         {members.map((m) => (
           <div key={m.initials} className="flex items-center gap-3">
@@ -128,16 +161,20 @@ function TeamCard() {
 function NotificationsCard() {
   const items = [
     { icon: "✓", text: "Deployment complete", time: "2m ago", color: "#4ade80" },
-    { icon: "!", text: "Review requested",    time: "5m ago", color: "#fb923c" },
-    { icon: "◉", text: "Build succeeded",     time: "12m ago", color: "#60a5fa" },
+    { icon: "!", text: "Review requested", time: "5m ago", color: "#fb923c" },
+    { icon: "◉", text: "Build succeeded", time: "12m ago", color: "#60a5fa" },
   ];
   return (
     <div className="rounded-xl border border-[#1f2937] bg-[#0d1117] p-4">
-      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">Notifications</p>
+      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">
+        Notifications
+      </p>
       <div className="space-y-2.5">
         {items.map((item) => (
           <div key={item.text} className="flex items-start gap-2.5">
-            <span className="mt-0.5 text-xs font-bold" style={{ color: item.color }}>{item.icon}</span>
+            <span className="mt-0.5 text-xs font-bold" style={{ color: item.color }}>
+              {item.icon}
+            </span>
             <div className="min-w-0 flex-1">
               <p className="text-xs text-[#e5e7eb]">{item.text}</p>
             </div>
@@ -157,7 +194,9 @@ function ProgressCard() {
   ];
   return (
     <div className="rounded-xl border border-[#1f2937] bg-[#0d1117] p-4">
-      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">Progress</p>
+      <p className="mb-3 text-[0.625rem] font-semibold uppercase tracking-widest text-[#4b5563]">
+        Progress
+      </p>
       <div className="space-y-3">
         {tasks.map((t) => (
           <div key={t.label}>
@@ -178,10 +217,7 @@ function ProgressCard() {
 /* ── Hero ─────────────────────────────────────────────────────────── */
 export function Hero() {
   return (
-    <section
-      className="relative overflow-hidden pb-0 pt-24"
-      style={{ background: "#09090b" }}
-    >
+    <section className="relative overflow-hidden pb-0 pt-24" style={{ background: "#09090b" }}>
       {/* Grid background */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -198,7 +234,8 @@ export function Hero() {
         style={{
           width: "800px",
           height: "400px",
-          background: "radial-gradient(ellipse at 50% 0%, oklch(0.546 0.245 262.881 / 0.12), transparent 70%)",
+          background:
+            "radial-gradient(ellipse at 50% 0%, oklch(0.546 0.245 262.881 / 0.12), transparent 70%)",
         }}
         aria-hidden
       />
@@ -221,7 +258,8 @@ export function Hero() {
           Build your design system{" "}
           <span
             style={{
-              background: "linear-gradient(135deg, #60a5fa 0%, oklch(0.546 0.245 262.881) 50%, #818cf8 100%)",
+              background:
+                "linear-gradient(135deg, #60a5fa 0%, oklch(0.546 0.245 262.881) 50%, #818cf8 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -232,7 +270,8 @@ export function Hero() {
         </h1>
 
         <p className="mx-auto mb-8 max-w-xl text-center text-base leading-relaxed text-[#71717a] md:text-lg">
-          44 accessible components you copy and own — not install. React 19, TypeScript strict, Tailwind v4, Radix UI.
+          44 accessible components you copy and own — not install. React 19, TypeScript strict,
+          Tailwind v4, Radix UI.
         </p>
 
         {/* CTAs */}

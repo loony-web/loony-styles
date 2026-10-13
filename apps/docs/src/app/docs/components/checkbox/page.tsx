@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Checkbox, Label } from "@loony/ui";
 
 export default function CheckboxPage() {
@@ -23,7 +30,7 @@ export default function CheckboxPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Checkbox } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={`<Checkbox defaultChecked />`}>
+        <ComponentPreview code={"<Checkbox defaultChecked />"}>
           <Checkbox defaultChecked />
         </ComponentPreview>
       </Section>
@@ -85,11 +92,36 @@ export default function CheckboxPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "checked", type: "boolean | 'indeterminate'", default: "—", description: "Controlled checked state." },
-            { name: "defaultChecked", type: "boolean", default: "—", description: "Initial checked state (uncontrolled)." },
-            { name: "indeterminate", type: "boolean", default: "false", description: "Whether the checkbox is in an indeterminate state." },
-            { name: "onCheckedChange", type: "(checked: boolean | 'indeterminate') => void", default: "—", description: "Callback when checked state changes." },
-            { name: "disabled", type: "boolean", default: "false", description: "Prevents user interaction." },
+            {
+              name: "checked",
+              type: "boolean | 'indeterminate'",
+              default: "—",
+              description: "Controlled checked state.",
+            },
+            {
+              name: "defaultChecked",
+              type: "boolean",
+              default: "—",
+              description: "Initial checked state (uncontrolled).",
+            },
+            {
+              name: "indeterminate",
+              type: "boolean",
+              default: "false",
+              description: "Whether the checkbox is in an indeterminate state.",
+            },
+            {
+              name: "onCheckedChange",
+              type: "(checked: boolean | 'indeterminate') => void",
+              default: "—",
+              description: "Callback when checked state changes.",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Prevents user interaction.",
+            },
           ]}
         />
       </Section>

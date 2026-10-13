@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Switch, Label } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Label, Switch } from "@loony/ui";
 
 export default function SwitchPage() {
   return (
@@ -22,7 +29,7 @@ export default function SwitchPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Switch } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={`<Switch defaultChecked />`}>
+        <ComponentPreview code={"<Switch defaultChecked />"}>
           <Switch defaultChecked />
         </ComponentPreview>
       </Section>
@@ -70,10 +77,30 @@ export default function SwitchPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "checked", type: "boolean", default: "—", description: "Controlled checked state." },
-            { name: "defaultChecked", type: "boolean", default: "—", description: "Initial checked state (uncontrolled)." },
-            { name: "onCheckedChange", type: "(checked: boolean) => void", default: "—", description: "Callback when checked state changes." },
-            { name: "disabled", type: "boolean", default: "false", description: "Prevents user interaction." },
+            {
+              name: "checked",
+              type: "boolean",
+              default: "—",
+              description: "Controlled checked state.",
+            },
+            {
+              name: "defaultChecked",
+              type: "boolean",
+              default: "—",
+              description: "Initial checked state (uncontrolled).",
+            },
+            {
+              name: "onCheckedChange",
+              type: "(checked: boolean) => void",
+              default: "—",
+              description: "Callback when checked state changes.",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Prevents user interaction.",
+            },
           ]}
         />
       </Section>

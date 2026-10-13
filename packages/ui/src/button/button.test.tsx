@@ -16,7 +16,15 @@ describe("Button", () => {
     });
 
     it("renders all variants without error", () => {
-      const variants = ["solid", "outline", "ghost", "link", "danger", "danger-outline", "danger-ghost"] as const;
+      const variants = [
+        "solid",
+        "outline",
+        "ghost",
+        "link",
+        "danger",
+        "danger-outline",
+        "danger-ghost",
+      ] as const;
       for (const variant of variants) {
         const { unmount } = render(<Button variant={variant}>Button</Button>);
         expect(screen.getByRole("button")).toBeInTheDocument();
@@ -92,16 +100,12 @@ describe("Button", () => {
 
   describe("icons", () => {
     it("renders leftIcon when provided", () => {
-      render(
-        <Button leftIcon={<span data-testid="left-icon" />}>Button</Button>,
-      );
+      render(<Button leftIcon={<span data-testid="left-icon" />}>Button</Button>);
       expect(screen.getByTestId("left-icon")).toBeInTheDocument();
     });
 
     it("renders rightIcon when provided", () => {
-      render(
-        <Button rightIcon={<span data-testid="right-icon" />}>Button</Button>,
-      );
+      render(<Button rightIcon={<span data-testid="right-icon" />}>Button</Button>);
       expect(screen.getByTestId("right-icon")).toBeInTheDocument();
     });
 

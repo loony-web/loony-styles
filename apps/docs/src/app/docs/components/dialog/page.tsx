@@ -1,11 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
 import {
-  Dialog, DialogTrigger, DialogContent, DialogHeader, DialogBody, DialogFooter,
-  DialogTitle, DialogDescription, DialogClose, Button, Input, Label,
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
 } from "@loony/ui";
+import { useState } from "react";
 
 function BasicDialogDemo() {
   const [open, setOpen] = useState(false);
@@ -17,7 +34,9 @@ function BasicDialogDemo() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>Make changes to your profile here. Click save when done.</DialogDescription>
+          <DialogDescription>
+            Make changes to your profile here. Click save when done.
+          </DialogDescription>
         </DialogHeader>
         <DialogBody>
           <div className="grid gap-4">
@@ -53,14 +72,17 @@ function DestructiveDialogDemo() {
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button variant="danger" onClick={() => setOpen(false)}>Delete account</Button>
+          <Button variant="danger" onClick={() => setOpen(false)}>
+            Delete account
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -161,9 +183,25 @@ export default function DialogPage() {
         <PropsTable
           props={[
             { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
-            { name: "defaultOpen", type: "boolean", default: "—", description: "Initial open state (uncontrolled)." },
-            { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Callback when open state changes." },
-            { name: "showClose", type: "boolean", default: "true", description: "Whether to show the close button in the top-right corner (on DialogContent)." },
+            {
+              name: "defaultOpen",
+              type: "boolean",
+              default: "—",
+              description: "Initial open state (uncontrolled).",
+            },
+            {
+              name: "onOpenChange",
+              type: "(open: boolean) => void",
+              default: "—",
+              description: "Callback when open state changes.",
+            },
+            {
+              name: "showClose",
+              type: "boolean",
+              default: "true",
+              description:
+                "Whether to show the close button in the top-right corner (on DialogContent).",
+            },
           ]}
         />
       </Section>

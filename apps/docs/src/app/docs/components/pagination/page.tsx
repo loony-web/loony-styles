@@ -1,5 +1,19 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock } from "@/components/component-doc";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  Section,
+} from "@/components/component-doc";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@loony/ui";
 
 export default function PaginationPage() {
   return (
@@ -55,7 +69,9 @@ export default function PaginationPage() {
                 <PaginationLink href="#">1</PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink href="#" isActive>2</PaginationLink>
+                <PaginationLink href="#" isActive>
+                  2
+                </PaginationLink>
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink href="#">3</PaginationLink>
@@ -117,7 +133,9 @@ export default function PaginationPage() {
                 <PaginationLink href="#">4</PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink href="#" isActive>5</PaginationLink>
+                <PaginationLink href="#" isActive>
+                  5
+                </PaginationLink>
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink href="#">6</PaginationLink>

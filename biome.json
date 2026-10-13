@@ -60,10 +60,10 @@
         "noExcessiveCognitiveComplexity": "warn",
         "noExtraBooleanCast": "error",
         "noForEach": "off",
-        "noMultipleSpacesInRegularExpressionLiteral": "error",
+        "noMultipleSpacesInRegularExpressionLiterals": "error",
         "noUselessCatch": "error",
         "noUselessTypeConstraint": "error",
-        "useArrowFunctionInstead": "off",
+        "useArrowFunction": "off",
         "useLiteralKeys": "error",
         "useOptionalChain": "error",
         "useSimplifiedLogicExpression": "warn"
@@ -123,7 +123,7 @@
         "useConst": "error",
         "useDefaultParameterLast": "error",
         "useEnumInitializers": "error",
-        "useExponentOperator": "warn",
+        "useExponentiationOperator": "warn",
         "useExplicitLengthCheck": "off",
         "useFilenamingConvention": {
           "level": "warn",

@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, Button } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@loony/ui";
 
 export default function TooltipPage() {
   return (
@@ -101,25 +108,33 @@ export default function App() {
             <div className="flex gap-3">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="outline" size="sm">Top</Button>
+                  <Button variant="outline" size="sm">
+                    Top
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top">Top tooltip</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="outline" size="sm">Right</Button>
+                  <Button variant="outline" size="sm">
+                    Right
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Right tooltip</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="outline" size="sm">Bottom</Button>
+                  <Button variant="outline" size="sm">
+                    Bottom
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom">Bottom tooltip</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="outline" size="sm">Left</Button>
+                  <Button variant="outline" size="sm">
+                    Left
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="left">Left tooltip</TooltipContent>
               </Tooltip>
@@ -131,9 +146,25 @@ export default function App() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "delayDuration", type: "number", default: "700", description: "Duration in ms before the tooltip opens (on TooltipProvider)." },
-            { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"top"', description: "Preferred side of the trigger to render the tooltip (on TooltipContent)." },
-            { name: "sideOffset", type: "number", default: "4", description: "Distance in px from the trigger (on TooltipContent)." },
+            {
+              name: "delayDuration",
+              type: "number",
+              default: "700",
+              description: "Duration in ms before the tooltip opens (on TooltipProvider).",
+            },
+            {
+              name: "side",
+              type: '"top" | "right" | "bottom" | "left"',
+              default: '"top"',
+              description:
+                "Preferred side of the trigger to render the tooltip (on TooltipContent).",
+            },
+            {
+              name: "sideOffset",
+              type: "number",
+              default: "4",
+              description: "Distance in px from the trigger (on TooltipContent).",
+            },
           ]}
         />
       </Section>

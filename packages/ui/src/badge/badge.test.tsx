@@ -15,8 +15,16 @@ describe("Badge", () => {
 
   it("renders all variants without crashing", () => {
     const variants = [
-      "solid", "subtle", "outline", "danger", "danger-subtle",
-      "success", "success-subtle", "warning", "warning-subtle", "neutral",
+      "solid",
+      "subtle",
+      "outline",
+      "danger",
+      "danger-subtle",
+      "success",
+      "success-subtle",
+      "warning",
+      "warning-subtle",
+      "neutral",
     ] as const;
     for (const variant of variants) {
       const { unmount } = render(<Badge variant={variant}>{variant}</Badge>);

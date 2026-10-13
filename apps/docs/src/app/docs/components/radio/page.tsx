@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { RadioGroup, RadioItem, Label } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Label, RadioGroup, RadioItem } from "@loony/ui";
 
 export default function RadioPage() {
   return (
@@ -118,11 +125,36 @@ export default function RadioPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "defaultValue", type: "string", default: "—", description: "Initial selected value (uncontrolled)." },
-            { name: "value", type: "string", default: "—", description: "Controlled selected value." },
-            { name: "onValueChange", type: "(value: string) => void", default: "—", description: "Callback when selection changes." },
-            { name: "disabled", type: "boolean", default: "false", description: "Disables all radio items in the group." },
-            { name: "orientation", type: '"vertical" | "horizontal"', default: '"vertical"', description: "Layout direction of the group." },
+            {
+              name: "defaultValue",
+              type: "string",
+              default: "—",
+              description: "Initial selected value (uncontrolled).",
+            },
+            {
+              name: "value",
+              type: "string",
+              default: "—",
+              description: "Controlled selected value.",
+            },
+            {
+              name: "onValueChange",
+              type: "(value: string) => void",
+              default: "—",
+              description: "Callback when selection changes.",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Disables all radio items in the group.",
+            },
+            {
+              name: "orientation",
+              type: '"vertical" | "horizontal"',
+              default: '"vertical"',
+              description: "Layout direction of the group.",
+            },
           ]}
         />
       </Section>

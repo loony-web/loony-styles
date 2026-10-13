@@ -7,14 +7,11 @@ import { react } from "./react.js";
  *
  * @type {import("typescript-eslint").ConfigArray}
  */
-export const next = tseslint.config(
-  ...react,
-  {
-    rules: {
-      "@next/next/no-html-link-for-pages": "error",
-      "@next/next/no-img-element": "error",
-    },
+export const next = tseslint.config(...react, {
+  rules: {
+    "@next/next/no-html-link-for-pages": "error",
+    "@next/next/no-img-element": "error",
   },
-);
+});
 
 export default next;

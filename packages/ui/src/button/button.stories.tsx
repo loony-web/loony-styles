@@ -1,5 +1,5 @@
+import { PlusIcon, SearchIcon, TrashIcon } from "@loony/icons";
 import type { Meta, StoryObj } from "@storybook/react";
-import { SearchIcon, PlusIcon, TrashIcon } from "@loony/icons";
 import { Button } from "./button.js";
 
 const meta: Meta<typeof Button> = {

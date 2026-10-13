@@ -1,7 +1,7 @@
-import { type ComponentPropsWithRef } from "react";
-import { type VariantProps } from "class-variance-authority";
-import { type buttonVariants } from "./button.styles.js";
-import { type WithAsChild } from "@loony/utils";
+import type { WithAsChild } from "@loony/utils";
+import type { VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithRef } from "react";
+import type { buttonVariants } from "./button.styles.js";
 
 /**
  * Button props.

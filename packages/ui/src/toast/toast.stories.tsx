@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../button/button.js";
 import { Toast, ToastAction, ToastProvider, ToastViewport } from "./toast.js";
-import { useToast } from "./use-toast.js";
 import { Toaster } from "./toaster.js";
+import { useToast } from "./use-toast.js";
 
 const meta = {
   title: "Feedback/Toast",
@@ -63,11 +63,7 @@ export const Info: Story = {
     title: "New update available",
     description: "Reload the page to apply updates.",
     variant: "info",
-    action: (
-      <ToastAction altText="Reload page">
-        Reload
-      </ToastAction>
-    ),
+    action: <ToastAction altText="Reload page">Reload</ToastAction>,
   },
 };
 
@@ -76,10 +72,32 @@ function ToasterDemo() {
   return (
     <div className="flex flex-wrap gap-2">
       <Button onClick={() => toast({ title: "Saved", variant: "default" })}>Default</Button>
-      <Button onClick={() => toast({ title: "Success!", description: "Your changes were saved.", variant: "success" })}>Success</Button>
-      <Button onClick={() => toast({ title: "Error", description: "Something went wrong.", variant: "danger" })}>Danger</Button>
-      <Button onClick={() => toast({ title: "Warning", description: "Check your input.", variant: "warning" })}>Warning</Button>
-      <Button onClick={() => toast({ title: "Info", description: "Updates available.", variant: "info" })}>Info</Button>
+      <Button
+        onClick={() =>
+          toast({ title: "Success!", description: "Your changes were saved.", variant: "success" })
+        }
+      >
+        Success
+      </Button>
+      <Button
+        onClick={() =>
+          toast({ title: "Error", description: "Something went wrong.", variant: "danger" })
+        }
+      >
+        Danger
+      </Button>
+      <Button
+        onClick={() =>
+          toast({ title: "Warning", description: "Check your input.", variant: "warning" })
+        }
+      >
+        Warning
+      </Button>
+      <Button
+        onClick={() => toast({ title: "Info", description: "Updates available.", variant: "info" })}
+      >
+        Info
+      </Button>
       <Toaster />
     </div>
   );

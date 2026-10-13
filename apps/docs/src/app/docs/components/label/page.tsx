@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Label, Input, Checkbox } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Checkbox, Input, Label } from "@loony/ui";
 
 export default function LabelPage() {
   return (
@@ -50,7 +57,12 @@ export default function LabelPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "htmlFor", type: "string", default: "—", description: "The id of the form element the label is associated with." },
+            {
+              name: "htmlFor",
+              type: "string",
+              default: "—",
+              description: "The id of the form element the label is associated with.",
+            },
           ]}
         />
       </Section>

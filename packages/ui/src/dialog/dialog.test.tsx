@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
+import { Button } from "../button/button.js";
 import {
   Dialog,
   DialogBody,
@@ -12,9 +13,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./dialog.js";
-import { Button } from "../button/button.js";
 
-function TestDialog({ open, onOpenChange }: { open?: boolean; onOpenChange?: (v: boolean) => void }) {
+function TestDialog({
+  open,
+  onOpenChange,
+}: { open?: boolean; onOpenChange?: (v: boolean) => void }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>

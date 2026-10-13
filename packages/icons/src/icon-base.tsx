@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 export interface IconProps extends ComponentPropsWithRef<"svg"> {
   /** Accessible label. Required when the icon conveys meaning alone (no adjacent text). */

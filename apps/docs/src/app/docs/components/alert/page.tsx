@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Alert, AlertTitle, AlertDescription } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Alert, AlertDescription, AlertTitle } from "@loony/ui";
 
 export default function AlertPage() {
   return (
@@ -97,7 +104,9 @@ export default function AlertPage() {
           <div className="w-full max-w-md">
             <Alert variant="danger">
               <AlertTitle>Payment failed</AlertTitle>
-              <AlertDescription>Your card was declined. Please update your billing info.</AlertDescription>
+              <AlertDescription>
+                Your card was declined. Please update your billing info.
+              </AlertDescription>
             </Alert>
           </div>
         </ComponentPreview>
@@ -135,8 +144,18 @@ export default function AlertPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "variant", type: '"info" | "success" | "warning" | "danger" | "neutral"', default: '"info"', description: "Controls the color scheme and default icon." },
-            { name: "icon", type: "ReactNode | null", default: "—", description: "Custom icon. Pass null to suppress the default icon." },
+            {
+              name: "variant",
+              type: '"info" | "success" | "warning" | "danger" | "neutral"',
+              default: '"info"',
+              description: "Controls the color scheme and default icon.",
+            },
+            {
+              name: "icon",
+              type: "ReactNode | null",
+              default: "—",
+              description: "Custom icon. Pass null to suppress the default icon.",
+            },
           ]}
         />
       </Section>

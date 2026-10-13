@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Slider } from "@loony/ui";
 
 export default function SliderPage() {
@@ -22,9 +29,7 @@ export default function SliderPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Slider } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview
-          code={`<Slider defaultValue={[40]} max={100} step={1} label="Volume" />`}
-        >
+        <ComponentPreview code={`<Slider defaultValue={[40]} max={100} step={1} label="Volume" />`}>
           <div className="w-64">
             <Slider defaultValue={[40]} max={100} step={1} label="Volume" />
           </div>
@@ -58,14 +63,39 @@ export default function SliderPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "defaultValue", type: "number[]", default: "—", description: "Initial value(s) (uncontrolled)." },
+            {
+              name: "defaultValue",
+              type: "number[]",
+              default: "—",
+              description: "Initial value(s) (uncontrolled).",
+            },
             { name: "value", type: "number[]", default: "—", description: "Controlled value(s)." },
-            { name: "onValueChange", type: "(value: number[]) => void", default: "—", description: "Callback on value change." },
+            {
+              name: "onValueChange",
+              type: "(value: number[]) => void",
+              default: "—",
+              description: "Callback on value change.",
+            },
             { name: "min", type: "number", default: "0", description: "Minimum allowed value." },
             { name: "max", type: "number", default: "100", description: "Maximum allowed value." },
-            { name: "step", type: "number", default: "1", description: "Step size between values." },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Track and thumb size." },
-            { name: "label", type: "string", default: "—", description: "Accessible label (aria-label)." },
+            {
+              name: "step",
+              type: "number",
+              default: "1",
+              description: "Step size between values.",
+            },
+            {
+              name: "size",
+              type: '"sm" | "md" | "lg"',
+              default: '"md"',
+              description: "Track and thumb size.",
+            },
+            {
+              name: "label",
+              type: "string",
+              default: "—",
+              description: "Accessible label (aria-label).",
+            },
           ]}
         />
       </Section>

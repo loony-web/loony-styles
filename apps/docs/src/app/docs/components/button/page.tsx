@@ -1,6 +1,13 @@
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { ChevronRightIcon, PlusIcon } from "@loony/icons";
 import { Button } from "@loony/ui";
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { PlusIcon, ChevronRightIcon } from "@loony/icons";
 
 export default function ButtonPage() {
   return (
@@ -24,7 +31,7 @@ export default function ButtonPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Button } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={`<Button>Click me</Button>`}>
+        <ComponentPreview code={"<Button>Click me</Button>"}>
           <Button>Click me</Button>
         </ComponentPreview>
       </Section>
@@ -78,7 +85,9 @@ export default function ButtonPage() {
         >
           <div className="flex flex-wrap gap-3">
             <Button leftIcon={<PlusIcon />}>New component</Button>
-            <Button rightIcon={<ChevronRightIcon />} variant="outline">Learn more</Button>
+            <Button rightIcon={<ChevronRightIcon />} variant="outline">
+              Learn more
+            </Button>
           </div>
         </ComponentPreview>
       </Section>
@@ -90,7 +99,9 @@ export default function ButtonPage() {
         >
           <div className="flex flex-wrap gap-3">
             <Button loading>Saving changes...</Button>
-            <Button loading variant="outline">Uploading...</Button>
+            <Button loading variant="outline">
+              Uploading...
+            </Button>
           </div>
         </ComponentPreview>
       </Section>
@@ -98,13 +109,48 @@ export default function ButtonPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "variant", type: '"solid" | "outline" | "ghost" | "link" | "danger" | "danger-outline" | "danger-ghost"', default: '"solid"', description: "Visual style of the button." },
-            { name: "size", type: '"xs" | "sm" | "md" | "lg" | "xl"', default: '"md"', description: "Controls padding and font size." },
-            { name: "loading", type: "boolean", default: "false", description: "Shows a spinner and sets aria-disabled." },
-            { name: "leftIcon", type: "ReactNode", default: "—", description: "Icon rendered before the label." },
-            { name: "rightIcon", type: "ReactNode", default: "—", description: "Icon rendered after the label." },
-            { name: "asChild", type: "boolean", default: "false", description: "Merges button props onto a single child element (Slot pattern)." },
-            { name: "disabled", type: "boolean", default: "false", description: "Disables the button via the native disabled attribute." },
+            {
+              name: "variant",
+              type: '"solid" | "outline" | "ghost" | "link" | "danger" | "danger-outline" | "danger-ghost"',
+              default: '"solid"',
+              description: "Visual style of the button.",
+            },
+            {
+              name: "size",
+              type: '"xs" | "sm" | "md" | "lg" | "xl"',
+              default: '"md"',
+              description: "Controls padding and font size.",
+            },
+            {
+              name: "loading",
+              type: "boolean",
+              default: "false",
+              description: "Shows a spinner and sets aria-disabled.",
+            },
+            {
+              name: "leftIcon",
+              type: "ReactNode",
+              default: "—",
+              description: "Icon rendered before the label.",
+            },
+            {
+              name: "rightIcon",
+              type: "ReactNode",
+              default: "—",
+              description: "Icon rendered after the label.",
+            },
+            {
+              name: "asChild",
+              type: "boolean",
+              default: "false",
+              description: "Merges button props onto a single child element (Slot pattern).",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Disables the button via the native disabled attribute.",
+            },
           ]}
         />
       </Section>

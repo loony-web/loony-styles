@@ -1,5 +1,20 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock } from "@/components/component-doc";
-import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell, TableCaption, Badge } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  Section,
+} from "@/components/component-doc";
+import {
+  Badge,
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@loony/ui";
 
 export default function TablePage() {
   return (
@@ -131,17 +146,23 @@ export default function TablePage() {
               <TableBody>
                 <TableRow>
                   <TableCell>Alice Johnson</TableCell>
-                  <TableCell><Badge variant="success-subtle">Active</Badge></TableCell>
+                  <TableCell>
+                    <Badge variant="success-subtle">Active</Badge>
+                  </TableCell>
                   <TableCell>Admin</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Bob Smith</TableCell>
-                  <TableCell><Badge variant="warning-subtle">Pending</Badge></TableCell>
+                  <TableCell>
+                    <Badge variant="warning-subtle">Pending</Badge>
+                  </TableCell>
                   <TableCell>Editor</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Carol Williams</TableCell>
-                  <TableCell><Badge variant="neutral">Inactive</Badge></TableCell>
+                  <TableCell>
+                    <Badge variant="neutral">Inactive</Badge>
+                  </TableCell>
                   <TableCell>Viewer</TableCell>
                 </TableRow>
               </TableBody>

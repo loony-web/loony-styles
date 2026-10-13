@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  createContext as reactCreateContext,
-  useContext,
   type Context,
   type Provider,
+  createContext as reactCreateContext,
+  useContext,
 } from "react";
 
 interface CreateContextOptions<T> {
@@ -45,9 +45,7 @@ type CreateContextReturn<T> = [Provider<T | undefined>, () => T, Context<T | und
  * // Consume anywhere in the tree:
  * const { mode } = useTheme(); // throws if used outside ThemeProvider
  */
-export function createContext<T>(
-  options: CreateContextOptions<T>,
-): CreateContextReturn<T> {
+export function createContext<T>(options: CreateContextOptions<T>): CreateContextReturn<T> {
   const { name, errorMessage, defaultValue } = options;
 
   const Context = reactCreateContext<T | undefined>(defaultValue);

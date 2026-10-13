@@ -40,13 +40,7 @@ describe("Switch", () => {
   it("is not interactive when disabled", async () => {
     const user = userEvent.setup();
     const onCheckedChange = vi.fn();
-    render(
-      <Switch
-        aria-label="Enable notifications"
-        disabled
-        onCheckedChange={onCheckedChange}
-      />,
-    );
+    render(<Switch aria-label="Enable notifications" disabled onCheckedChange={onCheckedChange} />);
     await user.click(screen.getByRole("switch"));
     expect(onCheckedChange).not.toHaveBeenCalled();
   });

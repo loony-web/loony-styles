@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { Button } from "../button/button.js";
 import {
   DropdownMenu,
@@ -14,7 +15,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./dropdown-menu.js";
-import { useState } from "react";
 
 const meta = {
   title: "Navigation/DropdownMenu",

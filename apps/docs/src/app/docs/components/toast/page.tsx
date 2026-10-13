@@ -1,10 +1,19 @@
 "use client";
 
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Button, Toast, ToastProvider, ToastViewport } from "@loony/ui";
 import { useState } from "react";
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { ToastProvider, ToastViewport, Toast, Button } from "@loony/ui";
 
-function ToastDemo({ variant }: { variant?: "default" | "success" | "danger" | "warning" | "info" }) {
+function ToastDemo({
+  variant,
+}: { variant?: "default" | "success" | "danger" | "warning" | "info" }) {
   const [toasts, setToasts] = useState<Array<{ id: number; open: boolean }>>([]);
 
   const addToast = () => {
@@ -128,13 +137,43 @@ export function Example() {
         <PropsTable
           props={[
             { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
-            { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Callback when open state changes." },
-            { name: "variant", type: '"default" | "success" | "danger" | "warning" | "info"', default: '"default"', description: "Visual style and icon." },
+            {
+              name: "onOpenChange",
+              type: "(open: boolean) => void",
+              default: "—",
+              description: "Callback when open state changes.",
+            },
+            {
+              name: "variant",
+              type: '"default" | "success" | "danger" | "warning" | "info"',
+              default: '"default"',
+              description: "Visual style and icon.",
+            },
             { name: "title", type: "ReactNode", default: "—", description: "Toast heading." },
-            { name: "description", type: "ReactNode", default: "—", description: "Supporting text." },
-            { name: "duration", type: "number", default: "5000", description: "Auto-dismiss delay in ms." },
-            { name: "action", type: "ReactNode", default: "—", description: "Optional action element (ToastAction)." },
-            { name: "showIcon", type: "boolean", default: "true", description: "Whether to show the variant icon." },
+            {
+              name: "description",
+              type: "ReactNode",
+              default: "—",
+              description: "Supporting text.",
+            },
+            {
+              name: "duration",
+              type: "number",
+              default: "5000",
+              description: "Auto-dismiss delay in ms.",
+            },
+            {
+              name: "action",
+              type: "ReactNode",
+              default: "—",
+              description: "Optional action element (ToastAction).",
+            },
+            {
+              name: "showIcon",
+              type: "boolean",
+              default: "true",
+              description: "Whether to show the variant icon.",
+            },
           ]}
         />
       </Section>

@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Text, Heading } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Heading, Text } from "@loony/ui";
 
 export default function TypographyPage() {
   return (
@@ -85,13 +92,48 @@ export default function TypographyPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "size", type: '"2xs" | "xs" | "sm" | "base" | "lg" | "xl"', default: '"base"', description: "Text size (Text component)." },
-            { name: "level", type: "1 | 2 | 3 | 4 | 5 | 6", default: "2", description: "Heading level — controls both visual size and rendered element." },
-            { name: "weight", type: '"normal" | "medium" | "semibold" | "bold"', default: '"normal"', description: "Font weight." },
-            { name: "color", type: '"default" | "muted" | "subtle" | "disabled" | "accent" | "danger" | "success" | "warning"', default: '"default"', description: "Text color token." },
-            { name: "align", type: '"left" | "center" | "right"', default: "—", description: "Text alignment." },
-            { name: "truncate", type: "boolean", default: "false", description: "Truncates text with an ellipsis." },
-            { name: "as", type: "ElementType", default: '"p" / "h2"', description: "HTML element to render as." },
+            {
+              name: "size",
+              type: '"2xs" | "xs" | "sm" | "base" | "lg" | "xl"',
+              default: '"base"',
+              description: "Text size (Text component).",
+            },
+            {
+              name: "level",
+              type: "1 | 2 | 3 | 4 | 5 | 6",
+              default: "2",
+              description: "Heading level — controls both visual size and rendered element.",
+            },
+            {
+              name: "weight",
+              type: '"normal" | "medium" | "semibold" | "bold"',
+              default: '"normal"',
+              description: "Font weight.",
+            },
+            {
+              name: "color",
+              type: '"default" | "muted" | "subtle" | "disabled" | "accent" | "danger" | "success" | "warning"',
+              default: '"default"',
+              description: "Text color token.",
+            },
+            {
+              name: "align",
+              type: '"left" | "center" | "right"',
+              default: "—",
+              description: "Text alignment.",
+            },
+            {
+              name: "truncate",
+              type: "boolean",
+              default: "false",
+              description: "Truncates text with an ellipsis.",
+            },
+            {
+              name: "as",
+              type: "ElementType",
+              default: '"p" / "h2"',
+              description: "HTML element to render as.",
+            },
           ]}
         />
       </Section>

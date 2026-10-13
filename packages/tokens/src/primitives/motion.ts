@@ -29,9 +29,9 @@ export const easing = {
   "spring-gentle": "cubic-bezier(0.34, 1.56, 0.64, 1)",
   "spring-snappy": "cubic-bezier(0.68, -0.6, 0.32, 1.6)",
   "spring-bouncy": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-  "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
-  "accelerate": "cubic-bezier(0.4, 0, 1, 1)",
-  "sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+  decelerate: "cubic-bezier(0, 0, 0.2, 1)",
+  accelerate: "cubic-bezier(0.4, 0, 1, 1)",
+  sharp: "cubic-bezier(0.4, 0, 0.6, 1)",
 } as const;
 
 export type DurationToken = keyof typeof duration;

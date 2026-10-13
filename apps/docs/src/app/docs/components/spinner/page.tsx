@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Spinner } from "@loony/ui";
 
 export default function SpinnerPage() {
@@ -19,7 +26,7 @@ export default function SpinnerPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Spinner } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview code={`<Spinner />`}>
+        <ComponentPreview code={"<Spinner />"}>
           <Spinner />
         </ComponentPreview>
       </Section>
@@ -45,8 +52,18 @@ export default function SpinnerPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "size", type: '"xs" | "sm" | "md" | "lg" | "xl"', default: '"md"', description: "Size of the spinner." },
-            { name: "label", type: "string", default: '"Loading"', description: 'Accessible label. Pass empty string to hide from screen readers.' },
+            {
+              name: "size",
+              type: '"xs" | "sm" | "md" | "lg" | "xl"',
+              default: '"md"',
+              description: "Size of the spinner.",
+            },
+            {
+              name: "label",
+              type: "string",
+              default: '"Loading"',
+              description: "Accessible label. Pass empty string to hide from screen readers.",
+            },
           ]}
         />
       </Section>
