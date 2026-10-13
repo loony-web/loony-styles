@@ -1,8 +1,8 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@loony/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithRef } from "react";
 
 const spinnerVariants = cva(
   [
@@ -26,9 +26,7 @@ const spinnerVariants = cva(
   },
 );
 
-interface SpinnerProps
-  extends ComponentPropsWithRef<"span">,
-    VariantProps<typeof spinnerVariants> {
+interface SpinnerProps extends ComponentPropsWithRef<"span">, VariantProps<typeof spinnerVariants> {
   /** Screen reader label. Defaults to "Loading". Pass empty string to fully hide from AT. */
   label?: string;
 }

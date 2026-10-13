@@ -48,30 +48,35 @@ export const semanticColors = {
   "color-danger-hover": "var(--loony-color-danger-hover)",
   "color-danger-subtle": "var(--loony-color-danger-subtle)",
   "color-danger-fg": "var(--loony-color-danger-fg)",
+  "color-danger-border": "var(--loony-color-danger-border)",
 
   // Warning
   "color-warning": "var(--loony-color-warning)",
   "color-warning-hover": "var(--loony-color-warning-hover)",
   "color-warning-subtle": "var(--loony-color-warning-subtle)",
   "color-warning-fg": "var(--loony-color-warning-fg)",
+  "color-warning-border": "var(--loony-color-warning-border)",
 
   // Success
   "color-success": "var(--loony-color-success)",
   "color-success-hover": "var(--loony-color-success-hover)",
   "color-success-subtle": "var(--loony-color-success-subtle)",
   "color-success-fg": "var(--loony-color-success-fg)",
+  "color-success-border": "var(--loony-color-success-border)",
 
   // Info
   "color-info": "var(--loony-color-info)",
   "color-info-hover": "var(--loony-color-info-hover)",
   "color-info-subtle": "var(--loony-color-info-subtle)",
   "color-info-fg": "var(--loony-color-info-fg)",
+  "color-info-border": "var(--loony-color-info-border)",
 
   // --- Surface tones (for cards, panels, modals) ---
   "color-surface": "var(--loony-color-surface)",
   "color-surface-raised": "var(--loony-color-surface-raised)",
   "color-surface-overlay": "var(--loony-color-surface-overlay)",
   "color-surface-sunken": "var(--loony-color-surface-sunken)",
+  "color-surface-hover": "var(--loony-color-surface-hover)",
 } as const;
 
 export type SemanticColorToken = keyof typeof semanticColors;

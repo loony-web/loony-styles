@@ -66,11 +66,12 @@
     /* ============================================
      * PRIMITIVE: Typography
      * ============================================ */
-    --loony-font-sans: InterVariable, Inter, ui-sans-serif, system-ui, -apple-system,
+    --loony-font-sans:
+      InterVariable, Inter, ui-sans-serif, system-ui, -apple-system,
       BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
       sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --loony-font-mono: JetBrainsMonoVariable, JetBrainsMono, ui-monospace, SFMono-Regular,
-      Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --loony-font-mono: JetBrainsMonoVariable, JetBrainsMono, ui-monospace, SFMono-Regular, Menlo,
+      Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --loony-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
     --loony-text-2xs: 0.625rem;
@@ -172,14 +173,14 @@
     --loony-color-bg: oklch(1 0 0);
     --loony-color-bg-subtle: oklch(0.985 0.002 247.839);
     --loony-color-bg-muted: oklch(0.967 0.003 264.542);
-    --loony-color-bg-inverted: oklch(0.130 0.028 261.692);
+    --loony-color-bg-inverted: oklch(0.13 0.028 261.692);
     --loony-color-bg-overlay: oklch(0 0 0 / 0.5);
 
     /* Foreground / Text */
-    --loony-color-fg: oklch(0.130 0.028 261.692);
+    --loony-color-fg: oklch(0.13 0.028 261.692);
     --loony-color-fg-muted: oklch(0.446 0.017 257.911);
     --loony-color-fg-subtle: oklch(0.707 0.022 261.325);
-    --loony-color-fg-disabled: oklch(0.872 0.010 258.338);
+    --loony-color-fg-disabled: oklch(0.872 0.01 258.338);
     --loony-color-fg-inverted: oklch(1 0 0);
     --loony-color-fg-on-accent: oklch(1 0 0);
 
@@ -196,7 +197,7 @@
     --loony-color-accent: oklch(0.546 0.245 262.881);
     --loony-color-accent-hover: oklch(0.488 0.243 264.376);
     --loony-color-accent-active: oklch(0.424 0.199 265.638);
-    --loony-color-accent-subtle: oklch(0.970 0.014 237.598);
+    --loony-color-accent-subtle: oklch(0.97 0.014 237.598);
     --loony-color-accent-fg: oklch(1 0 0);
 
     /* Danger */
@@ -220,7 +221,7 @@
     /* Info */
     --loony-color-info: oklch(0.623 0.214 259.815);
     --loony-color-info-hover: oklch(0.546 0.245 262.881);
-    --loony-color-info-subtle: oklch(0.970 0.014 237.598);
+    --loony-color-info-subtle: oklch(0.97 0.014 237.598);
     --loony-color-info-fg: oklch(1 0 0);
 
     /* Surfaces */
@@ -228,6 +229,45 @@
     --loony-color-surface-raised: oklch(1 0 0);
     --loony-color-surface-overlay: oklch(1 0 0);
     --loony-color-surface-sunken: oklch(0.985 0.002 247.839);
+    --loony-color-surface-hover: oklch(0.96 0.004 247);
+
+    /* Status borders are derived (see below); high-contrast raises this to 100%. */
+    --loony-color-status-border-strength: 40%;
+  }
+
+  /* ============================================
+   * Derived tokens
+   *
+   * Custom properties resolve var() where they are declared, so derived tokens
+   * must be re-declared on every element that can switch theme — otherwise a
+   * `.dark` subtree would inherit values computed from the light palette.
+   * ============================================ */
+  :root,
+  .light,
+  .dark,
+  .high-contrast,
+  [data-theme],
+  [data-contrast] {
+    --loony-color-danger-border: color-mix(
+      in oklch,
+      var(--loony-color-danger) var(--loony-color-status-border-strength),
+      transparent
+    );
+    --loony-color-warning-border: color-mix(
+      in oklch,
+      var(--loony-color-warning) var(--loony-color-status-border-strength),
+      transparent
+    );
+    --loony-color-success-border: color-mix(
+      in oklch,
+      var(--loony-color-success) var(--loony-color-status-border-strength),
+      transparent
+    );
+    --loony-color-info-border: color-mix(
+      in oklch,
+      var(--loony-color-info) var(--loony-color-status-border-strength),
+      transparent
+    );
   }
 
   /* ============================================

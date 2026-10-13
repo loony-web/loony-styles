@@ -1,9 +1,9 @@
 "use client";
 
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { type ComponentPropsWithRef } from "react";
-import { cn } from "@loony/utils";
 import { CheckIcon, MinusIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import type { ComponentPropsWithRef } from "react";
 
 type CheckboxProps = ComponentPropsWithRef<typeof CheckboxPrimitive.Root> & {
   indeterminate?: boolean;
@@ -35,14 +35,14 @@ export function Checkbox({ className, checked, indeterminate, ...props }: Checkb
     <CheckboxPrimitive.Root
       className={cn(
         "peer h-4 w-4 shrink-0",
-        "rounded-[--loony-radius-xs]",
-        "border border-[--loony-color-border-strong]",
-        "bg-[--loony-color-bg]",
-        "outline-none transition-colors duration-[--loony-duration-fast]",
-        "focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-2",
+        "rounded-(--loony-radius-xs)",
+        "border border-(--loony-color-border-strong)",
+        "bg-(--loony-color-bg)",
+        "outline-none transition-colors duration-(--loony-duration-fast)",
+        "focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-2",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "data-[state=checked]:bg-[--loony-color-accent] data-[state=checked]:border-[--loony-color-accent] data-[state=checked]:text-[--loony-color-accent-fg]",
-        "data-[state=indeterminate]:bg-[--loony-color-accent] data-[state=indeterminate]:border-[--loony-color-accent] data-[state=indeterminate]:text-[--loony-color-accent-fg]",
+        "data-[state=checked]:bg-(--loony-color-accent) data-[state=checked]:border-(--loony-color-accent) data-[state=checked]:text-(--loony-color-accent-fg)",
+        "data-[state=indeterminate]:bg-(--loony-color-accent) data-[state=indeterminate]:border-(--loony-color-accent) data-[state=indeterminate]:text-(--loony-color-accent-fg)",
         className,
       )}
       checked={resolvedChecked}

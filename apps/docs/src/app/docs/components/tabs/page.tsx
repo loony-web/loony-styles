@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@loony/ui";
 
 export default function TabsPage() {
   return (
@@ -51,13 +58,19 @@ export default function TabsPage() {
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
             <TabsContent value="account">
-              <p className="p-2 text-sm text-[--loony-color-fg-muted]">Make changes to your account here.</p>
+              <p className="p-2 text-sm text-(--loony-color-fg-muted)">
+                Make changes to your account here.
+              </p>
             </TabsContent>
             <TabsContent value="password">
-              <p className="p-2 text-sm text-[--loony-color-fg-muted]">Change your password here.</p>
+              <p className="p-2 text-sm text-(--loony-color-fg-muted)">
+                Change your password here.
+              </p>
             </TabsContent>
             <TabsContent value="settings">
-              <p className="p-2 text-sm text-[--loony-color-fg-muted]">Manage your settings here.</p>
+              <p className="p-2 text-sm text-(--loony-color-fg-muted)">
+                Manage your settings here.
+              </p>
             </TabsContent>
           </Tabs>
         </ComponentPreview>
@@ -79,13 +92,15 @@ export default function TabsPage() {
             <TabsList>
               <TabsTrigger value="tab1">Active</TabsTrigger>
               <TabsTrigger value="tab2">Normal</TabsTrigger>
-              <TabsTrigger value="tab3" disabled>Disabled</TabsTrigger>
+              <TabsTrigger value="tab3" disabled>
+                Disabled
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="tab1">
-              <p className="p-2 text-sm text-[--loony-color-fg-muted]">Active tab content.</p>
+              <p className="p-2 text-sm text-(--loony-color-fg-muted)">Active tab content.</p>
             </TabsContent>
             <TabsContent value="tab2">
-              <p className="p-2 text-sm text-[--loony-color-fg-muted]">Normal tab content.</p>
+              <p className="p-2 text-sm text-(--loony-color-fg-muted)">Normal tab content.</p>
             </TabsContent>
           </Tabs>
         </ComponentPreview>
@@ -94,10 +109,25 @@ export default function TabsPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "defaultValue", type: "string", default: "—", description: "Initial active tab (uncontrolled)." },
+            {
+              name: "defaultValue",
+              type: "string",
+              default: "—",
+              description: "Initial active tab (uncontrolled).",
+            },
             { name: "value", type: "string", default: "—", description: "Controlled active tab." },
-            { name: "onValueChange", type: "(value: string) => void", default: "—", description: "Callback when active tab changes." },
-            { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "Orientation of the tab list." },
+            {
+              name: "onValueChange",
+              type: "(value: string) => void",
+              default: "—",
+              description: "Callback when active tab changes.",
+            },
+            {
+              name: "orientation",
+              type: '"horizontal" | "vertical"',
+              default: '"horizontal"',
+              description: "Orientation of the tab list.",
+            },
           ]}
         />
       </Section>

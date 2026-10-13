@@ -1,26 +1,24 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn, Slot, type WithAsChild } from "@loony/utils";
 import { ExternalLinkIcon } from "@loony/icons";
+import { Slot, type WithAsChild, cn } from "@loony/utils";
 import { VisuallyHidden } from "@loony/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithRef } from "react";
 
 const linkVariants = cva(
   [
     "inline-flex items-center gap-1",
     "underline-offset-4",
-    "transition-colors duration-[--loony-duration-fast]",
-    "outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-2 rounded-[--loony-radius-xs]",
+    "transition-colors duration-(--loony-duration-fast)",
+    "outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-2 rounded-(--loony-radius-xs)",
   ],
   {
     variants: {
       variant: {
-        default:
-          "text-[--loony-color-accent] underline hover:text-[--loony-color-accent-hover]",
-        subtle:
-          "text-[--loony-color-fg-muted] hover:text-[--loony-color-fg] hover:underline",
-        ghost: "text-[--loony-color-fg] hover:text-[--loony-color-accent] hover:underline",
+        default: "text-(--loony-color-accent) underline hover:text-(--loony-color-accent-hover)",
+        subtle: "text-(--loony-color-fg-muted) hover:text-(--loony-color-fg) hover:underline",
+        ghost: "text-(--loony-color-fg) hover:text-(--loony-color-accent) hover:underline",
       },
     },
     defaultVariants: {
@@ -70,11 +68,7 @@ export function Link({
     : { rel, target };
 
   return (
-    <Comp
-      className={cn(linkVariants({ variant }), className)}
-      {...externalProps}
-      {...props}
-    >
+    <Comp className={cn(linkVariants({ variant }), className)} {...externalProps} {...props}>
       {children}
       {external && (
         <>

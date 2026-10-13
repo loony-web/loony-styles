@@ -1,16 +1,16 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
-import { type VariantProps, cva } from "class-variance-authority";
-import { cn, Slot, type WithAsChild } from "@loony/utils";
+import { Slot, type WithAsChild, cn } from "@loony/utils";
 import { VisuallyHidden } from "@loony/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithRef } from "react";
 
 const iconButtonVariants = cva(
   [
     "inline-flex items-center justify-center shrink-0",
-    "rounded-[--loony-radius-btn]",
-    "transition-colors duration-[--loony-duration-fast] ease-[--loony-ease-ui]",
-    "outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-2",
+    "rounded-(--loony-radius-btn)",
+    "transition-colors duration-(--loony-duration-fast) ease-(--loony-ease-ui)",
+    "outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
   ],
@@ -18,15 +18,14 @@ const iconButtonVariants = cva(
     variants: {
       variant: {
         solid:
-          "bg-[--loony-color-accent] text-[--loony-color-accent-fg] hover:bg-[--loony-color-accent-hover] active:bg-[--loony-color-accent-active]",
+          "bg-(--loony-color-accent) text-(--loony-color-accent-fg) hover:bg-(--loony-color-accent-hover) active:bg-(--loony-color-accent-active)",
         outline:
-          "border border-[--loony-color-border-strong] text-[--loony-color-fg] hover:bg-[--loony-color-bg-subtle] active:bg-[--loony-color-bg-muted]",
+          "border border-(--loony-color-border-strong) text-(--loony-color-fg) hover:bg-(--loony-color-bg-subtle) active:bg-(--loony-color-bg-muted)",
         ghost:
-          "text-[--loony-color-fg] hover:bg-[--loony-color-bg-subtle] active:bg-[--loony-color-bg-muted]",
+          "text-(--loony-color-fg) hover:bg-(--loony-color-bg-subtle) active:bg-(--loony-color-bg-muted)",
         danger:
-          "bg-[--loony-color-danger] text-[--loony-color-danger-fg] hover:bg-[--loony-color-danger-hover]",
-        "danger-ghost":
-          "text-[--loony-color-danger] hover:bg-[--loony-color-danger-subtle]",
+          "bg-(--loony-color-danger) text-(--loony-color-danger-fg) hover:bg-(--loony-color-danger-hover)",
+        "danger-ghost": "text-(--loony-color-danger) hover:bg-(--loony-color-danger-subtle)",
       },
       size: {
         xs: "h-6 w-6 [&_svg]:w-3 [&_svg]:h-3",
@@ -36,7 +35,7 @@ const iconButtonVariants = cva(
         xl: "h-12 w-12 [&_svg]:w-6 [&_svg]:h-6",
       },
       rounded: {
-        default: "rounded-[--loony-radius-btn]",
+        default: "rounded-(--loony-radius-btn)",
         full: "rounded-full",
       },
     },

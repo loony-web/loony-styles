@@ -7,7 +7,13 @@ import { useState } from "react";
 function LogoIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
-      <rect width="22" height="22" rx="6" fill="currentColor" className="text-[--loony-color-accent]" />
+      <rect
+        width="22"
+        height="22"
+        rx="6"
+        fill="currentColor"
+        className="text-(--loony-color-accent)"
+      />
       <path d="M6 7h4v8H6zM12 7h4l-2 4 2 4h-4l2-4-2-4z" fill="white" fillOpacity="0.95" />
     </svg>
   );
@@ -15,7 +21,15 @@ function LogoIcon() {
 
 function MoonIcon() {
   return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      className="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
@@ -23,7 +37,15 @@ function MoonIcon() {
 
 function SunIcon() {
   return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      className="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="12" cy="12" r="5" />
       <line x1="12" y1="1" x2="12" y2="3" />
       <line x1="12" y1="21" x2="12" y2="23" />
@@ -63,24 +85,24 @@ export function DocsHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 h-14 w-full border-b border-[--loony-color-border] bg-[--loony-color-bg]/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 h-14 w-full border-b border-(--loony-color-border) bg-(--loony-color-bg)/95 backdrop-blur-sm">
       <div className="flex h-full items-center gap-6 px-4 md:px-6">
         {/* Logo */}
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2 font-semibold text-[--loony-color-fg]"
+          className="flex shrink-0 items-center gap-2 font-semibold text-(--loony-color-fg)"
         >
           <LogoIcon />
           <span className="text-sm font-bold tracking-tight">loony/ui</span>
         </Link>
 
         {/* Divider */}
-        <div className="hidden h-5 w-px bg-[--loony-color-border] md:block" aria-hidden />
+        <div className="hidden h-5 w-px bg-(--loony-color-border) md:block" aria-hidden />
 
         {/* Nav */}
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
           {navLinks.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(link.href + "/");
+            const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.href}
@@ -88,8 +110,8 @@ export function DocsHeader() {
                 className={[
                   "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                   active
-                    ? "bg-[--loony-color-surface] text-[--loony-color-fg]"
-                    : "text-[--loony-color-fg-muted] hover:bg-[--loony-color-surface] hover:text-[--loony-color-fg]",
+                    ? "bg-(--loony-color-surface) text-(--loony-color-fg)"
+                    : "text-(--loony-color-fg-muted) hover:bg-(--loony-color-surface) hover:text-(--loony-color-fg)",
                 ].join(" ")}
               >
                 {link.label}
@@ -101,16 +123,16 @@ export function DocsHeader() {
         {/* Right side */}
         <div className="ml-auto flex items-center gap-2">
           {/* Version badge */}
-          <span className="hidden rounded-full border border-[--loony-color-border] bg-[--loony-color-surface] px-2 py-0.5 text-xs text-[--loony-color-fg-muted] sm:inline-flex">
+          <span className="hidden rounded-full border border-(--loony-color-border) bg-(--loony-color-surface) px-2 py-0.5 text-xs text-(--loony-color-fg-muted) sm:inline-flex">
             v0.1.0
           </span>
 
           {/* GitHub */}
           <a
-            href="https://github.com/your-org/loony"
+            href="https://github.com/loony-web/loony-styles"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[--loony-color-border] text-[--loony-color-fg-muted] transition-colors hover:bg-[--loony-color-surface] hover:text-[--loony-color-fg]"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-(--loony-color-border) text-(--loony-color-fg-muted) transition-colors hover:bg-(--loony-color-surface) hover:text-(--loony-color-fg)"
             aria-label="View on GitHub"
           >
             <GitHubIcon />
@@ -120,7 +142,7 @@ export function DocsHeader() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[--loony-color-border] text-[--loony-color-fg-muted] transition-colors hover:bg-[--loony-color-surface] hover:text-[--loony-color-fg]"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-(--loony-color-border) text-(--loony-color-fg-muted) transition-colors hover:bg-(--loony-color-surface) hover:text-(--loony-color-fg)"
             aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {dark ? <SunIcon /> : <MoonIcon />}

@@ -1,12 +1,12 @@
 "use client";
 
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
-import { forwardRef } from "react";
 import { cn } from "@loony/utils";
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
+import { forwardRef } from "react";
 
 export const ScrollArea = forwardRef<
-  ElementRef<typeof ScrollAreaPrimitive.Root>,
+  ComponentRef<typeof ScrollAreaPrimitive.Root>,
   ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
@@ -24,7 +24,7 @@ export const ScrollArea = forwardRef<
 ScrollArea.displayName = "ScrollArea";
 
 export const ScrollBar = forwardRef<
-  ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
+  ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
   ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
 >(({ className, orientation = "vertical", ...props }, ref) => (
   <ScrollAreaPrimitive.ScrollAreaScrollbar
@@ -40,8 +40,8 @@ export const ScrollBar = forwardRef<
   >
     <ScrollAreaPrimitive.ScrollAreaThumb
       className={cn(
-        "relative flex-1 rounded-full bg-[--loony-color-border]",
-        "hover:bg-[--loony-color-border-strong]",
+        "relative flex-1 rounded-full bg-(--loony-color-border)",
+        "hover:bg-(--loony-color-border-strong)",
         "transition-colors",
       )}
     />

@@ -1,4 +1,10 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  Section,
+} from "@/components/component-doc";
 import { Skeleton } from "@loony/ui";
 
 export default function SkeletonPage() {
@@ -26,7 +32,7 @@ export default function SkeletonPage() {
 
       <Section id="card-skeleton" title="Card skeleton">
         <ComponentPreview
-          code={`<div className="w-72 space-y-3 rounded-xl border border-[--loony-color-border] p-5">
+          code={`<div className="w-72 space-y-3 rounded-xl border border-(--loony-color-border) p-5">
   <Skeleton className="h-32 w-full rounded-lg" />
   <Skeleton className="h-4 w-3/4 rounded" />
   <Skeleton className="h-4 w-1/2 rounded" />
@@ -36,7 +42,7 @@ export default function SkeletonPage() {
   </div>
 </div>`}
         >
-          <div className="w-72 space-y-3 rounded-xl border border-[--loony-color-border] p-5">
+          <div className="w-72 space-y-3 rounded-xl border border-(--loony-color-border) p-5">
             <Skeleton className="h-32 w-full rounded-lg" />
             <Skeleton className="h-4 w-3/4 rounded" />
             <Skeleton className="h-4 w-1/2 rounded" />

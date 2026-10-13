@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Textarea, Label, FormField } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { FormField, Label, Textarea } from "@loony/ui";
 
 export default function TextareaPage() {
   return (
@@ -20,9 +27,7 @@ export default function TextareaPage() {
 
       <Section id="usage" title="Usage">
         <CodeBlock>{`import { Textarea } from "@loony/ui";`}</CodeBlock>
-        <ComponentPreview
-          code={`<Textarea placeholder="Type your message here." />`}
-        >
+        <ComponentPreview code={`<Textarea placeholder="Type your message here." />`}>
           <div className="w-64">
             <Textarea placeholder="Type your message here." />
           </div>
@@ -42,7 +47,7 @@ export default function TextareaPage() {
           <div className="grid w-64 gap-1.5">
             <Label htmlFor="message">Your message</Label>
             <Textarea id="message" placeholder="Type your message here." rows={4} />
-            <p className="text-xs text-[--loony-color-fg-muted]">
+            <p className="text-xs text-(--loony-color-fg-muted)">
               Your message will be copied to the support team.
             </p>
           </div>
@@ -50,9 +55,7 @@ export default function TextareaPage() {
       </Section>
 
       <Section id="disabled" title="Disabled">
-        <ComponentPreview
-          code={`<Textarea disabled placeholder="You cannot edit this." />`}
-        >
+        <ComponentPreview code={`<Textarea disabled placeholder="You cannot edit this." />`}>
           <div className="w-64">
             <Textarea disabled placeholder="You cannot edit this." />
           </div>
@@ -63,10 +66,25 @@ export default function TextareaPage() {
         <PropsTable
           props={[
             { name: "placeholder", type: "string", default: "—", description: "Placeholder text." },
-            { name: "rows", type: "number", default: "3", description: "Number of visible text rows." },
-            { name: "disabled", type: "boolean", default: "false", description: "Prevents user interaction." },
+            {
+              name: "rows",
+              type: "number",
+              default: "3",
+              description: "Number of visible text rows.",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Prevents user interaction.",
+            },
             { name: "value", type: "string", default: "—", description: "Controlled value." },
-            { name: "onChange", type: "ChangeEventHandler<HTMLTextAreaElement>", default: "—", description: "Callback when value changes." },
+            {
+              name: "onChange",
+              type: "ChangeEventHandler<HTMLTextAreaElement>",
+              default: "—",
+              description: "Callback when value changes.",
+            },
           ]}
         />
       </Section>

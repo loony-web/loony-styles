@@ -1,7 +1,7 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 import { cn } from "@loony/utils";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 export interface BoxProps extends Omit<ComponentPropsWithoutRef<"div">, "className"> {
   as?: ElementType;

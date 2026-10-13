@@ -128,7 +128,7 @@ export function DocsSidebar() {
       >
         {nav.map((section) => (
           <div key={section.group} className="mb-4">
-            <p className="mb-1 px-2 text-[0.6875rem] font-semibold uppercase tracking-widest text-[--loony-color-fg-muted]">
+            <p className="mb-1 px-2 text-[0.6875rem] font-semibold uppercase tracking-widest text-(--loony-color-fg-muted)">
               {section.group}
             </p>
             <ul className="space-y-0.5">
@@ -143,8 +143,8 @@ export function DocsSidebar() {
                       className={[
                         "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
                         active
-                          ? "bg-[--loony-color-accent]/8 font-medium text-[--loony-color-accent]"
-                          : "text-[--loony-color-fg-muted] hover:bg-[--loony-color-surface] hover:text-[--loony-color-fg]",
+                          ? "bg-(--loony-color-accent)/8 font-medium text-(--loony-color-accent)"
+                          : "text-(--loony-color-fg-muted) hover:bg-(--loony-color-surface) hover:text-(--loony-color-fg)",
                       ].join(" ")}
                     >
                       {item.label}

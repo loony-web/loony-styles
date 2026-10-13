@@ -1,10 +1,10 @@
 "use client";
 
+import { cn } from "@loony/utils";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
-import { cn } from "@loony/utils";
 
 const sliderVariants = cva("relative flex touch-none select-none items-center", {
   variants: {
@@ -30,7 +30,7 @@ export interface SliderProps
   label?: string;
 }
 
-export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
+export const Slider = forwardRef<ComponentRef<typeof SliderPrimitive.Root>, SliderProps>(
   ({ className, size, orientation = "horizontal", label, ...props }, ref) => (
     <SliderPrimitive.Root
       ref={ref}
@@ -41,15 +41,15 @@ export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, Slider
     >
       <SliderPrimitive.Track
         className={cn(
-          "relative grow overflow-hidden rounded-full bg-[--loony-color-surface]",
+          "relative grow overflow-hidden rounded-full bg-(--loony-color-surface)",
           orientation === "horizontal"
-            ? "h-[--slider-track-size] w-full"
-            : "h-full w-[--slider-track-size]",
+            ? "h-(--slider-track-size) w-full"
+            : "h-full w-(--slider-track-size)",
         )}
       >
         <SliderPrimitive.Range
           className={cn(
-            "absolute rounded-full bg-[--loony-color-accent]",
+            "absolute rounded-full bg-(--loony-color-accent)",
             orientation === "horizontal" ? "h-full" : "w-full",
           )}
         />
@@ -58,11 +58,11 @@ export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, Slider
         <SliderPrimitive.Thumb
           key={i}
           className={cn(
-            "block rounded-full border-2 border-[--loony-color-accent]",
-            "h-[--slider-thumb-size] w-[--slider-thumb-size]",
-            "bg-[--loony-color-surface]",
+            "block rounded-full border-2 border-(--loony-color-accent)",
+            "h-(--slider-thumb-size) w-(--slider-thumb-size)",
+            "bg-(--loony-color-surface)",
             "ring-offset-2 transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring)",
             "disabled:pointer-events-none disabled:opacity-50",
             "shadow-sm",
           )}

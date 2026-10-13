@@ -1,10 +1,10 @@
 "use client";
 
+import { cn } from "@loony/utils";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
-import { cn } from "@loony/utils";
 
 const radioGroupVariants = cva("grid gap-2", {
   variants: {
@@ -23,7 +23,7 @@ export interface RadioGroupProps
     VariantProps<typeof radioGroupVariants> {}
 
 export const RadioGroup = forwardRef<
-  ElementRef<typeof RadioGroupPrimitive.Root>,
+  ComponentRef<typeof RadioGroupPrimitive.Root>,
   RadioGroupProps
 >(({ className, orientation, ...props }, ref) => (
   <RadioGroupPrimitive.Root
@@ -37,11 +37,11 @@ RadioGroup.displayName = "RadioGroup";
 const radioItemVariants = cva(
   [
     "aspect-square h-4 w-4 rounded-full border-2 ring-offset-2",
-    "border-[--loony-color-border]",
-    "text-[--loony-color-accent]",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-2",
+    "border-(--loony-color-border)",
+    "text-(--loony-color-accent)",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-2",
     "disabled:cursor-not-allowed disabled:opacity-50",
-    "data-[state=checked]:border-[--loony-color-accent]",
+    "data-[state=checked]:border-(--loony-color-accent)",
     "transition-colors duration-150",
   ],
   {
@@ -62,23 +62,22 @@ export interface RadioItemProps
   extends ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
     VariantProps<typeof radioItemVariants> {}
 
-export const RadioItem = forwardRef<
-  ElementRef<typeof RadioGroupPrimitive.Item>,
-  RadioItemProps
->(({ className, size, children, ...props }, ref) => (
-  <RadioGroupPrimitive.Item
-    ref={ref}
-    className={cn(radioItemVariants({ size }), className)}
-    {...props}
-  >
-    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-      <span
-        className={cn(
-          "block rounded-full bg-[--loony-color-accent]",
-          size === "sm" ? "h-1.5 w-1.5" : size === "lg" ? "h-2.5 w-2.5" : "h-2 w-2",
-        )}
-      />
-    </RadioGroupPrimitive.Indicator>
-  </RadioGroupPrimitive.Item>
-));
+export const RadioItem = forwardRef<ComponentRef<typeof RadioGroupPrimitive.Item>, RadioItemProps>(
+  ({ className, size, children, ...props }, ref) => (
+    <RadioGroupPrimitive.Item
+      ref={ref}
+      className={cn(radioItemVariants({ size }), className)}
+      {...props}
+    >
+      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+        <span
+          className={cn(
+            "block rounded-full bg-(--loony-color-accent)",
+            size === "sm" ? "h-1.5 w-1.5" : size === "lg" ? "h-2.5 w-2.5" : "h-2 w-2",
+          )}
+        />
+      </RadioGroupPrimitive.Indicator>
+    </RadioGroupPrimitive.Item>
+  ),
+);
 RadioItem.displayName = "RadioItem";

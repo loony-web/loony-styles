@@ -1,8 +1,8 @@
 "use client";
 
-import * as LabelPrimitive from "@radix-ui/react-label";
-import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";
+import * as LabelPrimitive from "@radix-ui/react-label";
+import type { ComponentPropsWithRef } from "react";
 
 type LabelProps = ComponentPropsWithRef<typeof LabelPrimitive.Root>;
 
@@ -22,7 +22,7 @@ export function Label({ className, ...props }: LabelProps) {
   return (
     <LabelPrimitive.Root
       className={cn(
-        "text-sm font-medium text-[--loony-color-fg] leading-none",
+        "text-sm font-medium text-(--loony-color-fg) leading-none",
         "peer-disabled:opacity-50 peer-disabled:cursor-not-allowed",
         className,
       )}

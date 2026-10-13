@@ -1,15 +1,15 @@
 "use client";
 
-import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
-import { forwardRef } from "react";
 import { cn } from "@loony/utils";
+import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
+import { forwardRef } from "react";
 
 export const HoverCard = HoverCardPrimitive.Root;
 export const HoverCardTrigger = HoverCardPrimitive.Trigger;
 
 export const HoverCardContent = forwardRef<
-  ElementRef<typeof HoverCardPrimitive.Content>,
+  ComponentRef<typeof HoverCardPrimitive.Content>,
   ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>
 >(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
   <HoverCardPrimitive.Content
@@ -18,7 +18,7 @@ export const HoverCardContent = forwardRef<
     sideOffset={sideOffset}
     className={cn(
       "z-50 w-64 rounded-md",
-      "border border-[--loony-color-border] bg-[--loony-color-surface]",
+      "border border-(--loony-color-border) bg-(--loony-color-surface)",
       "p-4 shadow-md",
       "outline-none",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",

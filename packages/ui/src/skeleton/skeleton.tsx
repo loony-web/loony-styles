@@ -1,9 +1,9 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";
+import type { ComponentPropsWithRef } from "react";
 
-interface SkeletonProps extends ComponentPropsWithRef<"div"> {}
+type SkeletonProps = ComponentPropsWithRef<"div">;
 
 /**
  * Skeleton — Placeholder loading state.
@@ -22,8 +22,8 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
       aria-label="Loading"
       aria-busy="true"
       className={cn(
-        "animate-pulse rounded-[--loony-radius-sm]",
-        "bg-[--loony-color-bg-muted]",
+        "animate-pulse rounded-(--loony-radius-sm)",
+        "bg-(--loony-color-bg-muted)",
         "motion-reduce:animate-none motion-reduce:opacity-70",
         className,
       )}

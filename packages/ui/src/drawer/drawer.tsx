@@ -1,28 +1,26 @@
 "use client";
 
+import { XIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
-import { cn } from "@loony/utils";
-import { XIcon } from "@loony/icons";
 import { IconButton } from "../icon-button/icon-button";
 
 export const Drawer = DialogPrimitive.Root;
 export const DrawerTrigger = DialogPrimitive.Trigger;
 export const DrawerClose = DialogPrimitive.Close;
 
-const drawerOverlayVariants = cva(
-  [
-    "fixed inset-0 z-50 bg-black/50",
-    "data-[state=open]:animate-in data-[state=closed]:animate-out",
-    "data-[state=open]:fade-in data-[state=closed]:fade-out",
-    "duration-300 motion-reduce:duration-0",
-  ],
-);
+const drawerOverlayVariants = cva([
+  "fixed inset-0 z-50 bg-black/50",
+  "data-[state=open]:animate-in data-[state=closed]:animate-out",
+  "data-[state=open]:fade-in data-[state=closed]:fade-out",
+  "duration-300 motion-reduce:duration-0",
+]);
 
 export const DrawerOverlay = forwardRef<
-  ElementRef<typeof DialogPrimitive.Overlay>,
+  ComponentRef<typeof DialogPrimitive.Overlay>,
   ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Overlay
@@ -36,7 +34,7 @@ DrawerOverlay.displayName = "DrawerOverlay";
 const drawerContentVariants = cva(
   [
     "fixed z-50 flex flex-col gap-0",
-    "bg-[--loony-color-surface] shadow-xl",
+    "bg-(--loony-color-surface) shadow-xl",
     "focus:outline-none",
     "data-[state=open]:animate-in data-[state=closed]:animate-out",
     "duration-300 motion-reduce:duration-0",
@@ -47,22 +45,22 @@ const drawerContentVariants = cva(
         left: [
           "left-0 inset-y-0 h-full w-3/4 sm:max-w-sm",
           "data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left",
-          "border-r border-[--loony-color-border]",
+          "border-r border-(--loony-color-border)",
         ],
         right: [
           "right-0 inset-y-0 h-full w-3/4 sm:max-w-sm",
           "data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right",
-          "border-l border-[--loony-color-border]",
+          "border-l border-(--loony-color-border)",
         ],
         top: [
           "top-0 inset-x-0 w-full",
           "data-[state=open]:slide-in-from-top data-[state=closed]:slide-out-to-top",
-          "border-b border-[--loony-color-border]",
+          "border-b border-(--loony-color-border)",
         ],
         bottom: [
           "bottom-0 inset-x-0 w-full",
           "data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom",
-          "border-t border-[--loony-color-border]",
+          "border-t border-(--loony-color-border)",
         ],
       },
     },
@@ -79,7 +77,7 @@ export interface DrawerContentProps
 }
 
 export const DrawerContent = forwardRef<
-  ElementRef<typeof DialogPrimitive.Content>,
+  ComponentRef<typeof DialogPrimitive.Content>,
   DrawerContentProps
 >(({ className, side, hideClose, children, ...props }, ref) => (
   <DialogPrimitive.Portal>
@@ -92,11 +90,7 @@ export const DrawerContent = forwardRef<
       {!hideClose && (
         <div className="absolute right-4 top-4">
           <DialogPrimitive.Close asChild>
-            <IconButton
-              label="Close drawer"
-              variant="ghost"
-              size="sm"
-            >
+            <IconButton label="Close drawer" variant="ghost" size="sm">
               <XIcon aria-hidden />
             </IconButton>
           </DialogPrimitive.Close>
@@ -108,14 +102,13 @@ export const DrawerContent = forwardRef<
 ));
 DrawerContent.displayName = "DrawerContent";
 
-export function DrawerHeader({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<"div">) {
+export function DrawerHeader({ className, children, ...props }: ComponentPropsWithoutRef<"div">) {
   return (
     <div
-      className={cn("flex flex-col gap-1.5 px-6 py-4 border-b border-[--loony-color-border]", className)}
+      className={cn(
+        "flex flex-col gap-1.5 px-6 py-4 border-b border-(--loony-color-border)",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -136,7 +129,7 @@ export function DrawerFooter({ className, children, ...props }: ComponentPropsWi
     <div
       className={cn(
         "flex items-center justify-end gap-2 px-6 py-4",
-        "border-t border-[--loony-color-border]",
+        "border-t border-(--loony-color-border)",
         className,
       )}
       {...props}
@@ -147,24 +140,24 @@ export function DrawerFooter({ className, children, ...props }: ComponentPropsWi
 }
 
 export const DrawerTitle = forwardRef<
-  ElementRef<typeof DialogPrimitive.Title>,
+  ComponentRef<typeof DialogPrimitive.Title>,
   ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-semibold text-[--loony-color-fg]", className)}
+    className={cn("text-lg font-semibold text-(--loony-color-fg)", className)}
     {...props}
   />
 ));
 DrawerTitle.displayName = "DrawerTitle";
 
 export const DrawerDescription = forwardRef<
-  ElementRef<typeof DialogPrimitive.Description>,
+  ComponentRef<typeof DialogPrimitive.Description>,
   ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-[--loony-color-fg-muted]", className)}
+    className={cn("text-sm text-(--loony-color-fg-muted)", className)}
     {...props}
   />
 ));

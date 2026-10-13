@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { CodeBlock, Section } from "@/components/component-doc";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Theming — Loony" };
 
@@ -7,10 +7,11 @@ export default function ThemingPage() {
   return (
     <div className="max-w-3xl">
       <div className="mb-8">
-        <h1 className="mb-3 text-3xl font-bold tracking-tight text-[--loony-color-fg]">Theming</h1>
-        <p className="text-[--loony-color-fg-muted]">
-          Loony uses a three-layer CSS custom property system: Primitives → Semantic → Component. All tokens are
-          defined in <code className="font-mono text-xs">@loony/tokens</code> and consumed as CSS variables.
+        <h1 className="mb-3 text-3xl font-bold tracking-tight text-(--loony-color-fg)">Theming</h1>
+        <p className="text-(--loony-color-fg-muted)">
+          Loony uses a three-layer CSS custom property system: Primitives → Semantic → Component.
+          All tokens are defined in <code className="font-mono text-xs">@loony/tokens</code> and
+          consumed as CSS variables.
         </p>
       </div>
 
@@ -20,7 +21,8 @@ export default function ThemingPage() {
             {
               layer: "Primitives",
               file: "@loony/tokens/src/primitives.css",
-              description: "Raw oklch values — colors, radii, font sizes, spacing scale. Never used directly in components.",
+              description:
+                "Raw oklch values — colors, radii, font sizes, spacing scale. Never used directly in components.",
               example: `/* primitives.css */
 @layer loony.primitives {
   :root {
@@ -33,7 +35,8 @@ export default function ThemingPage() {
             {
               layer: "Semantic",
               file: "@loony/tokens/src/semantic.css",
-              description: "Named intent tokens that map primitives to meaning. Light and dark values defined here.",
+              description:
+                "Named intent tokens that map primitives to meaning. Light and dark values defined here.",
               example: `/* semantic.css */
 @layer loony.semantic {
   :root {
@@ -53,7 +56,8 @@ export default function ThemingPage() {
             {
               layer: "Component",
               file: "component-level via CVA",
-              description: "Per-component custom properties set on the element. Lets variants override only what they need.",
+              description:
+                "Per-component custom properties set on the element. Lets variants override only what they need.",
               example: `/* Set on the .progress element */
 .progress[data-color="success"] {
   [--progress-fill]: var(--loony-color-success);
@@ -65,14 +69,14 @@ export default function ThemingPage() {
 }`,
             },
           ].map(({ layer, file, description, example }) => (
-            <div key={layer} className="rounded-xl border border-[--loony-color-border] p-5">
+            <div key={layer} className="rounded-xl border border-(--loony-color-border) p-5">
               <div className="mb-1 flex items-center gap-3">
-                <span className="font-semibold text-[--loony-color-fg]">{layer}</span>
-                <code className="rounded bg-[--loony-color-surface] px-1.5 py-0.5 font-mono text-xs text-[--loony-color-fg-muted]">
+                <span className="font-semibold text-(--loony-color-fg)">{layer}</span>
+                <code className="rounded bg-(--loony-color-surface) px-1.5 py-0.5 font-mono text-xs text-(--loony-color-fg-muted)">
                   {file}
                 </code>
               </div>
-              <p className="mb-3 text-sm text-[--loony-color-fg-muted]">{description}</p>
+              <p className="mb-3 text-sm text-(--loony-color-fg-muted)">{description}</p>
               <CodeBlock>{example}</CodeBlock>
             </div>
           ))}
@@ -80,10 +84,10 @@ export default function ThemingPage() {
       </Section>
 
       <Section title="Dark mode">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
           Dark mode is opt-in via the <code className="font-mono text-xs">.dark</code> class on{" "}
-          <code className="font-mono text-xs">&lt;html&gt;</code>. All semantic tokens redefine their values inside{" "}
-          <code className="font-mono text-xs">.dark &#123; &#125;</code>.
+          <code className="font-mono text-xs">&lt;html&gt;</code>. All semantic tokens redefine
+          their values inside <code className="font-mono text-xs">.dark &#123; &#125;</code>.
         </p>
         <CodeBlock>{`// Toggle dark mode
 document.documentElement.classList.toggle("dark")
@@ -105,9 +109,10 @@ export default function Layout({ children }) {
       </Section>
 
       <Section title="Customizing tokens">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
-          Override any semantic token in your own CSS. Since tokens use <code className="font-mono text-xs">@layer</code>,
-          your overrides win automatically without specificity tricks.
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
+          Override any semantic token in your own CSS. Since tokens use{" "}
+          <code className="font-mono text-xs">@layer</code>, your overrides win automatically
+          without specificity tricks.
         </p>
         <CodeBlock>{`/* globals.css */
 @import "tailwindcss";
@@ -125,25 +130,29 @@ export default function Layout({ children }) {
       </Section>
 
       <Section title="Using tokens in Tailwind">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
           Tokens are available as arbitrary CSS variable values in Tailwind utilities.
         </p>
         <CodeBlock>{`{/* Use semantic tokens directly */}
-<div className="bg-[--loony-color-surface] text-[--loony-color-fg]">
-  <p className="text-[--loony-color-fg-muted]">Muted text</p>
-  <button className="bg-[--loony-color-accent] text-white">
+<div className="bg-(--loony-color-surface) text-(--loony-color-fg)">
+  <p className="text-(--loony-color-fg-muted)">Muted text</p>
+  <button className="bg-(--loony-color-accent) text-white">
     Click me
   </button>
 </div>`}</CodeBlock>
       </Section>
 
       <Section title="Available semantic tokens">
-        <div className="overflow-hidden rounded-xl border border-[--loony-color-border]">
+        <div className="overflow-hidden rounded-xl border border-(--loony-color-border)">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[--loony-color-border] bg-[--loony-color-surface]">
-                <th className="px-4 py-3 text-left font-medium text-[--loony-color-fg-muted]">Token</th>
-                <th className="px-4 py-3 text-left font-medium text-[--loony-color-fg-muted]">Purpose</th>
+              <tr className="border-b border-(--loony-color-border) bg-(--loony-color-surface)">
+                <th className="px-4 py-3 text-left font-medium text-(--loony-color-fg-muted)">
+                  Token
+                </th>
+                <th className="px-4 py-3 text-left font-medium text-(--loony-color-fg-muted)">
+                  Purpose
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -164,9 +173,12 @@ export default function Layout({ children }) {
                 ["--loony-radius-sm / md / lg / xl", "Border radius scale"],
                 ["--loony-shadow-sm / md / lg", "Box shadow scale"],
               ].map(([token, purpose], i, arr) => (
-                <tr key={token} className={i < arr.length - 1 ? "border-b border-[--loony-color-border]" : ""}>
-                  <td className="px-4 py-2.5 font-mono text-xs text-[--loony-color-fg]">{token}</td>
-                  <td className="px-4 py-2.5 text-xs text-[--loony-color-fg-muted]">{purpose}</td>
+                <tr
+                  key={token}
+                  className={i < arr.length - 1 ? "border-b border-(--loony-color-border)" : ""}
+                >
+                  <td className="px-4 py-2.5 font-mono text-xs text-(--loony-color-fg)">{token}</td>
+                  <td className="px-4 py-2.5 text-xs text-(--loony-color-fg-muted)">{purpose}</td>
                 </tr>
               ))}
             </tbody>

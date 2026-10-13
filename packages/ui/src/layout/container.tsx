@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@loony/utils";
 import { type VariantProps, cva } from "class-variance-authority";
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
-import { cn } from "@loony/utils";
 
 const containerVariants = cva("mx-auto w-full px-4 sm:px-6 lg:px-8", {
   variants: {

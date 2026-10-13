@@ -1,16 +1,16 @@
 "use client";
 
+import { AlertCircleIcon, AlertTriangleIcon, CheckCircleIcon, InfoIcon, XIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ComponentRef, ReactNode } from "react";
 import { forwardRef } from "react";
-import { cn } from "@loony/utils";
-import { CheckCircleIcon, AlertCircleIcon, AlertTriangleIcon, InfoIcon, XIcon } from "@loony/icons";
 
 export const ToastProvider = ToastPrimitive.Provider;
 
 export const ToastViewport = forwardRef<
-  ElementRef<typeof ToastPrimitive.Viewport>,
+  ComponentRef<typeof ToastPrimitive.Viewport>,
   ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
   <ToastPrimitive.Viewport
@@ -38,15 +38,14 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "border-[--loony-color-border] bg-[--loony-color-surface] text-[--loony-color-fg]",
+        default: "border-(--loony-color-border) bg-(--loony-color-surface) text-(--loony-color-fg)",
         success:
-          "border-[--loony-color-success-border] bg-[--loony-color-success-subtle] text-[--loony-color-success]",
+          "border-(--loony-color-success-border) bg-(--loony-color-success-subtle) text-(--loony-color-success)",
         danger:
-          "border-[--loony-color-danger-border] bg-[--loony-color-danger-subtle] text-[--loony-color-danger]",
+          "border-(--loony-color-danger-border) bg-(--loony-color-danger-subtle) text-(--loony-color-danger)",
         warning:
-          "border-[--loony-color-warning-border] bg-[--loony-color-warning-subtle] text-[--loony-color-warning]",
-        info: "border-[--loony-color-info-border] bg-[--loony-color-info-subtle] text-[--loony-color-info]",
+          "border-(--loony-color-warning-border) bg-(--loony-color-warning-subtle) text-(--loony-color-warning)",
+        info: "border-(--loony-color-info-border) bg-(--loony-color-info-subtle) text-(--loony-color-info)",
       },
     },
     defaultVariants: {
@@ -72,8 +71,20 @@ export interface ToastProps
   showIcon?: boolean;
 }
 
-export const Toast = forwardRef<ElementRef<typeof ToastPrimitive.Root>, ToastProps>(
-  ({ className, variant = "default", title, description, action, showIcon = true, children, ...props }, ref) => {
+export const Toast = forwardRef<ComponentRef<typeof ToastPrimitive.Root>, ToastProps>(
+  (
+    {
+      className,
+      variant = "default",
+      title,
+      description,
+      action,
+      showIcon = true,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const Icon = variant ? VARIANT_ICONS[variant] : null;
 
     return (
@@ -100,7 +111,7 @@ export const Toast = forwardRef<ElementRef<typeof ToastPrimitive.Root>, ToastPro
             "absolute right-2 top-2 rounded-md p-1",
             "opacity-0 transition-opacity hover:opacity-100 focus:opacity-100",
             "group-hover:opacity-70",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring)",
           )}
           aria-label="Dismiss"
         >
@@ -113,7 +124,7 @@ export const Toast = forwardRef<ElementRef<typeof ToastPrimitive.Root>, ToastPro
 Toast.displayName = "Toast";
 
 export const ToastAction = forwardRef<
-  ElementRef<typeof ToastPrimitive.Action>,
+  ComponentRef<typeof ToastPrimitive.Action>,
   ComponentPropsWithoutRef<typeof ToastPrimitive.Action>
 >(({ className, ...props }, ref) => (
   <ToastPrimitive.Action
@@ -121,8 +132,8 @@ export const ToastAction = forwardRef<
     className={cn(
       "inline-flex shrink-0 items-center justify-center rounded-md px-3 py-1.5",
       "text-sm font-medium transition-colors",
-      "border border-[--loony-color-border] hover:bg-[--loony-color-surface-hover]",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring]",
+      "border border-(--loony-color-border) hover:bg-(--loony-color-surface-hover)",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring)",
       "disabled:pointer-events-none disabled:opacity-50",
       className,
     )}

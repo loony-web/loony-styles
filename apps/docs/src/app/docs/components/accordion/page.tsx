@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@loony/ui";
 
 export default function AccordionPage() {
   return (
@@ -74,9 +81,10 @@ export default function AccordionPage() {
       </Section>
 
       <Section id="single" title="Single (collapsible)">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
           Use <code className="font-mono text-xs">type=&quot;single&quot;</code> with{" "}
-          <code className="font-mono text-xs">collapsible</code> to allow the open item to be closed by clicking it again.
+          <code className="font-mono text-xs">collapsible</code> to allow the open item to be closed
+          by clicking it again.
         </p>
         <ComponentPreview
           code={`<Accordion type="single" collapsible defaultValue="item-1">
@@ -99,14 +107,13 @@ export default function AccordionPage() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>What is Loony UI?</AccordionTrigger>
                 <AccordionContent>
-                  A production-grade, accessible React component library built on Radix UI and Tailwind CSS.
+                  A production-grade, accessible React component library built on Radix UI and
+                  Tailwind CSS.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger>How do I install it?</AccordionTrigger>
-                <AccordionContent>
-                  Run pnpm add @loony/ui in your project.
-                </AccordionContent>
+                <AccordionContent>Run pnpm add @loony/ui in your project.</AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
@@ -114,8 +121,9 @@ export default function AccordionPage() {
       </Section>
 
       <Section id="multiple" title="Multiple">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
-          Use <code className="font-mono text-xs">type=&quot;multiple&quot;</code> to allow multiple items to be open at the same time.
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
+          Use <code className="font-mono text-xs">type=&quot;multiple&quot;</code> to allow multiple
+          items to be open at the same time.
         </p>
         <ComponentPreview
           code={`<Accordion type="multiple" defaultValue={["item-1", "item-2"]}>
@@ -147,11 +155,36 @@ export default function AccordionPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "type", type: '"single" | "multiple"', default: "—", description: "Whether one or multiple items can be open at a time." },
-            { name: "collapsible", type: "boolean", default: "false", description: "When type is single, allows closing the open item." },
-            { name: "defaultValue", type: "string | string[]", default: "—", description: "The default open item(s)." },
-            { name: "value", type: "string | string[]", default: "—", description: "Controlled open value(s)." },
-            { name: "onValueChange", type: "(value: string | string[]) => void", default: "—", description: "Callback when open state changes." },
+            {
+              name: "type",
+              type: '"single" | "multiple"',
+              default: "—",
+              description: "Whether one or multiple items can be open at a time.",
+            },
+            {
+              name: "collapsible",
+              type: "boolean",
+              default: "false",
+              description: "When type is single, allows closing the open item.",
+            },
+            {
+              name: "defaultValue",
+              type: "string | string[]",
+              default: "—",
+              description: "The default open item(s).",
+            },
+            {
+              name: "value",
+              type: "string | string[]",
+              default: "—",
+              description: "Controlled open value(s).",
+            },
+            {
+              name: "onValueChange",
+              type: "(value: string | string[]) => void",
+              default: "—",
+              description: "Callback when open state changes.",
+            },
           ]}
         />
       </Section>

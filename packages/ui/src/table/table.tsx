@@ -1,17 +1,13 @@
 "use client";
 
+import { cn } from "@loony/utils";
 import type { ComponentPropsWithoutRef } from "react";
 import { forwardRef } from "react";
-import { cn } from "@loony/utils";
 
 export const Table = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<"table">>(
   ({ className, ...props }, ref) => (
     <div className="relative w-full overflow-auto">
-      <table
-        ref={ref}
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
+      <table ref={ref} className={cn("w-full caption-bottom text-sm", className)} {...props} />
     </div>
   ),
 );
@@ -21,7 +17,7 @@ export const TableHeader = forwardRef<HTMLTableSectionElement, ComponentPropsWit
   ({ className, ...props }, ref) => (
     <thead
       ref={ref}
-      className={cn("[&_tr]:border-b [&_tr]:border-[--loony-color-border]", className)}
+      className={cn("[&_tr]:border-b [&_tr]:border-(--loony-color-border)", className)}
       {...props}
     />
   ),
@@ -30,11 +26,7 @@ TableHeader.displayName = "TableHeader";
 
 export const TableBody = forwardRef<HTMLTableSectionElement, ComponentPropsWithoutRef<"tbody">>(
   ({ className, ...props }, ref) => (
-    <tbody
-      ref={ref}
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
+    <tbody ref={ref} className={cn("[&_tr:last-child]:border-0", className)} {...props} />
   ),
 );
 TableBody.displayName = "TableBody";
@@ -44,7 +36,7 @@ export const TableFooter = forwardRef<HTMLTableSectionElement, ComponentPropsWit
     <tfoot
       ref={ref}
       className={cn(
-        "border-t border-[--loony-color-border] bg-[--loony-color-surface]",
+        "border-t border-(--loony-color-border) bg-(--loony-color-surface)",
         "font-medium [&>tr]:last:border-b-0",
         className,
       )}
@@ -59,9 +51,9 @@ export const TableRow = forwardRef<HTMLTableRowElement, ComponentPropsWithoutRef
     <tr
       ref={ref}
       className={cn(
-        "border-b border-[--loony-color-border] transition-colors",
-        "hover:bg-[--loony-color-surface-hover]",
-        "data-[state=selected]:bg-[--loony-color-accent-subtle]",
+        "border-b border-(--loony-color-border) transition-colors",
+        "hover:bg-(--loony-color-surface-hover)",
+        "data-[state=selected]:bg-(--loony-color-accent-subtle)",
         className,
       )}
       {...props}
@@ -76,7 +68,7 @@ export const TableHead = forwardRef<HTMLTableCellElement, ComponentPropsWithoutR
       ref={ref}
       className={cn(
         "h-10 px-4 text-left align-middle font-medium",
-        "text-[--loony-color-fg-muted]",
+        "text-(--loony-color-fg-muted)",
         "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className,
       )}
@@ -101,13 +93,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutR
 );
 TableCell.displayName = "TableCell";
 
-export const TableCaption = forwardRef<HTMLTableCaptionElement, ComponentPropsWithoutRef<"caption">>(
-  ({ className, ...props }, ref) => (
-    <caption
-      ref={ref}
-      className={cn("mt-4 text-sm text-[--loony-color-fg-muted]", className)}
-      {...props}
-    />
-  ),
-);
+export const TableCaption = forwardRef<
+  HTMLTableCaptionElement,
+  ComponentPropsWithoutRef<"caption">
+>(({ className, ...props }, ref) => (
+  <caption
+    ref={ref}
+    className={cn("mt-4 text-sm text-(--loony-color-fg-muted)", className)}
+    {...props}
+  />
+));
 TableCaption.displayName = "TableCaption";

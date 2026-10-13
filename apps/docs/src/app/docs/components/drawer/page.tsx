@@ -1,11 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
 import {
-  Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter,
-  DrawerTitle, DrawerDescription, DrawerClose, Button,
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import {
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
 } from "@loony/ui";
+import { useState } from "react";
 
 function RightDrawerDemo() {
   const [open, setOpen] = useState(false);
@@ -22,19 +37,21 @@ function RightDrawerDemo() {
         <DrawerBody>
           <nav className="flex flex-col gap-2">
             {["Dashboard", "Projects", "Team", "Settings", "Billing"].map((item) => (
-              <a
+              <button
                 key={item}
-                href="#"
-                className="rounded-md px-3 py-2 text-sm text-[--loony-color-fg-muted] hover:bg-[--loony-color-surface] hover:text-[--loony-color-fg] transition-colors"
+                type="button"
+                className="rounded-md px-3 py-2 text-left text-sm text-(--loony-color-fg-muted) hover:bg-(--loony-color-surface) hover:text-(--loony-color-fg) transition-colors"
               >
                 {item}
-              </a>
+              </button>
             ))}
           </nav>
         </DrawerBody>
         <DrawerFooter>
           <DrawerClose asChild>
-            <Button variant="outline" className="w-full">Close</Button>
+            <Button variant="outline" className="w-full">
+              Close
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
@@ -55,12 +72,14 @@ function BottomDrawerDemo() {
           <DrawerDescription>Share this content with others.</DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
-          <p className="text-sm text-[--loony-color-fg-muted]">Choose a sharing option below.</p>
+          <p className="text-sm text-(--loony-color-fg-muted)">Choose a sharing option below.</p>
         </DrawerBody>
         <DrawerFooter>
           <Button className="w-full">Copy link</Button>
           <DrawerClose asChild>
-            <Button variant="outline" className="w-full">Cancel</Button>
+            <Button variant="outline" className="w-full">
+              Cancel
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
@@ -148,10 +167,25 @@ export default function DrawerPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "side", type: '"left" | "right" | "top" | "bottom"', default: '"right"', description: "The side from which the drawer slides in (on DrawerContent)." },
-            { name: "hideClose", type: "boolean", default: "false", description: "Whether to hide the close button (on DrawerContent)." },
+            {
+              name: "side",
+              type: '"left" | "right" | "top" | "bottom"',
+              default: '"right"',
+              description: "The side from which the drawer slides in (on DrawerContent).",
+            },
+            {
+              name: "hideClose",
+              type: "boolean",
+              default: "false",
+              description: "Whether to hide the close button (on DrawerContent).",
+            },
             { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
-            { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Callback when open state changes." },
+            {
+              name: "onOpenChange",
+              type: "(open: boolean) => void",
+              default: "—",
+              description: "Callback when open state changes.",
+            },
           ]}
         />
       </Section>

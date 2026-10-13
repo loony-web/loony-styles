@@ -1,4 +1,11 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { Stack } from "@loony/ui";
 
 export default function StackPage() {
@@ -32,7 +39,7 @@ export default function StackPage() {
               {["Item one", "Item two", "Item three"].map((item) => (
                 <div
                   key={item}
-                  className="rounded-md bg-[--loony-color-accent]/10 border border-[--loony-color-border] px-4 py-3 text-sm text-[--loony-color-fg]"
+                  className="rounded-md bg-(--loony-color-accent)/10 border border-(--loony-color-border) px-4 py-3 text-sm text-(--loony-color-fg)"
                 >
                   {item}
                 </div>
@@ -53,10 +60,10 @@ export default function StackPage() {
 </Stack>`}
         >
           <Stack direction="row" gap={3} align="center">
-            <div className="h-10 w-10 rounded-full bg-[--loony-color-accent] shrink-0" />
+            <div className="h-10 w-10 rounded-full bg-(--loony-color-accent) shrink-0" />
             <div>
-              <p className="text-sm font-medium text-[--loony-color-fg]">John Doe</p>
-              <p className="text-xs text-[--loony-color-fg-muted]">Software Engineer</p>
+              <p className="text-sm font-medium text-(--loony-color-fg)">John Doe</p>
+              <p className="text-xs text-(--loony-color-fg-muted)">Software Engineer</p>
             </div>
           </Stack>
         </ComponentPreview>
@@ -69,10 +76,10 @@ export default function StackPage() {
   <span className="text-lg font-bold">$99.00</span>
 </Stack>`}
         >
-          <div className="w-64 rounded-xl border border-[--loony-color-border] p-4">
+          <div className="w-64 rounded-xl border border-(--loony-color-border) p-4">
             <Stack direction="row" justify="between" align="center">
-              <span className="text-sm font-medium text-[--loony-color-fg]">Total</span>
-              <span className="text-lg font-bold text-[--loony-color-fg]">$99.00</span>
+              <span className="text-sm font-medium text-(--loony-color-fg)">Total</span>
+              <span className="text-lg font-bold text-(--loony-color-fg)">$99.00</span>
             </Stack>
           </div>
         </ComponentPreview>
@@ -81,12 +88,42 @@ export default function StackPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "direction", type: '"row" | "column" | "row-reverse" | "column-reverse"', default: '"column"', description: "Flex direction." },
-            { name: "align", type: '"start" | "center" | "end" | "stretch" | "baseline"', default: '"stretch"', description: "Align items along the cross axis." },
-            { name: "justify", type: '"start" | "center" | "end" | "between" | "around" | "evenly"', default: '"start"', description: "Justify content along the main axis." },
-            { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | ...", default: "—", description: "Gap between children (Tailwind spacing scale)." },
-            { name: "wrap", type: '"wrap" | "nowrap" | "wrap-reverse"', default: '"nowrap"', description: "Flex wrap behavior." },
-            { name: "as", type: "ElementType", default: '"div"', description: "HTML element or component to render as." },
+            {
+              name: "direction",
+              type: '"row" | "column" | "row-reverse" | "column-reverse"',
+              default: '"column"',
+              description: "Flex direction.",
+            },
+            {
+              name: "align",
+              type: '"start" | "center" | "end" | "stretch" | "baseline"',
+              default: '"stretch"',
+              description: "Align items along the cross axis.",
+            },
+            {
+              name: "justify",
+              type: '"start" | "center" | "end" | "between" | "around" | "evenly"',
+              default: '"start"',
+              description: "Justify content along the main axis.",
+            },
+            {
+              name: "gap",
+              type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | ...",
+              default: "—",
+              description: "Gap between children (Tailwind spacing scale).",
+            },
+            {
+              name: "wrap",
+              type: '"wrap" | "nowrap" | "wrap-reverse"',
+              default: '"nowrap"',
+              description: "Flex wrap behavior.",
+            },
+            {
+              name: "as",
+              type: "ElementType",
+              default: '"div"',
+              description: "HTML element or component to render as.",
+            },
           ]}
         />
       </Section>

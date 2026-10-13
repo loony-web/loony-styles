@@ -1,8 +1,8 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "@loony/utils";
 import { ChevronRightIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 export interface BreadcrumbProps extends ComponentPropsWithoutRef<"nav"> {
   separator?: ReactNode;
@@ -16,7 +16,7 @@ export function Breadcrumb({
 }: BreadcrumbProps) {
   return (
     <nav aria-label="breadcrumb" className={cn(className)} {...props}>
-      <ol className="flex flex-wrap items-center gap-1.5 break-words text-sm text-[--loony-color-fg-muted]">
+      <ol className="flex flex-wrap items-center gap-1.5 break-words text-sm text-(--loony-color-fg-muted)">
         {children}
       </ol>
     </nav>
@@ -27,7 +27,12 @@ export interface BreadcrumbItemProps extends ComponentPropsWithoutRef<"li"> {
   isCurrentPage?: boolean;
 }
 
-export function BreadcrumbItem({ className, isCurrentPage, children, ...props }: BreadcrumbItemProps) {
+export function BreadcrumbItem({
+  className,
+  isCurrentPage,
+  children,
+  ...props
+}: BreadcrumbItemProps) {
   return (
     <li
       className={cn("inline-flex items-center gap-1.5", className)}
@@ -39,16 +44,12 @@ export function BreadcrumbItem({ className, isCurrentPage, children, ...props }:
   );
 }
 
-export function BreadcrumbLink({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<"a">) {
+export function BreadcrumbLink({ className, children, ...props }: ComponentPropsWithoutRef<"a">) {
   return (
     <a
       className={cn(
-        "transition-colors hover:text-[--loony-color-fg]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] rounded-sm",
+        "transition-colors hover:text-(--loony-color-fg)",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) rounded-sm",
         className,
       )}
       {...props}
@@ -58,12 +59,15 @@ export function BreadcrumbLink({
   );
 }
 
-export function BreadcrumbPage({ className, children, ...props }: ComponentPropsWithoutRef<"span">) {
+export function BreadcrumbPage({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"span">) {
   return (
     <span
-      className={cn("font-normal text-[--loony-color-fg]", className)}
-      role="link"
-      aria-disabled="true"
+      className={cn("font-normal text-(--loony-color-fg)", className)}
+      aria-current="page"
       {...props}
     >
       {children}
@@ -80,7 +84,7 @@ export function BreadcrumbSeparator({
     <li
       role="presentation"
       aria-hidden="true"
-      className={cn("text-[--loony-color-fg-subtle]", className)}
+      className={cn("text-(--loony-color-fg-subtle)", className)}
       {...props}
     >
       {children ?? <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden />}

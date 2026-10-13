@@ -1,16 +1,13 @@
 "use client";
 
+import { cn } from "@loony/utils";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { type VariantProps, cva } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
-import { cn } from "@loony/utils";
 
 const progressVariants = cva(
-  [
-    "relative w-full overflow-hidden rounded-full",
-    "bg-[--loony-color-surface]",
-  ],
+  ["relative w-full overflow-hidden rounded-full", "bg-(--loony-color-surface)"],
   {
     variants: {
       size: {
@@ -39,30 +36,29 @@ export interface ProgressProps
   label?: string;
 }
 
-export const Progress = forwardRef<
-  ElementRef<typeof ProgressPrimitive.Root>,
-  ProgressProps
->(({ className, value, size, colorScheme, label, ...props }, ref) => {
-  const progress = value ?? 0;
+export const Progress = forwardRef<ComponentRef<typeof ProgressPrimitive.Root>, ProgressProps>(
+  ({ className, value, size, colorScheme, label, ...props }, ref) => {
+    const progress = value ?? 0;
 
-  return (
-    <ProgressPrimitive.Root
-      ref={ref}
-      className={cn(progressVariants({ size, colorScheme }), className)}
-      aria-label={label}
-      aria-valuenow={progress}
-      value={progress}
-      {...props}
-    >
-      <ProgressPrimitive.Indicator
-        className={cn(
-          "h-full w-full flex-1 rounded-full bg-[--progress-fill]",
-          "transition-all duration-300 ease-in-out",
-          "motion-reduce:transition-none",
-        )}
-        style={{ transform: `translateX(-${100 - progress}%)` }}
-      />
-    </ProgressPrimitive.Root>
-  );
-});
+    return (
+      <ProgressPrimitive.Root
+        ref={ref}
+        className={cn(progressVariants({ size, colorScheme }), className)}
+        aria-label={label}
+        aria-valuenow={progress}
+        value={progress}
+        {...props}
+      >
+        <ProgressPrimitive.Indicator
+          className={cn(
+            "h-full w-full flex-1 rounded-full bg-(--progress-fill)",
+            "transition-all duration-300 ease-in-out",
+            "motion-reduce:transition-none",
+          )}
+          style={{ transform: `translateX(-${100 - progress}%)` }}
+        />
+      </ProgressPrimitive.Root>
+    );
+  },
+);
 Progress.displayName = "Progress";

@@ -2,9 +2,9 @@
 
 import { Slot } from "@loony/utils";
 import { cn } from "@loony/utils";
-import { type ButtonProps } from "./button.types.js";
-import { buttonVariants } from "./button.styles.js";
 import { Spinner } from "../spinner/spinner.js";
+import { buttonVariants } from "./button.styles.js";
+import type { ButtonProps } from "./button.types.js";
 
 /**
  * Button — The primary interactive element.

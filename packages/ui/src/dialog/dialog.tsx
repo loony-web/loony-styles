@@ -1,9 +1,9 @@
 "use client";
 
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { type ComponentPropsWithRef } from "react";
-import { cn } from "@loony/utils";
 import { XIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import type { ComponentPropsWithRef } from "react";
 import { IconButton } from "../icon-button/icon-button.js";
 
 /**
@@ -63,8 +63,8 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Overlay
       className={cn(
-        "fixed inset-0 z-[--loony-z-overlay]",
-        "bg-[--loony-color-bg-overlay]",
+        "fixed inset-0 z-(--loony-z-overlay)",
+        "bg-(--loony-color-bg-overlay)",
         "backdrop-blur-sm",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -78,36 +78,30 @@ function DialogOverlay({
 
 DialogOverlay.displayName = "DialogOverlay";
 
-interface DialogContentProps
-  extends ComponentPropsWithRef<typeof DialogPrimitive.Content> {
+interface DialogContentProps extends ComponentPropsWithRef<typeof DialogPrimitive.Content> {
   /** Whether to show the close button in the top-right corner. */
   showClose?: boolean;
 }
 
-function DialogContent({
-  className,
-  children,
-  showClose = true,
-  ...props
-}: DialogContentProps) {
+function DialogContent({ className, children, showClose = true, ...props }: DialogContentProps) {
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content
         className={cn(
-          "fixed left-1/2 top-1/2 z-[--loony-z-modal]",
+          "fixed left-1/2 top-1/2 z-(--loony-z-modal)",
           "-translate-x-1/2 -translate-y-1/2",
           "w-full max-w-lg",
-          "bg-[--loony-color-surface]",
-          "rounded-[--loony-radius-dialog]",
-          "border border-[--loony-color-border]",
-          "shadow-[--loony-shadow-xl]",
+          "bg-(--loony-color-surface)",
+          "rounded-(--loony-radius-dialog)",
+          "border border-(--loony-color-border)",
+          "shadow-(--loony-shadow-xl)",
           "outline-none",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           "data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2",
-          "duration-[--loony-duration-normal]",
+          "duration-(--loony-duration-normal)",
           "motion-reduce:animate-none",
           className,
         )}
@@ -120,7 +114,7 @@ function DialogContent({
               label="Close dialog"
               variant="ghost"
               size="sm"
-              className="absolute right-4 top-4 text-[--loony-color-fg-muted]"
+              className="absolute right-4 top-4 text-(--loony-color-fg-muted)"
             >
               <XIcon />
             </IconButton>
@@ -134,20 +128,13 @@ function DialogContent({
 DialogContent.displayName = "DialogContent";
 
 function DialogHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return (
-    <div
-      className={cn("flex flex-col gap-1.5 p-6 pb-0", className)}
-      {...props}
-    />
-  );
+  return <div className={cn("flex flex-col gap-1.5 p-6 pb-0", className)} {...props} />;
 }
 
 DialogHeader.displayName = "DialogHeader";
 
 function DialogBody({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return (
-    <div className={cn("px-6 py-4", className)} {...props} />
-  );
+  return <div className={cn("px-6 py-4", className)} {...props} />;
 }
 
 DialogBody.displayName = "DialogBody";
@@ -166,10 +153,7 @@ function DialogFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
 
 DialogFooter.displayName = "DialogFooter";
 
-function DialogTitle({
-  className,
-  ...props
-}: ComponentPropsWithRef<typeof DialogPrimitive.Title>) {
+function DialogTitle({ className, ...props }: ComponentPropsWithRef<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
       className={cn("text-lg font-semibold leading-tight tracking-tight", className)}
@@ -186,7 +170,7 @@ function DialogDescription({
 }: ComponentPropsWithRef<typeof DialogPrimitive.Description>) {
   return (
     <DialogPrimitive.Description
-      className={cn("text-sm text-[--loony-color-fg-muted]", className)}
+      className={cn("text-sm text-(--loony-color-fg-muted)", className)}
       {...props}
     />
   );

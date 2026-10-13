@@ -1,8 +1,8 @@
 "use client";
 
-import { type ElementType, type ComponentPropsWithRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@loony/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithRef, ElementType } from "react";
 
 // ============================================================
 // Text
@@ -11,12 +11,12 @@ import { cn } from "@loony/utils";
 const textVariants = cva("", {
   variants: {
     size: {
-      "2xs": "text-[--loony-text-2xs]",
-      xs: "text-[--loony-text-xs]",
-      sm: "text-[--loony-text-sm]",
-      base: "text-[--loony-text-base]",
-      lg: "text-[--loony-text-lg]",
-      xl: "text-[--loony-text-xl]",
+      "2xs": "text-(length:--loony-text-2xs)",
+      xs: "text-(length:--loony-text-xs)",
+      sm: "text-(length:--loony-text-sm)",
+      base: "text-(length:--loony-text-base)",
+      lg: "text-(length:--loony-text-lg)",
+      xl: "text-(length:--loony-text-xl)",
     },
     weight: {
       normal: "font-normal",
@@ -25,14 +25,14 @@ const textVariants = cva("", {
       bold: "font-bold",
     },
     color: {
-      default: "text-[--loony-color-fg]",
-      muted: "text-[--loony-color-fg-muted]",
-      subtle: "text-[--loony-color-fg-subtle]",
-      disabled: "text-[--loony-color-fg-disabled]",
-      accent: "text-[--loony-color-accent]",
-      danger: "text-[--loony-color-danger]",
-      success: "text-[--loony-color-success]",
-      warning: "text-[--loony-color-warning]",
+      default: "text-(--loony-color-fg)",
+      muted: "text-(--loony-color-fg-muted)",
+      subtle: "text-(--loony-color-fg-subtle)",
+      disabled: "text-(--loony-color-fg-disabled)",
+      accent: "text-(--loony-color-accent)",
+      danger: "text-(--loony-color-danger)",
+      success: "text-(--loony-color-success)",
+      warning: "text-(--loony-color-warning)",
     },
     align: {
       left: "text-left",
@@ -92,16 +92,16 @@ Text.displayName = "Text";
 // ============================================================
 
 const headingVariants = cva(
-  ["font-semibold leading-tight tracking-tight text-[--loony-color-fg]"],
+  ["font-semibold leading-tight tracking-tight text-(--loony-color-fg)"],
   {
     variants: {
       level: {
-        1: "text-[--loony-text-4xl] sm:text-[--loony-text-5xl]",
-        2: "text-[--loony-text-3xl] sm:text-[--loony-text-4xl]",
-        3: "text-[--loony-text-2xl] sm:text-[--loony-text-3xl]",
-        4: "text-[--loony-text-xl] sm:text-[--loony-text-2xl]",
-        5: "text-[--loony-text-lg] sm:text-[--loony-text-xl]",
-        6: "text-[--loony-text-base] sm:text-[--loony-text-lg]",
+        1: "text-(length:--loony-text-4xl) sm:text-(length:--loony-text-5xl)",
+        2: "text-(length:--loony-text-3xl) sm:text-(length:--loony-text-4xl)",
+        3: "text-(length:--loony-text-2xl) sm:text-(length:--loony-text-3xl)",
+        4: "text-(length:--loony-text-xl) sm:text-(length:--loony-text-2xl)",
+        5: "text-(length:--loony-text-lg) sm:text-(length:--loony-text-xl)",
+        6: "text-(length:--loony-text-base) sm:text-(length:--loony-text-lg)",
       },
     },
     defaultVariants: {
@@ -110,9 +110,7 @@ const headingVariants = cva(
   },
 );
 
-interface HeadingProps
-  extends ComponentPropsWithRef<"h2">,
-    VariantProps<typeof headingVariants> {
+interface HeadingProps extends ComponentPropsWithRef<"h2">, VariantProps<typeof headingVariants> {
   /** Heading level (1–6). Controls both font size and the rendered element tag. */
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   /** Override the rendered tag without changing the visual size. */
@@ -130,14 +128,9 @@ interface HeadingProps
  * <Heading level={2} as="h1">Visually h2, semantically h1</Heading>
  */
 export function Heading({ className, level = 2, as, ...props }: HeadingProps) {
-  const Tag = as ?? (`h${level}` as `h${typeof level}`);
+  const Tag = as ?? (`h${level}` as const);
 
-  return (
-    <Tag
-      className={cn(headingVariants({ level }), className)}
-      {...props}
-    />
-  );
+  return <Tag className={cn(headingVariants({ level }), className)} {...props} />;
 }
 
 Heading.displayName = "Heading";
@@ -162,12 +155,14 @@ interface CodeProps extends ComponentPropsWithRef<"code"> {
 export function Code({ className, block = false, children, ...props }: CodeProps) {
   if (block) {
     return (
-      <pre className={cn(
-        "overflow-x-auto rounded-[--loony-radius-md]",
-        "bg-[--loony-color-bg-muted] border border-[--loony-color-border]",
-        "p-4 text-sm font-mono",
-        className,
-      )}>
+      <pre
+        className={cn(
+          "overflow-x-auto rounded-(--loony-radius-md)",
+          "bg-(--loony-color-bg-muted) border border-(--loony-color-border)",
+          "p-4 text-sm font-mono",
+          className,
+        )}
+      >
         <code {...props}>{children}</code>
       </pre>
     );
@@ -177,9 +172,9 @@ export function Code({ className, block = false, children, ...props }: CodeProps
     <code
       className={cn(
         "rounded px-1 py-0.5",
-        "bg-[--loony-color-bg-muted] border border-[--loony-color-border]",
+        "bg-(--loony-color-bg-muted) border border-(--loony-color-border)",
         "font-mono text-[0.875em]",
-        "text-[--loony-color-fg]",
+        "text-(--loony-color-fg)",
         className,
       )}
       {...props}
@@ -195,7 +190,7 @@ Code.displayName = "Code";
 // Kbd
 // ============================================================
 
-interface KbdProps extends ComponentPropsWithRef<"kbd"> {}
+type KbdProps = ComponentPropsWithRef<"kbd">;
 
 /**
  * Kbd — Keyboard shortcut indicator.
@@ -210,9 +205,9 @@ export function Kbd({ className, ...props }: KbdProps) {
     <kbd
       className={cn(
         "inline-flex items-center justify-center",
-        "rounded-[--loony-radius-sm] border border-[--loony-color-border]",
-        "bg-[--loony-color-bg-subtle] px-1.5 py-0.5",
-        "font-mono text-xs text-[--loony-color-fg-muted]",
+        "rounded-(--loony-radius-sm) border border-(--loony-color-border)",
+        "bg-(--loony-color-bg-subtle) px-1.5 py-0.5",
+        "font-mono text-xs text-(--loony-color-fg-muted)",
         "shadow-[0_1px_0_1px_--loony-color-border]",
         className,
       )}

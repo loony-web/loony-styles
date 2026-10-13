@@ -8,14 +8,41 @@
  *   import "@loony/ui/styles" in your app entry point.
  */
 
+/*
+ * Cascade layer order — must be declared before any @import so it wins.
+ * Layer priority is fixed by first appearance, and later layers beat earlier
+ * ones. Each Loony layer sits directly after its Tailwind counterpart so that
+ * the Loony reset refines Tailwind's preflight but never outranks utilities
+ * (otherwise `* { border-width: 0 }` would override `border`, `a { color:
+ * inherit }` would override `text-*`, and so on).
+ */
+@layer theme,
+  loony.tokens,
+  base,
+  loony.base,
+  components,
+  loony.components,
+  utilities,
+  loony.utilities;
+
 /* Tailwind v4 entry point */
 @import "tailwindcss";
 
-/* Design tokens (CSS variables for all theming) */
-@import "@loony/tokens/css";
+/* Enter/exit animation utilities used by overlays (animate-in, fade-in-0, zoom-in-95, …) */
+@import "tw-animate-css";
 
-/* CSS Layer order declaration — controls cascade priority */
-@layer loony.tokens, loony.base, loony.components, loony.utilities;
+/* Design tokens as CSS variables + Tailwind theme mapping (bg-accent, rounded-md, …) */
+@import "@loony/tokens/tailwind";
+
+/*
+ * Scan component source for class names. Tailwind's automatic detection skips
+ * node_modules and anything outside the consuming app, so without this the
+ * component utilities would never be generated.
+ */
+@source "../";
+
+/* `dark:` follows the same switch as the tokens: .dark / data-theme="dark". */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
 /* ====================================================
  * loony.base — Reset and sensible defaults
@@ -103,7 +130,12 @@
   }
 
   /* Headings */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-size: inherit;
     font-weight: inherit;
     margin: 0;
@@ -166,5 +198,17 @@
   /* Focus trap helper — ensures trap container is in tab order */
   [data-focus-trap] {
     outline: none;
+  }
+
+  /*
+   * Reduced motion for tw-animate-css enter/exit animations. This layer sits
+   * above Tailwind utilities, so it wins over any duration-* class. 1ms (not 0)
+   * keeps `animationend` firing so Radix still unmounts closed overlays.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-in,
+    .animate-out {
+      animation-duration: 1ms;
+    }
   }
 }

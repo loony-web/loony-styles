@@ -1,7 +1,7 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";
+import type { ComponentPropsWithRef } from "react";
 
 /**
  * Card — Surface container for grouping related content.
@@ -29,11 +29,11 @@ function Card({ className, ...props }: ComponentPropsWithRef<"div">) {
   return (
     <div
       className={cn(
-        "rounded-[--loony-radius-card]",
-        "bg-[--loony-color-surface]",
-        "border border-[--loony-color-border]",
-        "shadow-[--loony-shadow-sm]",
-        "text-[--loony-color-fg]",
+        "rounded-(--loony-radius-card)",
+        "bg-(--loony-color-surface)",
+        "border border-(--loony-color-border)",
+        "shadow-(--loony-shadow-sm)",
+        "text-(--loony-color-fg)",
         className,
       )}
       {...props}
@@ -44,59 +44,35 @@ function Card({ className, ...props }: ComponentPropsWithRef<"div">) {
 Card.displayName = "Card";
 
 function CardHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return (
-    <div
-      className={cn("flex flex-col gap-1.5 p-6", className)}
-      {...props}
-    />
-  );
+  return <div className={cn("flex flex-col gap-1.5 p-6", className)} {...props} />;
 }
 
 CardHeader.displayName = "CardHeader";
 
-function CardTitle({ className, ...props }: ComponentPropsWithRef<"h3">) {
+function CardTitle({ className, children, ...props }: ComponentPropsWithRef<"h3">) {
   return (
-    <h3
-      className={cn("text-lg font-semibold leading-tight tracking-tight", className)}
-      {...props}
-    />
+    <h3 className={cn("text-lg font-semibold leading-tight tracking-tight", className)} {...props}>
+      {children}
+    </h3>
   );
 }
 
 CardTitle.displayName = "CardTitle";
 
 function CardDescription({ className, ...props }: ComponentPropsWithRef<"p">) {
-  return (
-    <p
-      className={cn("text-sm text-[--loony-color-fg-muted]", className)}
-      {...props}
-    />
-  );
+  return <p className={cn("text-sm text-(--loony-color-fg-muted)", className)} {...props} />;
 }
 
 CardDescription.displayName = "CardDescription";
 
 function CardBody({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return (
-    <div
-      className={cn("px-6 pb-6 pt-0", className)}
-      {...props}
-    />
-  );
+  return <div className={cn("px-6 pb-6 pt-0", className)} {...props} />;
 }
 
 CardBody.displayName = "CardBody";
 
 function CardFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return (
-    <div
-      className={cn(
-        "flex items-center gap-3 px-6 pb-6 pt-0",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <div className={cn("flex items-center gap-3 px-6 pb-6 pt-0", className)} {...props} />;
 }
 
 CardFooter.displayName = "CardFooter";

@@ -1,9 +1,9 @@
 "use client";
 
-import * as SelectPrimitive from "@radix-ui/react-select";
-import { type ComponentPropsWithRef } from "react";
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@loony/icons";
 import { cn } from "@loony/utils";
-import { ChevronDownIcon, ChevronUpIcon, CheckIcon } from "@loony/icons";
+import * as SelectPrimitive from "@radix-ui/react-select";
+import type { ComponentPropsWithRef } from "react";
 
 /**
  * Select — Accessible custom select with search-free option list.
@@ -47,14 +47,14 @@ function SelectTrigger({
     <SelectPrimitive.Trigger
       className={cn(
         "flex h-10 w-full items-center justify-between gap-2",
-        "rounded-[--loony-radius-input] border border-[--loony-color-border]",
-        "bg-[--loony-color-bg] px-3 py-2 text-sm",
-        "text-[--loony-color-fg] placeholder:text-[--loony-color-fg-subtle]",
-        "outline-none transition-colors duration-[--loony-duration-fast]",
-        "focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-0 focus-visible:border-[--loony-color-ring]",
-        "hover:border-[--loony-color-border-strong]",
+        "rounded-(--loony-radius-input) border border-(--loony-color-border)",
+        "bg-(--loony-color-bg) px-3 py-2 text-sm",
+        "text-(--loony-color-fg) placeholder:text-(--loony-color-fg-subtle)",
+        "outline-none transition-colors duration-(--loony-duration-fast)",
+        "focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-0 focus-visible:border-(--loony-color-ring)",
+        "hover:border-(--loony-color-border-strong)",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "data-[placeholder]:text-[--loony-color-fg-subtle]",
+        "data-[placeholder]:text-(--loony-color-fg-subtle)",
         "[&>span]:line-clamp-1",
         className,
       )}
@@ -113,11 +113,11 @@ function SelectContent({
       <SelectPrimitive.Content
         position={position}
         className={cn(
-          "relative z-[--loony-z-dropdown] min-w-32 overflow-hidden",
-          "rounded-[--loony-radius-lg]",
-          "bg-[--loony-color-surface]",
-          "border border-[--loony-color-border]",
-          "shadow-[--loony-shadow-md]",
+          "relative z-(--loony-z-dropdown) min-w-32 overflow-hidden",
+          "rounded-(--loony-radius-lg)",
+          "bg-(--loony-color-surface)",
+          "border border-(--loony-color-border)",
+          "shadow-(--loony-shadow-md)",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -150,13 +150,10 @@ function SelectContent({
 
 SelectContent.displayName = "SelectContent";
 
-function SelectLabel({
-  className,
-  ...props
-}: ComponentPropsWithRef<typeof SelectPrimitive.Label>) {
+function SelectLabel({ className, ...props }: ComponentPropsWithRef<typeof SelectPrimitive.Label>) {
   return (
     <SelectPrimitive.Label
-      className={cn("px-2 py-1.5 text-xs font-medium text-[--loony-color-fg-muted]", className)}
+      className={cn("px-2 py-1.5 text-xs font-medium text-(--loony-color-fg-muted)", className)}
       {...props}
     />
   );
@@ -173,10 +170,10 @@ function SelectItem({
     <SelectPrimitive.Item
       className={cn(
         "relative flex w-full cursor-default select-none items-center",
-        "rounded-[--loony-radius-sm] py-1.5 pl-8 pr-2 text-sm",
-        "text-[--loony-color-fg]",
+        "rounded-(--loony-radius-sm) py-1.5 pl-8 pr-2 text-sm",
+        "text-(--loony-color-fg)",
         "outline-none",
-        "focus:bg-[--loony-color-bg-subtle] focus:text-[--loony-color-fg]",
+        "focus:bg-(--loony-color-bg-subtle) focus:text-(--loony-color-fg)",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className,
       )}
@@ -200,7 +197,7 @@ function SelectSeparator({
 }: ComponentPropsWithRef<typeof SelectPrimitive.Separator>) {
   return (
     <SelectPrimitive.Separator
-      className={cn("-mx-1 my-1 h-px bg-[--loony-color-border]", className)}
+      className={cn("-mx-1 my-1 h-px bg-(--loony-color-border)", className)}
       {...props}
     />
   );

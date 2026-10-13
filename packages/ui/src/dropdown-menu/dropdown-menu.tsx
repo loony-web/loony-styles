@@ -1,10 +1,10 @@
 "use client";
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import type { ComponentPropsWithoutRef, ElementRef } from "react";
-import { forwardRef } from "react";
-import { cn } from "@loony/utils";
 import { CheckIcon, ChevronRightIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import type { ComponentPropsWithoutRef, ComponentRef } from "react";
+import { forwardRef } from "react";
 
 export const DropdownMenu = DropdownMenuPrimitive.Root;
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
@@ -15,7 +15,7 @@ export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 
 const contentClasses = cn(
   "z-50 min-w-[8rem] overflow-hidden rounded-md",
-  "border border-[--loony-color-border] bg-[--loony-color-surface] shadow-md",
+  "border border-(--loony-color-border) bg-(--loony-color-surface) shadow-md",
   "p-1",
   "data-[state=open]:animate-in data-[state=closed]:animate-out",
   "data-[state=open]:fade-in data-[state=closed]:fade-out",
@@ -27,14 +27,14 @@ const contentClasses = cn(
 
 const itemClasses = cn(
   "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5",
-  "text-sm text-[--loony-color-fg] outline-none",
+  "text-sm text-(--loony-color-fg) outline-none",
   "transition-colors duration-100",
-  "focus:bg-[--loony-color-surface-hover] focus:text-[--loony-color-fg]",
+  "focus:bg-(--loony-color-surface-hover) focus:text-(--loony-color-fg)",
   "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 );
 
 export const DropdownMenuContent = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.Content>,
+  ComponentRef<typeof DropdownMenuPrimitive.Content>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
 >(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
@@ -49,7 +49,7 @@ export const DropdownMenuContent = forwardRef<
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
 export const DropdownMenuItem = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.Item>,
+  ComponentRef<typeof DropdownMenuPrimitive.Item>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & { inset?: boolean }
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
@@ -61,7 +61,7 @@ export const DropdownMenuItem = forwardRef<
 DropdownMenuItem.displayName = "DropdownMenuItem";
 
 export const DropdownMenuCheckboxItem = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
+  ComponentRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
@@ -81,7 +81,7 @@ export const DropdownMenuCheckboxItem = forwardRef<
 DropdownMenuCheckboxItem.displayName = "DropdownMenuCheckboxItem";
 
 export const DropdownMenuRadioItem = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
+  ComponentRef<typeof DropdownMenuPrimitive.RadioItem>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
@@ -100,13 +100,13 @@ export const DropdownMenuRadioItem = forwardRef<
 DropdownMenuRadioItem.displayName = "DropdownMenuRadioItem";
 
 export const DropdownMenuLabel = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.Label>,
+  ComponentRef<typeof DropdownMenuPrimitive.Label>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & { inset?: boolean }
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      "px-2 py-1.5 text-xs font-semibold text-[--loony-color-fg-muted] uppercase tracking-wider",
+      "px-2 py-1.5 text-xs font-semibold text-(--loony-color-fg-muted) uppercase tracking-wider",
       inset && "pl-8",
       className,
     )}
@@ -116,26 +116,26 @@ export const DropdownMenuLabel = forwardRef<
 DropdownMenuLabel.displayName = "DropdownMenuLabel";
 
 export const DropdownMenuSeparator = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.Separator>,
+  ComponentRef<typeof DropdownMenuPrimitive.Separator>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-[--loony-color-border]", className)}
+    className={cn("-mx-1 my-1 h-px bg-(--loony-color-border)", className)}
     {...props}
   />
 ));
 DropdownMenuSeparator.displayName = "DropdownMenuSeparator";
 
 export const DropdownMenuSubTrigger = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
+  ComponentRef<typeof DropdownMenuPrimitive.SubTrigger>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & { inset?: boolean }
 >(({ className, inset, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
       itemClasses,
-      "data-[state=open]:bg-[--loony-color-surface-hover]",
+      "data-[state=open]:bg-(--loony-color-surface-hover)",
       inset && "pl-8",
       className,
     )}
@@ -148,7 +148,7 @@ export const DropdownMenuSubTrigger = forwardRef<
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";
 
 export const DropdownMenuSubContent = forwardRef<
-  ElementRef<typeof DropdownMenuPrimitive.SubContent>,
+  ComponentRef<typeof DropdownMenuPrimitive.SubContent>,
   ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
@@ -162,7 +162,7 @@ DropdownMenuSubContent.displayName = "DropdownMenuSubContent";
 export function DropdownMenuShortcut({ className, ...props }: ComponentPropsWithoutRef<"span">) {
   return (
     <span
-      className={cn("ml-auto text-xs tracking-widest text-[--loony-color-fg-subtle]", className)}
+      className={cn("ml-auto text-xs tracking-widest text-(--loony-color-fg-subtle)", className)}
       {...props}
     />
   );

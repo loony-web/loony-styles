@@ -1,6 +1,13 @@
-import { Input, Label } from "@loony/ui";
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { SearchIcon } from "@loony/icons";
+import { Input, Label } from "@loony/ui";
 
 export default function InputPage() {
   return (
@@ -80,7 +87,7 @@ export default function InputPage() {
     invalid
     aria-describedby="email-error"
   />
-  <p id="email-error" className="text-sm text-[--loony-color-danger]">
+  <p id="email-error" className="text-sm text-(--loony-color-danger)">
     Please enter a valid email address.
   </p>
 </div>`}
@@ -94,7 +101,7 @@ export default function InputPage() {
               invalid
               aria-describedby="input-error-msg"
             />
-            <p id="input-error-msg" className="text-sm text-[--loony-color-danger]">
+            <p id="input-error-msg" className="text-sm text-(--loony-color-danger)">
               Please enter a valid email address.
             </p>
           </div>
@@ -112,12 +119,42 @@ export default function InputPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Controls height and font size." },
-            { name: "leftElement", type: "ReactNode", default: "—", description: "Content rendered inside the input on the left." },
-            { name: "rightElement", type: "ReactNode", default: "—", description: "Content rendered inside the input on the right." },
-            { name: "invalid", type: "boolean", default: "false", description: "Applies error ring and sets aria-invalid." },
-            { name: "disabled", type: "boolean", default: "false", description: "Disables the input." },
-            { name: "readOnly", type: "boolean", default: "false", description: "Makes the input read-only." },
+            {
+              name: "size",
+              type: '"sm" | "md" | "lg"',
+              default: '"md"',
+              description: "Controls height and font size.",
+            },
+            {
+              name: "leftElement",
+              type: "ReactNode",
+              default: "—",
+              description: "Content rendered inside the input on the left.",
+            },
+            {
+              name: "rightElement",
+              type: "ReactNode",
+              default: "—",
+              description: "Content rendered inside the input on the right.",
+            },
+            {
+              name: "invalid",
+              type: "boolean",
+              default: "false",
+              description: "Applies error ring and sets aria-invalid.",
+            },
+            {
+              name: "disabled",
+              type: "boolean",
+              default: "false",
+              description: "Disables the input.",
+            },
+            {
+              name: "readOnly",
+              type: "boolean",
+              default: "false",
+              description: "Makes the input read-only.",
+            },
           ]}
         />
       </Section>

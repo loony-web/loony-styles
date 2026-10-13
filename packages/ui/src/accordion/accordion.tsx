@@ -1,9 +1,9 @@
 "use client";
 
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { type ComponentPropsWithRef } from "react";
-import { cn } from "@loony/utils";
 import { ChevronDownIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import type { ComponentPropsWithRef } from "react";
 
 /**
  * Accordion — Vertically stacked collapsible sections.
@@ -29,7 +29,7 @@ function AccordionItem({
 }: ComponentPropsWithRef<typeof AccordionPrimitive.Item>) {
   return (
     <AccordionPrimitive.Item
-      className={cn("border-b border-[--loony-color-border]", className)}
+      className={cn("border-b border-(--loony-color-border)", className)}
       {...props}
     />
   );
@@ -48,8 +48,8 @@ function AccordionTrigger({
         className={cn(
           "flex flex-1 items-center justify-between py-4",
           "text-sm font-medium text-left",
-          "transition-all duration-[--loony-duration-fast]",
-          "outline-none focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-2 rounded-[--loony-radius-sm]",
+          "transition-all duration-(--loony-duration-fast)",
+          "outline-none focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-2 rounded-(--loony-radius-sm)",
           "hover:underline",
           "[&[data-state=open]>svg]:rotate-180",
           className,
@@ -58,7 +58,7 @@ function AccordionTrigger({
       >
         {children}
         <ChevronDownIcon
-          className="h-4 w-4 shrink-0 text-[--loony-color-fg-muted] transition-transform duration-[--loony-duration-fast]"
+          className="h-4 w-4 shrink-0 text-(--loony-color-fg-muted) transition-transform duration-(--loony-duration-fast)"
           aria-hidden
         />
       </AccordionPrimitive.Trigger>

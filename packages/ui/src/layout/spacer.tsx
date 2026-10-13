@@ -1,7 +1,7 @@
 "use client";
 
-import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@loony/utils";
+import type { ComponentPropsWithoutRef } from "react";
 
 export interface SpacerProps extends ComponentPropsWithoutRef<"div"> {
   axis?: "horizontal" | "vertical" | "both";
@@ -9,7 +9,8 @@ export interface SpacerProps extends ComponentPropsWithoutRef<"div"> {
 }
 
 export function Spacer({ axis = "both", size, className, style, ...props }: SpacerProps) {
-  const sizeValue = size !== undefined ? (typeof size === "number" ? `${size * 4}px` : size) : undefined;
+  const sizeValue =
+    size !== undefined ? (typeof size === "number" ? `${size * 4}px` : size) : undefined;
 
   return (
     <div

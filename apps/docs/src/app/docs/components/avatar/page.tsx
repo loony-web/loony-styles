@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Avatar, AvatarImage, AvatarFallback } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Avatar, AvatarFallback, AvatarImage } from "@loony/ui";
 
 export default function AvatarPage() {
   return (
@@ -43,19 +50,32 @@ export default function AvatarPage() {
 <Avatar size="2xl"><AvatarFallback>2X</AvatarFallback></Avatar>`}
         >
           <div className="flex items-center gap-3">
-            <Avatar size="xs"><AvatarFallback>XS</AvatarFallback></Avatar>
-            <Avatar size="sm"><AvatarFallback>SM</AvatarFallback></Avatar>
-            <Avatar size="md"><AvatarFallback>MD</AvatarFallback></Avatar>
-            <Avatar size="lg"><AvatarFallback>LG</AvatarFallback></Avatar>
-            <Avatar size="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
-            <Avatar size="2xl"><AvatarFallback>2X</AvatarFallback></Avatar>
+            <Avatar size="xs">
+              <AvatarFallback>XS</AvatarFallback>
+            </Avatar>
+            <Avatar size="sm">
+              <AvatarFallback>SM</AvatarFallback>
+            </Avatar>
+            <Avatar size="md">
+              <AvatarFallback>MD</AvatarFallback>
+            </Avatar>
+            <Avatar size="lg">
+              <AvatarFallback>LG</AvatarFallback>
+            </Avatar>
+            <Avatar size="xl">
+              <AvatarFallback>XL</AvatarFallback>
+            </Avatar>
+            <Avatar size="2xl">
+              <AvatarFallback>2X</AvatarFallback>
+            </Avatar>
           </div>
         </ComponentPreview>
       </Section>
 
       <Section id="fallback" title="Fallback">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
-          When the image fails to load, the fallback text is displayed. Use initials for best results.
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
+          When the image fails to load, the fallback text is displayed. Use initials for best
+          results.
         </p>
         <ComponentPreview
           code={`<div className="flex items-center gap-3">
@@ -88,7 +108,12 @@ export default function AvatarPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "size", type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"', default: '"md"', description: "Size of the avatar." },
+            {
+              name: "size",
+              type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+              default: '"md"',
+              description: "Size of the avatar.",
+            },
           ]}
         />
       </Section>

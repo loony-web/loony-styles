@@ -1,8 +1,8 @@
 "use client";
 
-import * as PopoverPrimitive from "@radix-ui/react-popover";
-import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";
+import * as PopoverPrimitive from "@radix-ui/react-popover";
+import type { ComponentPropsWithRef } from "react";
 
 /**
  * Popover — Floating panel anchored to a trigger.
@@ -48,11 +48,11 @@ function PopoverContent({
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          "z-[--loony-z-popover]",
-          "w-72 rounded-[--loony-radius-dialog]",
-          "bg-[--loony-color-surface]",
-          "border border-[--loony-color-border]",
-          "shadow-[--loony-shadow-lg]",
+          "z-(--loony-z-popover)",
+          "w-72 rounded-(--loony-radius-dialog)",
+          "bg-(--loony-color-surface)",
+          "border border-(--loony-color-border)",
+          "shadow-(--loony-shadow-lg)",
           "p-4 outline-none",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",

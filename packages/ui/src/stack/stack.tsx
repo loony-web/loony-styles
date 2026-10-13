@@ -1,8 +1,8 @@
 "use client";
 
-import { type ElementType, type ComponentPropsWithRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@loony/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithRef, ElementType } from "react";
 
 const stackVariants = cva("flex", {
   variants: {
@@ -60,7 +60,7 @@ const stackVariants = cva("flex", {
   },
 });
 
-interface StackProps
+export interface StackProps
   extends ComponentPropsWithRef<"div">,
     VariantProps<typeof stackVariants> {
   as?: ElementType;

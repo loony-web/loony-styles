@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { CodeBlock, Section } from "@/components/component-doc";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "CLI — Loony" };
 
@@ -7,10 +7,11 @@ export default function CliPage() {
   return (
     <div className="max-w-3xl">
       <div className="mb-8">
-        <h1 className="mb-3 text-3xl font-bold tracking-tight text-[--loony-color-fg]">CLI</h1>
-        <p className="text-[--loony-color-fg-muted]">
-          The <code className="font-mono text-xs">@loony/cli</code> tool copies component source files directly into your
-          project. You own the code — no runtime dependency on Loony, no version drift.
+        <h1 className="mb-3 text-3xl font-bold tracking-tight text-(--loony-color-fg)">CLI</h1>
+        <p className="text-(--loony-color-fg-muted)">
+          The <code className="font-mono text-xs">@loony/cli</code> tool copies component source
+          files directly into your project. You own the code — no runtime dependency on Loony, no
+          version drift.
         </p>
       </div>
 
@@ -28,7 +29,8 @@ loony init`}</CodeBlock>
           {[
             {
               cmd: "loony init",
-              description: "Scaffolds the token file, Tailwind config import, and a components/ directory in your project.",
+              description:
+                "Scaffolds the token file, Tailwind config import, and a components/ directory in your project.",
               example: `loony init
 
 # Interactive prompts:
@@ -38,7 +40,8 @@ loony init`}</CodeBlock>
             },
             {
               cmd: "loony add <component>",
-              description: "Copies a component's source files into your project. Includes all sub-components and peer dependencies.",
+              description:
+                "Copies a component's source files into your project. Includes all sub-components and peer dependencies.",
               example: `loony add button
 # Copies: src/components/ui/button.tsx
 
@@ -51,7 +54,8 @@ loony add button dialog input select
             },
             {
               cmd: "loony diff <component>",
-              description: "Shows a diff between the version in your project and the current registry version. Useful for staying up to date.",
+              description:
+                "Shows a diff between the version in your project and the current registry version. Useful for staying up to date.",
               example: `loony diff button
 
 # Output:
@@ -61,7 +65,8 @@ loony add button dialog input select
             },
             {
               cmd: "loony list",
-              description: "Lists all available components in the registry with their status and dependencies.",
+              description:
+                "Lists all available components in the registry with their status and dependencies.",
               example: `loony list
 
 # ✅ button         stable   (no deps)
@@ -72,7 +77,8 @@ loony add button dialog input select
             },
             {
               cmd: "loony update <component>",
-              description: "Overwrites your local copy with the latest registry version. Will prompt before overwriting customized files.",
+              description:
+                "Overwrites your local copy with the latest registry version. Will prompt before overwriting customized files.",
               example: `loony update button
 
 # Detected local changes to src/components/ui/button.tsx
@@ -80,11 +86,13 @@ loony add button dialog input select
 # > Show diff first? (Y/n)`,
             },
           ].map(({ cmd, description, example }) => (
-            <div key={cmd} className="rounded-xl border border-[--loony-color-border] p-5">
+            <div key={cmd} className="rounded-xl border border-(--loony-color-border) p-5">
               <div className="mb-1">
-                <code className="font-mono text-sm font-semibold text-[--loony-color-fg]">{cmd}</code>
+                <code className="font-mono text-sm font-semibold text-(--loony-color-fg)">
+                  {cmd}
+                </code>
               </div>
-              <p className="mb-3 text-sm text-[--loony-color-fg-muted]">{description}</p>
+              <p className="mb-3 text-sm text-(--loony-color-fg-muted)">{description}</p>
               <CodeBlock>{example}</CodeBlock>
             </div>
           ))}
@@ -92,8 +100,9 @@ loony add button dialog input select
       </Section>
 
       <Section title="Registry format">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
-          Each component in the registry includes metadata the CLI uses to resolve dependencies and copy files.
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
+          Each component in the registry includes metadata the CLI uses to resolve dependencies and
+          copy files.
         </p>
         <CodeBlock>{`// registry.ts (internal format)
 export interface RegistryItem {
@@ -116,9 +125,10 @@ export interface RegistryItem {
       </Section>
 
       <Section title="Config file">
-        <p className="mb-4 text-sm text-[--loony-color-fg-muted]">
-          After <code className="font-mono text-xs">loony init</code>, a <code className="font-mono text-xs">loony.json</code> is
-          created at your project root to persist your settings.
+        <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
+          After <code className="font-mono text-xs">loony init</code>, a{" "}
+          <code className="font-mono text-xs">loony.json</code> is created at your project root to
+          persist your settings.
         </p>
         <CodeBlock>{`// loony.json
 {

@@ -1,7 +1,30 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
 import { ScrollArea } from "@loony/ui";
 
-const TAGS = ["React", "TypeScript", "Next.js", "Tailwind", "Radix UI", "CVA", "Motion", "Vitest", "Biome", "Changesets", "TurboRepo", "pnpm", "ESLint", "Vite", "Storybook"];
+const TAGS = [
+  "React",
+  "TypeScript",
+  "Next.js",
+  "Tailwind",
+  "Radix UI",
+  "CVA",
+  "Motion",
+  "Vitest",
+  "Biome",
+  "Changesets",
+  "TurboRepo",
+  "pnpm",
+  "ESLint",
+  "Vite",
+  "Storybook",
+];
 
 export default function ScrollAreaPage() {
   return (
@@ -27,12 +50,12 @@ export default function ScrollAreaPage() {
   {/* long content */}
 </ScrollArea>`}
         >
-          <ScrollArea className="h-48 w-56 rounded-md border border-[--loony-color-border] p-4">
+          <ScrollArea className="h-48 w-56 rounded-md border border-(--loony-color-border) p-4">
             <div className="space-y-2">
               {TAGS.map((tag) => (
                 <div
                   key={tag}
-                  className="rounded-sm border border-[--loony-color-border] bg-[--loony-color-surface] px-3 py-1.5 text-sm"
+                  className="rounded-sm border border-(--loony-color-border) bg-(--loony-color-surface) px-3 py-1.5 text-sm"
                 >
                   {tag}
                 </div>
@@ -54,12 +77,12 @@ export default function ScrollAreaPage() {
   </div>
 </ScrollArea>`}
         >
-          <ScrollArea className="w-72 rounded-md border border-[--loony-color-border]">
+          <ScrollArea className="w-72 rounded-md border border-(--loony-color-border)">
             <div className="flex gap-2 p-3">
               {TAGS.map((tag) => (
                 <div
                   key={tag}
-                  className="shrink-0 rounded-md border border-[--loony-color-border] bg-[--loony-color-surface] px-3 py-1.5 text-sm whitespace-nowrap"
+                  className="shrink-0 rounded-md border border-(--loony-color-border) bg-(--loony-color-surface) px-3 py-1.5 text-sm whitespace-nowrap"
                 >
                   {tag}
                 </div>
@@ -72,8 +95,18 @@ export default function ScrollAreaPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "className", type: "string", default: "—", description: "Apply width/height constraints to control the scroll bounds." },
-            { name: "type", type: '"auto" | "always" | "scroll" | "hover"', default: '"hover"', description: "Visibility behavior of the scrollbar." },
+            {
+              name: "className",
+              type: "string",
+              default: "—",
+              description: "Apply width/height constraints to control the scroll bounds.",
+            },
+            {
+              name: "type",
+              type: '"auto" | "always" | "scroll" | "hover"',
+              default: '"hover"',
+              description: "Visibility behavior of the scrollbar.",
+            },
           ]}
         />
       </Section>

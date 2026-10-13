@@ -6,21 +6,28 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./css": "./src/css/index.css",
     "./css/base": "./src/css/base.css",
     "./css/dark": "./src/css/dark.css",
     "./css/high-contrast": "./src/css/high-contrast.css",
-    "./tailwind": "./src/tailwind/preset.ts"
+    "./tailwind": "./src/tailwind/preset.css"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": ["**/*.css"],
   "files": ["src/**", "dist/**"],
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx",
+    "lint": "eslint src",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "devDependencies": {
+    "@loony/eslint-config": "workspace:*",
     "@loony/typescript-config": "workspace:*",
     "typescript": "^5.7.2"
   }

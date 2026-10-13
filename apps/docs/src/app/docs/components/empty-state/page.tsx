@@ -1,6 +1,13 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { EmptyState, Button } from "@loony/ui";
-import { InfoIcon, SearchIcon, AlertCircleIcon } from "@loony/icons";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { AlertCircleIcon, InfoIcon, SearchIcon } from "@loony/icons";
+import { Button, EmptyState } from "@loony/ui";
 
 export default function EmptyStatePage() {
   return (
@@ -48,24 +55,32 @@ export default function EmptyStatePage() {
             icon={<SearchIcon size={24} />}
             title="No results found"
             description="Try adjusting your search or filter to find what you're looking for."
-            action={<Button size="sm" variant="outline">Clear filters</Button>}
+            action={
+              <Button size="sm" variant="outline">
+                Clear filters
+              </Button>
+            }
           />
         </ComponentPreview>
 
         <ComponentPreview
           label="Error state"
           code={`<EmptyState
-  icon={<AlertCircleIcon size={24} className="text-[--loony-color-danger]" />}
+  icon={<AlertCircleIcon size={24} className="text-(--loony-color-danger)" />}
   title="Failed to load data"
   description="An error occurred while fetching your data."
   action={<Button size="sm" variant="danger">Try again</Button>}
 />`}
         >
           <EmptyState
-            icon={<AlertCircleIcon size={24} className="text-[--loony-color-danger]" />}
+            icon={<AlertCircleIcon size={24} className="text-(--loony-color-danger)" />}
             title="Failed to load data"
             description="An error occurred while fetching your data."
-            action={<Button size="sm" variant="danger">Try again</Button>}
+            action={
+              <Button size="sm" variant="danger">
+                Try again
+              </Button>
+            }
           />
         </ComponentPreview>
       </Section>
@@ -73,10 +88,30 @@ export default function EmptyStatePage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "title", type: "string", default: "—", description: "Required. The main heading text." },
-            { name: "description", type: "string", default: "—", description: "Supporting text beneath the title." },
-            { name: "icon", type: "ReactNode", default: "—", description: "Icon to display above the title." },
-            { name: "action", type: "ReactNode", default: "—", description: "Call-to-action element (usually a Button)." },
+            {
+              name: "title",
+              type: "string",
+              default: "—",
+              description: "Required. The main heading text.",
+            },
+            {
+              name: "description",
+              type: "string",
+              default: "—",
+              description: "Supporting text beneath the title.",
+            },
+            {
+              name: "icon",
+              type: "ReactNode",
+              default: "—",
+              description: "Icon to display above the title.",
+            },
+            {
+              name: "action",
+              type: "ReactNode",
+              default: "—",
+              description: "Call-to-action element (usually a Button).",
+            },
           ]}
         />
       </Section>

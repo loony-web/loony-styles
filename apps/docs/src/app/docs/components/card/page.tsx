@@ -1,5 +1,22 @@
-import { Button, Card, CardBody, CardDescription, CardFooter, CardHeader, CardTitle, Input, Label } from "@loony/ui";
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Input,
+  Label,
+} from "@loony/ui";
 
 export default function CardPage() {
   return (
@@ -49,7 +66,7 @@ export default function CardPage() {
               <CardDescription>You have 3 unread messages.</CardDescription>
             </CardHeader>
             <CardBody>
-              <div className="space-y-2 text-sm text-[--loony-color-fg-muted]">
+              <div className="space-y-2 text-sm text-(--loony-color-fg-muted)">
                 <p>Your subscription renews in 3 days.</p>
                 <p>New comment on your post.</p>
                 <p>Deployment completed successfully.</p>
@@ -91,9 +108,7 @@ export default function CardPage() {
           <Card className="w-80">
             <CardHeader>
               <CardTitle>Login to your account</CardTitle>
-              <CardDescription>
-                Enter your email below to login to your account
-              </CardDescription>
+              <CardDescription>Enter your email below to login to your account</CardDescription>
             </CardHeader>
             <CardBody className="space-y-4">
               <div className="grid gap-1.5">
@@ -112,7 +127,9 @@ export default function CardPage() {
             </CardBody>
             <CardFooter className="flex-col gap-2">
               <Button className="w-full">Login</Button>
-              <Button variant="outline" className="w-full">Login with Google</Button>
+              <Button variant="outline" className="w-full">
+                Login with Google
+              </Button>
             </CardFooter>
           </Card>
         </ComponentPreview>
@@ -141,7 +158,7 @@ export default function CardPage() {
               <CardDescription>Invite others to collaborate.</CardDescription>
             </CardHeader>
             <CardBody>
-              <p className="text-sm text-[--loony-color-fg-muted]">
+              <p className="text-sm text-(--loony-color-fg-muted)">
                 You have 3 active team members on your plan.
               </p>
             </CardBody>
@@ -155,12 +172,42 @@ export default function CardPage() {
       <Section id="api" title="API Reference">
         <PropsTable
           props={[
-            { name: "Card", type: "div", default: "—", description: "Root container with border, background, and rounded corners." },
-            { name: "CardHeader", type: "div", default: "—", description: "Top section — typically holds CardTitle and CardDescription." },
-            { name: "CardTitle", type: "h3", default: "—", description: "Primary heading rendered as an h3 by default." },
-            { name: "CardDescription", type: "p", default: "—", description: "Muted subtitle beneath the title." },
-            { name: "CardBody", type: "div", default: "—", description: "Main content area with consistent padding." },
-            { name: "CardFooter", type: "div", default: "—", description: "Bottom row with horizontal alignment for actions." },
+            {
+              name: "Card",
+              type: "div",
+              default: "—",
+              description: "Root container with border, background, and rounded corners.",
+            },
+            {
+              name: "CardHeader",
+              type: "div",
+              default: "—",
+              description: "Top section — typically holds CardTitle and CardDescription.",
+            },
+            {
+              name: "CardTitle",
+              type: "h3",
+              default: "—",
+              description: "Primary heading rendered as an h3 by default.",
+            },
+            {
+              name: "CardDescription",
+              type: "p",
+              default: "—",
+              description: "Muted subtitle beneath the title.",
+            },
+            {
+              name: "CardBody",
+              type: "div",
+              default: "—",
+              description: "Main content area with consistent padding.",
+            },
+            {
+              name: "CardFooter",
+              type: "div",
+              default: "—",
+              description: "Bottom row with horizontal alignment for actions.",
+            },
           ]}
         />
       </Section>

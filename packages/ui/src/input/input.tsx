@@ -1,25 +1,25 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@loony/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithRef } from "react";
 
 const inputVariants = cva(
   [
-    "flex w-full rounded-[--loony-radius-input]",
-    "border border-[--loony-color-border]",
-    "bg-[--loony-color-bg]",
-    "text-[--loony-color-fg]",
-    "placeholder:text-[--loony-color-fg-subtle]",
-    "transition-colors duration-[--loony-duration-fast]",
+    "flex w-full rounded-(--loony-radius-input)",
+    "border border-(--loony-color-border)",
+    "bg-(--loony-color-bg)",
+    "text-(--loony-color-fg)",
+    "placeholder:text-(--loony-color-fg-subtle)",
+    "transition-colors duration-(--loony-duration-fast)",
     "outline-none",
-    "focus-visible:ring-2 focus-visible:ring-[--loony-color-ring] focus-visible:ring-offset-0 focus-visible:border-[--loony-color-ring]",
-    "hover:border-[--loony-color-border-strong]",
-    "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-[--loony-color-bg-subtle]",
-    "read-only:bg-[--loony-color-bg-subtle] read-only:focus-visible:ring-0",
-    "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[--loony-color-fg]",
+    "focus-visible:ring-2 focus-visible:ring-(--loony-color-ring) focus-visible:ring-offset-0 focus-visible:border-(--loony-color-ring)",
+    "hover:border-(--loony-color-border-strong)",
+    "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-(--loony-color-bg-subtle)",
+    "read-only:bg-(--loony-color-bg-subtle) read-only:focus-visible:ring-0",
+    "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-(--loony-color-fg)",
     // Validation states via data attributes
-    "data-[invalid=true]:border-[--loony-color-danger] data-[invalid=true]:focus-visible:ring-[--loony-color-danger]",
+    "data-[invalid=true]:border-(--loony-color-danger) data-[invalid=true]:focus-visible:ring-(--loony-color-danger)",
   ],
   {
     variants: {
@@ -93,13 +93,13 @@ export function Input({
   return (
     <div className="relative flex items-center">
       {leftElement != null && (
-        <span className="absolute left-3 flex items-center text-[--loony-color-fg-muted] pointer-events-none">
+        <span className="absolute left-3 flex items-center text-(--loony-color-fg-muted) pointer-events-none">
           {leftElement}
         </span>
       )}
       {inputEl}
       {rightElement != null && (
-        <span className="absolute right-3 flex items-center text-[--loony-color-fg-muted]">
+        <span className="absolute right-3 flex items-center text-(--loony-color-fg-muted)">
           {rightElement}
         </span>
       )}

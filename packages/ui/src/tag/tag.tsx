@@ -1,24 +1,20 @@
 "use client";
 
+import { XIcon } from "@loony/icons";
+import { cn } from "@loony/utils";
 import { type VariantProps, cva } from "class-variance-authority";
 import type { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from "react";
-import { cn } from "@loony/utils";
-import { XIcon } from "@loony/icons";
 
 const tagVariants = cva(
-  [
-    "inline-flex items-center gap-1 rounded-full font-medium",
-    "transition-colors duration-150",
-  ],
+  ["inline-flex items-center gap-1 rounded-full font-medium", "transition-colors duration-150"],
   {
     variants: {
       variant: {
-        solid: "bg-[--loony-color-accent] text-white",
-        subtle: "bg-[--loony-color-accent-subtle] text-[--loony-color-accent]",
-        outline:
-          "border border-[--loony-color-border] bg-transparent text-[--loony-color-fg]",
+        solid: "bg-(--loony-color-accent) text-white",
+        subtle: "bg-(--loony-color-accent-subtle) text-(--loony-color-accent)",
+        outline: "border border-(--loony-color-border) bg-transparent text-(--loony-color-fg)",
         neutral:
-          "bg-[--loony-color-surface] text-[--loony-color-fg-muted] border border-[--loony-color-border]",
+          "bg-(--loony-color-surface) text-(--loony-color-fg-muted) border border-(--loony-color-border)",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",

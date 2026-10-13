@@ -1,5 +1,12 @@
-import { ComponentDoc, ComponentPreview, PackageInstall, Section, CodeBlock, PropsTable } from "@/components/component-doc";
-import { Popover, PopoverTrigger, PopoverContent, Button, Label, Input } from "@loony/ui";
+import {
+  CodeBlock,
+  ComponentDoc,
+  ComponentPreview,
+  PackageInstall,
+  PropsTable,
+  Section,
+} from "@/components/component-doc";
+import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from "@loony/ui";
 
 export default function PopoverPage() {
   return (
@@ -35,7 +42,9 @@ export default function PopoverPage() {
               <Button variant="outline">Open popover</Button>
             </PopoverTrigger>
             <PopoverContent>
-              <p className="text-sm text-[--loony-color-fg]">This is a popover with rich content.</p>
+              <p className="text-sm text-(--loony-color-fg)">
+                This is a popover with rich content.
+              </p>
             </PopoverContent>
           </Popover>
         </ComponentPreview>
@@ -77,8 +86,10 @@ export default function PopoverPage() {
             </PopoverTrigger>
             <PopoverContent className="w-80">
               <div className="space-y-4">
-                <h4 className="font-medium leading-none text-[--loony-color-fg]">Dimensions</h4>
-                <p className="text-sm text-[--loony-color-fg-muted]">Set the dimensions for the layer.</p>
+                <h4 className="font-medium leading-none text-(--loony-color-fg)">Dimensions</h4>
+                <p className="text-sm text-(--loony-color-fg-muted)">
+                  Set the dimensions for the layer.
+                </p>
                 <div className="grid gap-2">
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label htmlFor="pop-width">Width</Label>
@@ -99,10 +110,30 @@ export default function PopoverPage() {
         <PropsTable
           props={[
             { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
-            { name: "defaultOpen", type: "boolean", default: "—", description: "Initial open state (uncontrolled)." },
-            { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Callback when open state changes." },
-            { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "Alignment of the popover relative to trigger (on PopoverContent)." },
-            { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"bottom"', description: "Preferred side of the trigger (on PopoverContent)." },
+            {
+              name: "defaultOpen",
+              type: "boolean",
+              default: "—",
+              description: "Initial open state (uncontrolled).",
+            },
+            {
+              name: "onOpenChange",
+              type: "(open: boolean) => void",
+              default: "—",
+              description: "Callback when open state changes.",
+            },
+            {
+              name: "align",
+              type: '"start" | "center" | "end"',
+              default: '"center"',
+              description: "Alignment of the popover relative to trigger (on PopoverContent).",
+            },
+            {
+              name: "side",
+              type: '"top" | "right" | "bottom" | "left"',
+              default: '"bottom"',
+              description: "Preferred side of the trigger (on PopoverContent).",
+            },
           ]}
         />
       </Section>

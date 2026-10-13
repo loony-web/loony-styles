@@ -12,7 +12,7 @@
     :root {
       /* Foreground becomes pure black/white for maximum contrast */
       --loony-color-fg: oklch(0 0 0);
-      --loony-color-fg-muted: oklch(0.130 0.028 261.692);
+      --loony-color-fg-muted: oklch(0.13 0.028 261.692);
       --loony-color-fg-subtle: oklch(0.278 0.033 256.848);
       --loony-color-fg-disabled: oklch(0.446 0.017 257.911);
 
@@ -23,6 +23,7 @@
 
       /* Focus ring becomes solid, thick, high contrast */
       --loony-color-ring: oklch(0 0 0);
+      --loony-color-status-border-strength: 100%;
 
       /* Accent must maintain 4.5:1 contrast with fg-on-accent */
       --loony-color-accent: oklch(0.424 0.199 265.638);
@@ -46,14 +47,16 @@
     :root:not([data-theme="light"]):not(.light) {
       --loony-color-fg: oklch(1 0 0);
       --loony-color-fg-muted: oklch(0.967 0.003 264.542);
-      --loony-color-fg-subtle: oklch(0.872 0.010 258.338);
+      --loony-color-fg-subtle: oklch(0.872 0.01 258.338);
       --loony-color-fg-disabled: oklch(0.707 0.022 261.325);
 
       --loony-color-border: oklch(1 0 0);
       --loony-color-border-strong: oklch(1 0 0);
-      --loony-color-border-subtle: oklch(0.872 0.010 258.338);
+      --loony-color-border-subtle: oklch(0.872 0.01 258.338);
 
       --loony-color-ring: oklch(1 0 0);
+
+      --loony-color-status-border-strength: 100%;
 
       --loony-color-accent: oklch(0.809 0.105 231.655);
       --loony-color-accent-fg: oklch(0 0 0);
@@ -63,12 +66,13 @@
   .high-contrast,
   :root[data-contrast="high"] {
     --loony-color-fg: oklch(0 0 0);
-    --loony-color-fg-muted: oklch(0.130 0.028 261.692);
+    --loony-color-fg-muted: oklch(0.13 0.028 261.692);
     --loony-color-fg-subtle: oklch(0.278 0.033 256.848);
     --loony-color-fg-disabled: oklch(0.446 0.017 257.911);
     --loony-color-border: oklch(0 0 0);
     --loony-color-border-strong: oklch(0 0 0);
     --loony-color-ring: oklch(0 0 0);
+    --loony-color-status-border-strength: 100%;
     --loony-color-accent: oklch(0.424 0.199 265.638);
     --loony-color-accent-fg: oklch(1 0 0);
     --loony-color-danger: oklch(0.444 0.177 26.899);
@@ -82,10 +86,11 @@
   :root[data-theme="dark"][data-contrast="high"] {
     --loony-color-fg: oklch(1 0 0);
     --loony-color-fg-muted: oklch(0.967 0.003 264.542);
-    --loony-color-fg-subtle: oklch(0.872 0.010 258.338);
+    --loony-color-fg-subtle: oklch(0.872 0.01 258.338);
     --loony-color-border: oklch(1 0 0);
     --loony-color-border-strong: oklch(1 0 0);
     --loony-color-ring: oklch(1 0 0);
+    --loony-color-status-border-strength: 100%;
     --loony-color-accent: oklch(0.809 0.105 231.655);
     --loony-color-accent-fg: oklch(0 0 0);
   }

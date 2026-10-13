@@ -1,8 +1,8 @@
 "use client";
 
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { type ComponentPropsWithRef } from "react";
 import { cn } from "@loony/utils";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import type { ComponentPropsWithRef } from "react";
 
 /**
  * Tooltip — Contextual text hint on hover/focus.
@@ -46,11 +46,11 @@ function TooltipContent({
       <TooltipPrimitive.Content
         sideOffset={sideOffset}
         className={cn(
-          "z-[--loony-z-tooltip]",
-          "overflow-hidden rounded-[--loony-radius-tooltip]",
-          "bg-[--loony-color-bg-inverted] text-[--loony-color-fg-inverted]",
+          "z-(--loony-z-tooltip)",
+          "overflow-hidden rounded-(--loony-radius-tooltip)",
+          "bg-(--loony-color-bg-inverted) text-(--loony-color-fg-inverted)",
           "px-3 py-1.5 text-xs font-medium",
-          "shadow-[--loony-shadow-md]",
+          "shadow-(--loony-shadow-md)",
           "animate-in fade-in-0 zoom-in-95",
           "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
           "data-[side=bottom]:slide-in-from-top-2",
