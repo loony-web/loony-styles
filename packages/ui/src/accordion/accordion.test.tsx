@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./
 
 function TestAccordion({ type = "single" }: { type?: "single" | "multiple" }) {
   return (
-    <Accordion type={type as "single"} collapsible>
+    <Accordion type={type} collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>Section 1</AccordionTrigger>
         <AccordionContent>Content 1</AccordionContent>
@@ -25,9 +25,14 @@ describe("Accordion", () => {
     expect(screen.getByText("Section 2")).toBeInTheDocument();
   });
 
+  // Radix unmounts closed content, so "hidden" means "not in the document".
   it("content is hidden by default", () => {
     render(<TestAccordion />);
-    expect(screen.queryByText("Content 1")).not.toBeVisible();
+    expect(screen.queryByText("Content 1")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Section 1" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
   });
 
   it("expands section on click", async () => {
@@ -40,9 +45,11 @@ describe("Accordion", () => {
   it("collapses when clicked again (collapsible)", async () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
-    await user.click(screen.getByText("Section 1"));
-    await user.click(screen.getByText("Section 1"));
-    expect(screen.getByText("Content 1")).not.toBeVisible();
+    const trigger = screen.getByRole("button", { name: "Section 1" });
+    await user.click(trigger);
+    await user.click(trigger);
+    expect(screen.queryByText("Content 1")).not.toBeInTheDocument();
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
   });
 
   it("marks open trigger with expanded state", async () => {

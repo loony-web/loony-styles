@@ -27,6 +27,10 @@ const sliderVariants = cva("relative flex touch-none select-none items-center", 
 export interface SliderProps
   extends Omit<ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, "orientation">,
     VariantProps<typeof sliderVariants> {
+  /**
+   * Accessible name for the slider. Applied to each thumb — the element with
+   * `role="slider"` that receives focus. Range sliders get "label (n of N)".
+   */
   label?: string;
 }
 
@@ -35,7 +39,6 @@ export const Slider = forwardRef<ComponentRef<typeof SliderPrimitive.Root>, Slid
     <SliderPrimitive.Root
       ref={ref}
       orientation={orientation ?? "horizontal"}
-      aria-label={label}
       className={cn(sliderVariants({ orientation, size }), className)}
       {...props}
     >
@@ -54,9 +57,14 @@ export const Slider = forwardRef<ComponentRef<typeof SliderPrimitive.Root>, Slid
           )}
         />
       </SliderPrimitive.Track>
-      {(props.value ?? props.defaultValue ?? [0]).map((_, i) => (
+      {(props.value ?? props.defaultValue ?? [0]).map((_, i, thumbs) => (
         <SliderPrimitive.Thumb
+          // Thumbs are positional — the index is their identity.
+          // biome-ignore lint/suspicious/noArrayIndexKey: see above
           key={i}
+          aria-label={
+            label && thumbs.length > 1 ? `${label} (${i + 1} of ${thumbs.length})` : label
+          }
           className={cn(
             "block rounded-full border-2 border-(--loony-color-accent)",
             "h-(--slider-thumb-size) w-(--slider-thumb-size)",

@@ -45,9 +45,16 @@ describe("Input", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid");
   });
 
-  it("applies custom className", () => {
+  it("applies custom className to the input element", () => {
     render(<Input aria-label="Username" className="custom" />);
-    expect(screen.getByRole("textbox").parentElement).toHaveClass("custom");
+    expect(screen.getByRole("textbox")).toHaveClass("custom");
+  });
+
+  it("applies custom className to the input, not the wrapper, when adornments are present", () => {
+    render(<Input aria-label="Search" className="custom" leftElement={<span>@</span>} />);
+    const input = screen.getByRole("textbox");
+    expect(input).toHaveClass("custom");
+    expect(input.parentElement).not.toHaveClass("custom");
   });
 
   it("renders with leftElement", () => {
