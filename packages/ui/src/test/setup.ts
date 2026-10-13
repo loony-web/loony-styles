@@ -15,3 +15,18 @@ if (typeof globalThis.ResizeObserver === "undefined") {
     }
   };
 }
+
+// jsdom does not implement scrollIntoView; cmdk calls it to keep the
+// highlighted option visible.
+if (typeof Element !== "undefined" && !Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = function scrollIntoView() {
+    // no-op: jsdom has no layout to scroll
+  };
+}
+
+// jsdom lacks pointer capture; Radix Select and DropdownMenu call these on pointerdown.
+if (typeof Element !== "undefined" && !Element.prototype.hasPointerCapture) {
+  Element.prototype.hasPointerCapture = () => false;
+  Element.prototype.setPointerCapture = () => undefined;
+  Element.prototype.releasePointerCapture = () => undefined;
+}

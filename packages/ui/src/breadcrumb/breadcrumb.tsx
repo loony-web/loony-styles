@@ -1,17 +1,14 @@
 import { ChevronRightIcon } from "@loony/icons";
 import { cn } from "@loony/utils";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
-export interface BreadcrumbProps extends ComponentPropsWithoutRef<"nav"> {
-  separator?: ReactNode;
-}
+export type BreadcrumbProps = ComponentPropsWithoutRef<"nav">;
 
-export function Breadcrumb({
-  className,
-  separator = <ChevronRightIcon className="h-4 w-4" aria-hidden />,
-  children,
-  ...props
-}: BreadcrumbProps) {
+/**
+ * Breadcrumb — Navigation trail. Place a BreadcrumbSeparator between items;
+ * it renders a chevron by default, or its children (e.g. "/") to customise.
+ */
+export function Breadcrumb({ className, children, ...props }: BreadcrumbProps) {
   return (
     <nav aria-label="breadcrumb" className={cn(className)} {...props}>
       <ol className="flex flex-wrap items-center gap-1.5 break-words text-sm text-(--loony-color-fg-muted)">
@@ -92,14 +89,10 @@ export function BreadcrumbSeparator({
 
 export function BreadcrumbEllipsis({ className, ...props }: ComponentPropsWithoutRef<"span">) {
   return (
-    <span
-      role="presentation"
-      aria-hidden="true"
-      className={cn("flex h-9 w-9 items-center justify-center", className)}
-      {...props}
-    >
+    <span className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
+      {/* Only the glyph is hidden: an aria-hidden wrapper would also hide this label. */}
       <span className="sr-only">More pages</span>
-      <span>…</span>
+      <span aria-hidden="true">…</span>
     </span>
   );
 }

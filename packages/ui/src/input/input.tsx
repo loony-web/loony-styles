@@ -18,6 +18,8 @@ const inputVariants = cva(
     "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-(--loony-color-fg)",
     // Validation states via data attributes
     "data-[invalid=true]:border-(--loony-color-danger) data-[invalid=true]:focus-visible:ring-(--loony-color-danger)",
+    // Also style a native aria-invalid (e.g. set by FormField)
+    "aria-invalid:border-(--loony-color-danger) aria-invalid:focus-visible:ring-(--loony-color-danger)",
   ],
   {
     variants: {

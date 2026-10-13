@@ -34,6 +34,8 @@ export function Textarea({ className, invalid, resize = "vertical", ...props }: 
         "hover:border-(--loony-color-border-strong)",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-(--loony-color-bg-subtle)",
         "data-[invalid=true]:border-(--loony-color-danger) data-[invalid=true]:focus-visible:ring-(--loony-color-danger)",
+        // Also style a native aria-invalid (e.g. set by FormField)
+        "aria-invalid:border-(--loony-color-danger) aria-invalid:focus-visible:ring-(--loony-color-danger)",
         resizeClass,
         className,
       )}

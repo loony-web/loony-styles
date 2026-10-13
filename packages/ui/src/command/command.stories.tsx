@@ -25,7 +25,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <Command className="rounded-lg border border-(--loony-color-border) shadow-md w-80">
+    <Command
+      label="Commands"
+      className="rounded-lg border border-(--loony-color-border) shadow-md w-80"
+    >
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
@@ -69,7 +72,7 @@ function CommandDialogDemo() {
         or click
       </p>
       <Button onClick={() => setOpen(true)}>Open Command Palette</Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={setOpen} label="Command menu">
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>

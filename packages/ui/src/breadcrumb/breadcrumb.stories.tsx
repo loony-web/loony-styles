@@ -59,7 +59,7 @@ export const WithEllipsis: Story = {
 
 export const CustomSeparator: Story = {
   render: () => (
-    <Breadcrumb separator="/">
+    <Breadcrumb>
       <BreadcrumbItem>
         <BreadcrumbLink href="#">Home</BreadcrumbLink>
       </BreadcrumbItem>

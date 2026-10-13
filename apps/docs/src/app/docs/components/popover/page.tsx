@@ -32,7 +32,7 @@ export default function PopoverPage() {
   <PopoverTrigger asChild>
     <Button variant="outline">Open popover</Button>
   </PopoverTrigger>
-  <PopoverContent>
+  <PopoverContent aria-label="Details">
     <p className="text-sm">This is a popover with rich content.</p>
   </PopoverContent>
 </Popover>`}
@@ -41,7 +41,7 @@ export default function PopoverPage() {
             <PopoverTrigger asChild>
               <Button variant="outline">Open popover</Button>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent aria-label="Details">
               <p className="text-sm text-(--loony-color-fg)">
                 This is a popover with rich content.
               </p>
@@ -56,7 +56,7 @@ export default function PopoverPage() {
   <PopoverTrigger asChild>
     <Button variant="outline">Edit profile</Button>
   </PopoverTrigger>
-  <PopoverContent className="w-80">
+  <PopoverContent aria-label="Dimensions" className="w-80">
     <div className="space-y-4">
       <h4 className="font-medium leading-none">Dimensions</h4>
       <p className="text-sm text-muted-foreground">
@@ -84,7 +84,7 @@ export default function PopoverPage() {
             <PopoverTrigger asChild>
               <Button variant="outline">Edit dimensions</Button>
             </PopoverTrigger>
-            <PopoverContent className="w-80">
+            <PopoverContent aria-label="Dimensions" className="w-80">
               <div className="space-y-4">
                 <h4 className="font-medium leading-none text-(--loony-color-fg)">Dimensions</h4>
                 <p className="text-sm text-(--loony-color-fg-muted)">

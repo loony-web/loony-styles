@@ -13,12 +13,17 @@ import type { ComponentPropsWithRef } from "react";
  *   Popover → PopoverTrigger + PopoverContent
  *   Optional: PopoverArrow, PopoverClose
  *
+ * Accessibility:
+ *   PopoverContent renders with role="dialog", which requires an accessible
+ *   name. Pass `aria-label`, or `aria-labelledby` pointing at a visible heading
+ *   inside the content.
+ *
  * @example
  * <Popover>
  *   <PopoverTrigger asChild>
  *     <Button variant="outline">Filter</Button>
  *   </PopoverTrigger>
- *   <PopoverContent>
+ *   <PopoverContent aria-label="Filter">
  *     <div className="space-y-4">
  *       <Label>Date range</Label>
  *       <Input type="date" />

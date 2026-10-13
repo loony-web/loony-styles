@@ -67,16 +67,29 @@ function GitHubIcon() {
   );
 }
 
+/** `section` is the path prefix a link owns; "Docs" owns everything else under /docs. */
 const navLinks = [
-  { label: "Docs", href: "/docs" },
-  { label: "Components", href: "/docs/components/button" },
-  { label: "Tokens", href: "/docs/tokens/colors" },
-  { label: "CLI", href: "/docs/cli" },
+  { label: "Docs", href: "/docs", section: "/docs" },
+  { label: "Components", href: "/docs/components/button", section: "/docs/components" },
+  { label: "Tokens", href: "/docs/tokens/colors", section: "/docs/tokens" },
+  { label: "CLI", href: "/docs/cli", section: "/docs/cli" },
 ];
+
+const inSection = (pathname: string, section: string) =>
+  pathname === section || pathname.startsWith(`${section}/`);
+
+/** The most specific section containing the path, so only one link is active. */
+function activeSection(pathname: string): string | undefined {
+  return navLinks
+    .map((link) => link.section)
+    .filter((section) => inSection(pathname, section))
+    .sort((a, b) => b.length - a.length)[0];
+}
 
 export function DocsHeader() {
   const [dark, setDark] = useState(false);
   const pathname = usePathname();
+  const currentSection = activeSection(pathname);
 
   const toggleTheme = () => {
     const next = !dark;
@@ -102,11 +115,12 @@ export function DocsHeader() {
         {/* Nav */}
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
           {navLinks.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+            const active = link.section === currentSection;
             return (
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={active ? "page" : undefined}
                 className={[
                   "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                   active

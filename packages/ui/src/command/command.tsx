@@ -6,8 +6,15 @@ import type { DialogProps } from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
 import type { ComponentPropsWithoutRef, ComponentRef, ReactNode } from "react";
 import { forwardRef } from "react";
-import { Dialog, DialogContent } from "../dialog/dialog.js";
+import { Dialog, DialogContent, DialogTitle } from "../dialog/dialog.js";
 
+/**
+ * Command — Searchable command list (cmdk).
+ *
+ * Accessibility: pass `label`. cmdk names its search input with
+ * `aria-labelledby` pointing at this label, so an `aria-label` on
+ * CommandInput is ignored and the input is unnamed without it.
+ */
 export const Command = forwardRef<
   ComponentRef<typeof CommandPrimitive>,
   ComponentPropsWithoutRef<typeof CommandPrimitive>
@@ -26,13 +33,20 @@ Command.displayName = "Command";
 
 export interface CommandDialogProps extends DialogProps {
   children?: ReactNode;
+  /** Accessible name for the dialog and its search field. */
+  label?: string;
 }
 
-export function CommandDialog({ children, ...props }: CommandDialogProps) {
+export function CommandDialog({ children, label = "Command menu", ...props }: CommandDialogProps) {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-2xl">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-(--loony-color-fg-muted) [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        {/* Radix dialogs need a title; this one is for assistive technology only. */}
+        <DialogTitle className="sr-only">{label}</DialogTitle>
+        <Command
+          label={label}
+          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-(--loony-color-fg-muted) [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
+        >
           {children}
         </Command>
       </DialogContent>
