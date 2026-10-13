@@ -27,7 +27,7 @@ A component must be a client component if it:
 - Uses any React hook (`useState`, `useEffect`, `useRef`, `useContext`, etc.)
 - Has interactive event handlers
 - Uses Radix UI primitives (they internally use hooks)
-- Uses Motion animations
+- Uses Motion animations (see ADR-009: animation is CSS-first, so this is rare)
 
 Components: All form inputs, overlays, navigation components, interactive feedback.
 

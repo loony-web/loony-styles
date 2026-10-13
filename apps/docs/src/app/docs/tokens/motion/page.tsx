@@ -164,25 +164,21 @@ function AnimatedCard() {
 
       <Section title="Motion in components">
         <p className="mb-4 text-sm text-(--loony-color-fg-muted)">
-          Components use Motion (motion.dev) for enter/exit animations via AnimatePresence. Dialog,
-          Drawer, Tooltip, Popover, and Dropdown all use this pattern.
+          Components animate with CSS (ADR-009). Overlays key enter/exit animations off the Radix{" "}
+          <code>data-state</code> attribute using <code>tw-animate-css</code> utilities, with timing
+          taken from the motion tokens. Radix waits for the exit animation before unmounting, so no
+          JavaScript animation library is needed.
         </p>
-        <CodeBlock>{`import { motion, AnimatePresence } from "motion/react"
-
-// Dialog overlay: fade in/out
-<motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  exit={{ opacity: 0 }}
-  transition={{ duration: 0.15 }}
-/>
-
-// Dialog panel: slide up + fade
-<motion.div
-  initial={{ opacity: 0, scale: 0.96, y: 8 }}
-  animate={{ opacity: 1, scale: 1, y: 0 }}
-  exit={{ opacity: 0, scale: 0.96, y: 8 }}
-  transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+        <CodeBlock>{`// DialogContent
+<DialogPrimitive.Content
+  className={cn(
+    "data-[state=open]:animate-in data-[state=closed]:animate-out",
+    "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+    "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+    "data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2",
+    "duration-(--loony-duration-normal)",
+    "motion-reduce:animate-none",
+  )}
 />`}</CodeBlock>
       </Section>
     </div>

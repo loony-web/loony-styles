@@ -1,6 +1,6 @@
 # ADR-007: Animation — Motion (motion.dev)
 
-**Status:** Accepted  
+**Status:** Superseded by [ADR-009](009-css-first-animation.md) (2026-10-13). No component ever used Motion.  
 **Date:** 2026-07-01
 
 ## Context

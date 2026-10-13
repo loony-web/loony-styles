@@ -119,7 +119,7 @@ export interface RegistryItem {
   name: "dialog",
   description: "Modal overlay with focus trap and animations",
   files: ["dialog/dialog.tsx"],
-  dependencies: ["@radix-ui/react-dialog", "motion"],
+  dependencies: ["@radix-ui/react-dialog"],
   radix: "@radix-ui/react-dialog",
 }`}</CodeBlock>
       </Section>
