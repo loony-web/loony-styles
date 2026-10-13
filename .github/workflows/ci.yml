@@ -162,4 +162,4 @@ jobs:
         run: pnpm build
 
       - name: Run accessibility tests
-        run: pnpm test --filter=@loony/ui -- --reporter=verbose --grep a11y
+        run: pnpm test --filter=@loony/ui -- --reporter=verbose -t a11y

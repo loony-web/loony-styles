@@ -6,7 +6,11 @@ function LogoMark() {
   return (
     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden>
       <rect width="20" height="20" rx="5" fill="#3b82f6" />
-      <path d="M5 5.5h3.5v9H5zM11.5 5.5h3.5L13 10l2 4.5h-3.5L13 10l-1.5-4.5z" fill="white" fillOpacity="0.92" />
+      <path
+        d="M5 5.5h3.5v9H5zM11.5 5.5h3.5L13 10l2 4.5h-3.5L13 10l-1.5-4.5z"
+        fill="white"
+        fillOpacity="0.92"
+      />
     </svg>
   );
 }
@@ -20,10 +24,10 @@ function GitHubIcon() {
 }
 
 const navLinks = [
-  { label: "Docs",       href: "/docs" },
+  { label: "Docs", href: "/docs" },
   { label: "Components", href: "/docs/components/button" },
-  { label: "Tokens",     href: "/docs/tokens/colors" },
-  { label: "CLI",        href: "/docs/cli" },
+  { label: "Tokens", href: "/docs/tokens/colors" },
+  { label: "CLI", href: "/docs/cli" },
 ];
 
 export function SiteHeader() {
@@ -53,7 +57,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/your-org/loony"
+            href="https://github.com/loony-web/loony-styles"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-8 w-8 items-center justify-center rounded-md text-[#a1a1aa] transition-colors hover:bg-[#18181b] hover:text-[#fafafa]"

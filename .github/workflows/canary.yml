@@ -38,17 +38,29 @@ jobs:
       - name: Run tests
         run: pnpm test
 
-      - name: Enter pre-release mode (canary)
-        run: pnpm changeset pre enter canary
+      # Snapshot releases version packages as 0.0.0-canary-<timestamp> without
+      # touching .changeset/pre.json, so nothing leaks back into the repo.
+      - name: Check for pending changesets
+        id: changesets
+        run: |
+          if find .changeset -maxdepth 1 -name "*.md" ! -name "README.md" | grep -q .; then
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No pending changesets — skipping canary publish."
+            echo "pending=false" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Version packages with canary tag
-        run: pnpm changeset version
+      - name: Version packages as canary snapshot
+        if: steps.changesets.outputs.pending == 'true'
+        run: pnpm changeset version --snapshot canary
+
+      - name: Build snapshot versions
+        if: steps.changesets.outputs.pending == 'true'
+        run: pnpm build
 
       - name: Publish canary packages
-        run: pnpm changeset publish --tag canary
+        if: steps.changesets.outputs.pending == 'true'
+        run: pnpm changeset publish --tag canary --no-git-tag
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Exit pre-release mode
-        run: pnpm changeset pre exit
-        if: always()
+          NPM_CONFIG_PROVENANCE: true
