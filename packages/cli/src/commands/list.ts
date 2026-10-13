@@ -1,6 +1,6 @@
-import { registry } from "../utils/registry.js";
-import { logger } from "../utils/logger.js";
 import kleur from "kleur";
+import { logger } from "../utils/logger.js";
+import { registry } from "../utils/registry.js";
 
 interface ListOptions {
   json?: boolean;
@@ -20,7 +20,7 @@ const CATEGORY_ORDER = [
 /**
  * loony list — Display all available components.
  */
-export async function list(opts: ListOptions) {
+export function list(opts: ListOptions) {
   if (opts.json) {
     console.log(JSON.stringify(registry, null, 2));
     return;

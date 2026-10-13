@@ -5,7 +5,7 @@
   "description": "A production-grade React component ecosystem — owned, extensible, and design-system ready.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/loony"
+    "url": "https://github.com/loony-web/loony-styles"
   },
   "license": "MIT",
   "engines": {
@@ -35,6 +35,8 @@
     "@biomejs/biome": "^1.9.4",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.10",
+    "eslint": "^9.17.0",
+    "simple-git-hooks": "^2.11.1",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2"
   },
@@ -43,5 +45,8 @@
       "react": "^19.0.0",
       "react-dom": "^19.0.0"
     }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm biome check --staged --no-errors-on-unmatched"
   }
 }

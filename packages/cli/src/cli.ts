@@ -8,16 +8,16 @@
  *   Commander handles argument parsing; @clack/prompts handles interactive UX.
  */
 
-import { program } from "commander";
 import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { join, dirname } from "node:path";
+import { program } from "commander";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const pkg = JSON.parse(
-  readFileSync(join(__dirname, "../package.json"), "utf-8"),
-) as { version: string };
+const pkg = JSON.parse(readFileSync(join(__dirname, "../package.json"), "utf-8")) as {
+  version: string;
+};
 
 program
   .name("loony")
@@ -55,7 +55,7 @@ program
   .option("--json", "Output in JSON format", false)
   .action(async (opts: Record<string, unknown>) => {
     const { list } = await import("./commands/list.js");
-    await list(opts);
+    list(opts);
   });
 
 program

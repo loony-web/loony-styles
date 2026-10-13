@@ -1,7 +1,7 @@
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import * as p from "@clack/prompts";
 import kleur from "kleur";
-import { writeFileSync, mkdirSync } from "node:fs";
-import { dirname, resolve } from "node:path";
 
 interface ThemeOptions {
   preset?: string;
@@ -74,8 +74,6 @@ export async function theme(opts: ThemeOptions) {
   p.intro(kleur.bold().cyan("  loony theme  "));
 
   let selectedPreset: PresetKey;
-  let accentColor: string;
-  let radius: string;
 
   if (opts.preset && opts.preset in PRESETS) {
     selectedPreset = opts.preset as PresetKey;
@@ -110,7 +108,7 @@ export async function theme(opts: ThemeOptions) {
     process.exit(0);
   }
 
-  accentColor = accentAnswer ?? preset.accent;
+  const accentColor = accentAnswer ?? preset.accent;
 
   const radiusAnswer = await p.select({
     message: "Border radius personality:",
@@ -131,7 +129,7 @@ export async function theme(opts: ThemeOptions) {
     process.exit(0);
   }
 
-  radius = radiusAnswer ?? preset.radius;
+  const radius = radiusAnswer ?? preset.radius;
 
   const outPath = resolve(opts.out ?? "./src/styles/theme.css");
   const css = generateThemeCSS({ accentColor, radius });

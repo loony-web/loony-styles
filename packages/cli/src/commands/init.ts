@@ -1,8 +1,8 @@
-import * as p from "@clack/prompts";
-import kleur from "kleur";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { configExists, writeConfig, type LoonyCLIConfig } from "../utils/config.js";
+import * as p from "@clack/prompts";
+import kleur from "kleur";
+import { type LoonyCLIConfig, configExists, writeConfig } from "../utils/config.js";
 
 interface InitOptions {
   cwd: string;
@@ -105,7 +105,7 @@ export async function init(opts: InitOptions) {
     componentsDir: config.componentsDir ?? "src/components/ui",
     stylesPath: config.stylesPath ?? "src/styles/globals.css",
     importAlias: config.importAlias ?? "@",
-    tailwindVersion: (config.tailwindVersion as "3" | "4") ?? "4",
+    tailwindVersion: config.tailwindVersion ?? "4",
     typescript: config.typescript ?? true,
   });
 
@@ -121,6 +121,6 @@ export async function init(opts: InitOptions) {
     "Next steps",
   );
 
-  p.log.info("Run " + kleur.cyan("`loony add button`") + " to add your first component.");
+  p.log.info(`Run ${kleur.cyan("`loony add button`")} to add your first component.`);
   p.outro(kleur.green("Loony initialized successfully."));
 }

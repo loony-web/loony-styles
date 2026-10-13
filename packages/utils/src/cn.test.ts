@@ -6,8 +6,11 @@ describe("cn", () => {
     expect(cn("foo", "bar")).toBe("foo bar");
   });
 
+  // Constant conditions are the point here: they mimic `cond && "class"` call sites.
   it("handles conditional classes", () => {
+    // eslint-disable-next-line no-constant-binary-expression
     expect(cn("foo", false && "bar", "baz")).toBe("foo baz");
+    // eslint-disable-next-line no-constant-binary-expression
     expect(cn("foo", true && "bar")).toBe("foo bar");
   });
 

@@ -1,22 +1,16 @@
 "use client";
 
-import {
-  useCallback,
-  useRef,
-  useState,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { type Dispatch, type SetStateAction, useCallback, useRef, useState } from "react";
 import { useCallbackRef } from "./use-callback-ref.js";
 
-type UseControllableStateParams<T> = {
+interface UseControllableStateParams<T> {
   /** The controlled value (from props). If provided, component is controlled. */
   value?: T;
   /** Default uncontrolled value. Only used when `value` is undefined. */
   defaultValue?: T | (() => T);
   /** Called when state changes — always fired, even in controlled mode. */
   onChange?: (value: T) => void;
-};
+}
 
 /**
  * useControllableState — Unified controlled/uncontrolled state management.
@@ -55,8 +49,7 @@ export function useControllableState<T>({
     const wasControlled = useRef(isControlled);
     if (wasControlled.current !== isControlled) {
       console.warn(
-        `[Loony] A component changed from ${wasControlled.current ? "controlled" : "uncontrolled"} to ${isControlled ? "controlled" : "uncontrolled"}. ` +
-          `Components should not switch between controlled and uncontrolled states.`,
+        `[Loony] A component changed from ${wasControlled.current ? "controlled" : "uncontrolled"} to ${isControlled ? "controlled" : "uncontrolled"}. Components should not switch between controlled and uncontrolled states.`,
       );
     }
   }
@@ -65,7 +58,9 @@ export function useControllableState<T>({
     (nextValue) => {
       const setter = nextValue as (prevState: T | undefined) => T;
       const resolved =
-        typeof nextValue === "function" ? setter(isControlledRef.current ? controlledValue : uncontrolledValue) : nextValue;
+        typeof nextValue === "function"
+          ? setter(isControlledRef.current ? controlledValue : uncontrolledValue)
+          : nextValue;
 
       if (!isControlledRef.current) {
         setUncontrolledValue(resolved);

@@ -5,4 +5,4 @@ export * from "./primitives/typography.js";
 export * from "./primitives/motion.js";
 export * from "./primitives/elevation.js";
 export * from "./semantic/colors.js";
-export * from "./types/token.js";
+export type * from "./types/token.js";

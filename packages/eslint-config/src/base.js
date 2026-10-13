@@ -15,17 +15,37 @@ export const base = tseslint.config(
   ...tseslint.configs.stylisticTypeChecked,
 
   {
+    // Type-aware rules need type information: resolve each file against the
+    // nearest tsconfig.json of the package being linted.
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+  },
+
+  {
     rules: {
       // TypeScript — strict but practical
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
-      "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports", fixStyle: "inline-type-imports" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports", fixStyle: "inline-type-imports" },
+      ],
       "@typescript-eslint/consistent-type-exports": "error",
       "@typescript-eslint/no-import-type-side-effects": "error",
       "@typescript-eslint/no-unnecessary-condition": "warn",
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/await-thenable": "error",
-      "@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: { attributes: false } }],
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        { checksVoidReturn: { attributes: false } },
+      ],
       "@typescript-eslint/require-await": "error",
       "@typescript-eslint/return-await": ["error", "in-try-catch"],
       "@typescript-eslint/no-non-null-assertion": "warn",
@@ -42,8 +62,9 @@ export const base = tseslint.config(
       "object-shorthand": "warn",
       "prefer-destructuring": "off",
 
-      // Imports
-      "no-duplicate-imports": "error",
+      // Imports — Biome owns import organization (ADR-004) and deliberately
+      // splits `import type` from value imports, which this core rule flags.
+      "no-duplicate-imports": "off",
     },
   },
 );

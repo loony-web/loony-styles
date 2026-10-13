@@ -4,6 +4,7 @@
   "private": false,
   "description": "Shared ESLint configurations for the Loony design system monorepo.",
   "license": "MIT",
+  "type": "module",
   "exports": {
     "./base": "./src/base.js",
     "./react": "./src/react.js",
