@@ -41,6 +41,7 @@ const nav: NavGroup[] = [
       { label: "Checkbox", href: "/docs/components/checkbox" },
       { label: "Switch", href: "/docs/components/switch" },
       { label: "Select", href: "/docs/components/select" },
+      { label: "Combobox", href: "/docs/components/combobox" },
       { label: "Radio", href: "/docs/components/radio" },
       { label: "Slider", href: "/docs/components/slider" },
       { label: "FormField", href: "/docs/components/form-field" },

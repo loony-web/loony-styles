@@ -21,6 +21,8 @@ export {
   SelectItem,
   SelectSeparator,
 } from "./select/index.js";
+export { Combobox } from "./combobox/index.js";
+export type { ComboboxOption, ComboboxProps } from "./combobox/index.js";
 export { RadioGroup, RadioItem } from "./radio/index.js";
 export { Slider } from "./slider/index.js";
 export type { SliderProps } from "./slider/index.js";
@@ -67,7 +69,8 @@ export type { EmptyStateProps } from "./empty-state/index.js";
 export { Toast, ToastAction, ToastProvider, ToastViewport } from "./toast/index.js";
 export type { ToastProps } from "./toast/index.js";
 export { Toaster } from "./toast/index.js";
-export { useToast } from "./toast/index.js";
+export { dismissToast, removeToast, toast, useToast } from "./toast/index.js";
+export type { ToastInput, ToastItem, ToastVariant } from "./toast/index.js";
 
 // Overlay
 export {
